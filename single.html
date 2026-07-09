@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inmobiliaria - CFV</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Css Files & Libraries -->
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="libs/boxicons/css/boxicons.min.css">
+    <link rel="stylesheet" href="libs/owl/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="libs/owl/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="libs/niceselect/css/nice-select.css">
+    <link rel="stylesheet" href="libs/slick/slick.css">
+    <link rel="stylesheet" href="libs/slick/slick-theme.css">
+    <link rel="stylesheet" href="libs/jquery_ui/jquery-ui.css">
+    <link rel="stylesheet" href="libs/lightcase/css/lightcase.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html" title="Logo">
+                    <img src="images/logo.png" height="50" alt="">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" title="Menu Toggle"
+                    data-bs-target="#offcanvas" aria-controls="offcanvas">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end w-100" id="offcanvas">
+                    <div class="offcanvas-header">
+                        <a class="navbar-brand" href="index.html" title="Logo">
+                            <img src="images/logo.png" height="50" alt="">
+                        </a>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="index.html">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.html#about-us">Nosotros</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Secciones
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item active" href="single.html">Detalle de Propiedades</a></li>
+                                    <li><a class="dropdown-item" href="search.html">Buscador de Propiedades</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contacto.html">Contacto</a>
+                            </li>
+                        </ul>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="d-flex phone-info">
+                                    <div class="flex-shrink-0 me-3">
+                                        <i class='bx bx-phone fs-4 text-main-color'></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <span class="fw-semibold fs-12 d-block text-muted">TELÉFONO</span>
+                                        <span class="fs-14 fw-semibold">(+51) 912 830 351</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="d-flex mail-info">
+                                    <div class="flex-shrink-0 me-3">
+                                        <i class='bx bx-envelope fs-4 text-main-color'></i>
+                                    </div>
+                                    <div class="flex-grow-1">
+                                        <span class="fw-semibold fs-12 d-block text-muted">EMAIL</span>
+                                        <span class="fs-14 fw-semibold">cfvingenieros@outlook.com</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- ./navbar -->
+
+
+        <!-- Breadcrumb -->
+        <section class="section page-breadcrumb">
+            <div class="container">
+                <h2>Detalles del Proyecto</h2>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><i class="bx bx-home"></i><a href="index.html">Inicio</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Detalles del Proyecto</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+        <!-- ./page-breadcrumb -->
+
+
+        <!-- Slider Gallery -->
+        <div class="container-fluid slider-gallery">
+            <div class="property-gallery">
+                <a href="images/image-3.jpg" data-rel="lightcase:myCollection:slideshow" title="Imagen del Proyecto">
+                    <img src="images/image-3.jpg" alt="">
+                </a>
+                <a href="images/image-4.jpg" data-rel="lightcase:myCollection:slideshow" title="Imagen del Proyecto">
+                    <img src="images/image-4.jpg" alt="">
+                </a>
+                <a href="images/image-5.jpg" data-rel="lightcase:myCollection:slideshow" title="Imagen del Proyecto">
+                    <img src="images/image-5.jpg" alt="">
+                </a>
+                <a href="images/image-6.jpg" data-rel="lightcase:myCollection:slideshow" title="Imagen del Proyecto">
+                    <img src="images/image-6.jpg" alt="">
+                </a>
+            </div>
+            <div class="prev"><i class='bx bx-left-arrow-alt'></i></div>
+            <div class="next"><i class='bx bx-right-arrow-alt'></i></div>
+        </div>
+        <!-- ./slider-gallery -->
+
+
+        <div class="container">
+            <div class="row">
+                <!-- Page Content -->
+                <div class="col-12 col-md-8">
+                    <article class="property-info-content">
+                        <div class="d-flex align-items-center">
+                            <span class="meta-category">Destacado</span>
+                            <span class="meta-category bg-orange">En Preventa</span>
+                            <span class="meta-date"><i class="bx bx-calendar"></i> Lanzamiento Reciente</span>
+                            <span class="meta-comments ms-auto"><i class="bx bx-chat"></i> Alta Plusvalía</span>
+                        </div>
+
+                        <h2>Edificio Residencial Vanguardia</h2>
+                        <div class="meta-location mb-4"><i class="bx bx-map"></i> Av. los Chankas 637, 
+                            Andahuaylas, Perú</div>
+
+                        <h6 class="section-title">Descripción del Proyecto</h6>
+                        <p>Desarrollo residencial exclusivo diseñado bajo los más altos 
+                            estándares de ingeniería y arquitectura moderna. 
+                            Este proyecto cuenta con una infraestructura sólida,
+                             distribución inteligente de espacios, acabados de primera calidad 
+                             y una ubicación estratégica ideal tanto para vivienda como para inversión
+                              de alta valorización.</p>
+
+                        <h6 class="section-title">Detalles del Proyecto</h6>
+
+                        <div class="property-detail-info-list section-bg-1 clearfix mb-60">
+                            <ul>
+                                <li><label>ID Proyecto:</label> <span>CFV-01</span></li>
+                                <li><label>Área Construida:</label> <span>85 m² a 110 m²</span></li>
+                                <li><label>Ambientes:</label> <span>5 a 7</span></li>
+                                <li><label>Baños:</label> <span>1 a 2</span></li>
+                                <li><label>Año de Entrega:</label> <span>2026</span></li>
+                            </ul>
+                            <ul>
+                                <li><label>Área Terreno:</label> <span>600 m²</span></li>
+                                <li><label>Niveles:</label> <span>8 Pisos</span></li>
+                                <li><label>Dormitorios:</label> <span>2 a 3</span></li>
+                                <li><label>Precio:</label> <span>Desde $124,900</span></li>
+                                <li><label>Estado Obra:</label> <span>En Preventa / Pozo</span></li>
+                            </ul>
+                        </div>
+
+                        <h6 class="section-title">Instalaciones e Infraestructura</h6>
+                        <div class="property-details-amenities mb-60">
+                            <ul class="overflow-hidden ps-5">
+                                <li class="w-50 float-start mb-2">
+                                    <i class="bx bx-check-double text-main-color me-2"></i>
+                                    Preinstalación de Aire M.
+                                </li>
+                                <li class="w-50 float-start mb-2">
+                                    <i class="bx bx-check-double text-main-color me-2"></i>
+                                    Gimnasio Equipado
+                                </li>
+                                <li class="w-50 float-start mb-2">
+                                    <i class="bx bx-check-double text-main-color me-2"></i>
+                                    Luminarias LED Integradas
+                                </li>
+                                <li class="w-50 float-start mb-2">
+                                    <i class="bx bx-check-double text-main-color me-2"></i>
+                                    Piscina / Alberca
+                                </li>
+                                <li class="w-50 float-start mb-2">
+                                    <i class="bx bx-check-double text-main-color me-2"></i>
+                                    Conexión de Fibra Óptica
+                                </li>
+                                <li class="w-50 float-start mb-2">
+                                    <i class="bx bx-check-double text-main-color me-2"></i>
+                                    Zona de Parrillas / BBQ
+                                </li>
+                                <li class="w-50 float-start mb-2">
+                                    <i class="bx bx-check-double text-main-color me-2"></i>
+                                    Áreas Verdes
+                                </li>
+                                <li class="w-50 float-start mb-2">
+                                    <i class="bx bx-check-double text-main-color me-2"></i>
+                                    Ascensor de Última Gen.
+                                </li>
+                                <li class="w-50 float-start mb-2">
+                                    <i class="bx bx-check-double text-main-color me-2"></i>
+                                    Estacionamientos
+                                </li>
+                                <li class="w-50 float-start mb-2">
+                                    <i class="bx bx-check-double text-main-color me-2"></i>
+                                    Acabados de Primera
+                                </li>
+                                <li class="w-50 float-start mb-2">
+                                    <i class="bx bx-check-double text-main-color me-2"></i>
+                                    Depósitos Privados
+                                </li>
+                                <li class="w-50 float-start mb-2">
+                                    <i class="bx bx-check-double text-main-color me-2"></i>
+                                    Medidores Independientes
+                                </li>
+                                <li class="w-50 float-start mb-2">
+                                    <i class="bx bx-check-double text-main-color me-2"></i>
+                                    Sistemas Contra Incendios
+                                </li>
+                                <li class="w-50 float-start mb-2">
+                                    <i class="bx bx-check-double text-main-color me-2"></i>
+                                    Seguridad 24/7 Monitoreada
+                                </li>
+                                <li class="w-50 float-start mb-2">
+                                    <i class="bx bx-check-double text-main-color me-2"></i>
+                                    Salón de Usos Múltiples
+                                </li>
+                            </ul>
+                        </div>
+
+                        <h6 class="section-title">Ubicación del Proyecto</h6>
+                        <div class="g-map">
+                            <div id="embed-ded-map-canvas">
+                                <iframe frameborder="0" title="Google Map"
+                                    src="https://google.com"></iframe>
+                            </div><a class="code-for-google-map" rel="nofollow"
+                                href="https://www.google.com/maps" id="authmaps-data">Google Maps Dirección Real</a>
+                        </div>
+
+                        <h6 class="section-title">Calificaciones del Proyecto</h6>
+                        <div class="product-ratting">
+                            <div class="product-ratting">
+                                <i class="bx bxs-star text-warning"></i>
+                                <i class="bx bxs-star text-warning"></i>
+                                <i class="bx bxs-star text-warning"></i>
+                                <i class="bx bxs-star text-warning"></i>
+                                <i class="bx bxs-star text-warning"></i>
+                                ( 45 Reseñas de Inversores )
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="comments-area">
+                            <!-- COMENTARIO 1 -->
+                            <div class="comment-element d-flex">
+                                <div class="flex-shrink-0 me-4">
+                                    <img src="https://picsum.photos/100" class="rounded-circle" alt="Inversor">
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6>Ing. Pedro Palomino</h6>
+                                    <div class="product-ratting">
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                    </div>
+                                    <p>Excelente planeamiento estructural y distribución de ambientes. Adquirí un departamento en pozo y el respaldo de ingeniería que brindan me dio total seguridad para mi inversión capital.</p>
+                                </div>
+                            </div>
+
+                            <!-- COMENTARIO 2 -->
+                            <div class="comment-element d-flex">
+                                <div class="flex-shrink-0 me-4">
+                                    <img src="https://picsum.photos/100" class="rounded-circle" alt="Propietaria">
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6>Arq. Elena Mendoza</h6>
+                                    <div class="product-ratting">
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bx-star"></i>
+                                    </div>
+
+                                                                <p>Como arquitecta, valoro mucho el diseño funcional de las plantas. El aprovechamiento de la luz natural en las esquinas y la ventilación cruzada están muy bien logrados en este desarrollo urbano.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="comment-form">
+                            <form action="#" method="get">
+                                <h4>Añadir una Reseña</h4>
+                                <div class="mb-30">
+                                    <div class="add-a-review">
+                                        <h6>Tu Calificación:</h6>
+                                        <div class="product-ratting">
+                                            <i class="bx bxs-star text-warning"></i>
+                                            <i class="bx bxs-star text-warning"></i>
+                                            <i class="bx bxs-star text-warning"></i>
+                                            <i class="bx bxs-star text-warning"></i>
+                                            <i class="bx bxs-star text-warning"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <input type="text" class="form-control" placeholder="Escribe tu nombre....">
+                                    </div>
+                                    <div class="col-12 col-md-6 mb-3">
+                                        <input type="email" class="form-control" placeholder="Escribe tu correo electrónico....">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <textarea class="form-control" rows="7"
+                                        placeholder="Escribe tus comentarios u observaciones...."></textarea>
+                                </div>
+                                <button type="submit" class="btn dark w-25 mx-auto">Enviar Reseña</button>
+                            </form>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-12 col-md-4">
+                    <aside class="sidebar">
+                        <div class="widget author-widget">
+                            <img src="images/man-1.jpg" alt="Asesor Inmobiliario">
+                            <h5>Ing. Carlos Fuentes</h5>
+                            <small>Asesor de Proyectos / Ventas</small>
+                            <div class="product-ratting">
+                                <i class="bx bxs-star text-warning"></i>
+                                <i class="bx bxs-star text-warning"></i>
+                                <i class="bx bxs-star text-warning"></i>
+                                <i class="bx bxs-star text-warning"></i>
+                                <i class="bx bxs-star text-warning"></i>
+                            </div>
+                            <p>Especialista en desarrollo inmobiliario y gestión de inversiones en pozo. Contáctame directamente para recibir asesoría personalizada sobre financiamiento y planos de nuestras obras.</p>
+                            <div class="socials">
+                                <a href="https://facebook.com" target="_blank" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
+                                    title="Facebook"><i class="bx bxl-facebook"></i></a>
+                                <a href="https://instagram.com" target="_blank" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
+                                    title="Instagram"><i class="bx bxl-instagram"></i></a>
+                                <a href="https://wa.me" target="_blank" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
+                                    title="WhatsApp"><i class="bx bxl-whatsapp"></i></a>
+                                <a href="mailto:cfvingenieros@outlook.com" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
+                                    title="Correo"><i class="bx bx-envelope"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="widget search-widget">
+                            <h6 class="section-title">Buscar Proyectos</h6>
+                            <form action="search.html" method="get" class="d-flex">
+                                <input type="text" name="search" class="form-control"
+                                    placeholder="Buscar palabra clave...">
+                                <button type="submit" class="btn" title="Buscar"><i class="bx bx-search"></i></button>
+                            </form>
+                        </div>
+
+                        <div class="widget form-widget">
+                            <h6 class="section-title">Solicitar Cotización Directa</h6>
+                            <form action="#">
+                                <input type="text" name="yourname" class="form-control mb-3" placeholder="Tu Nombre Completo*">
+                                <input type="text" name="youremail" class="form-control mb-3"
+                                    placeholder="Tu Correo Electrónico*">
+                                <textarea name="yourmessage" rows="5" class="form-control mb-3"
+                                    placeholder="Escribe tu consulta sobre este proyecto..."></textarea>
+                                <button type="submit" class="btn">Enviar Mensaje</button>
+                            </form>
+                        </div>
+
+                        <div class="widget top-rated-widget">
+                            <h6 class="section-title">Desarrollos Más Valorados</h6>
+                            <div class="d-flex mb-3">
+                                <div class="flex-shrink-0 me-3">
+                                    <a href="single.html">
+                                        <img src="images/image-2.jpg" width="100" alt="Torre Residencial Soberana">
+                                    </a>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="product-ratting">
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                    </div>
+                                    <h6><a href="single.html">Torre Residencial Soberana</a></h6>
+                                    <div class="product-price">
+                                        <span>Desde $167,900</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-3">
+                                <div class="flex-shrink-0 me-3">
+                                    <a href="single.html">
+                                        <img src="images/image-4.jpg" width="100" alt="Edificio Residencial Vanguardia">
+                                    </a>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="product-ratting">
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                    </div>
+                                    <h6><a href="single.html">Edificio Residencial Vanguardia</a></h6>
+                                    <div class="product-price">
+                                        <span>Desde $124,900</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex mb-3">
+                                <div class="flex-shrink-0 me-3">
+                                    <a href="single.html">
+                                        <img src="images/image-3.jpg" width="100" alt="Complejo Residencial Oasis">
+                                    </a>
+                                </div>
+                                <div class="flex-grow-1">
+                                    <div class="product-ratting">
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bxs-star text-warning"></i>
+                                        <i class="bx bx-star text-warning"></i>
+                                    </div>
+                                    <h6><a href="single.html">Complejo Residencial Oasis</a></h6>
+                                    <div class="product-price">
+                                        <span>Desde $95,900</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="widget category-widget">
+                            <h6 class="section-title">Categorías Destacadas</h6>
+                            <ul>
+                                <li><a href="search.html" class="d-flex justify-content-between my-4">Departamentos Residenciales
+                                        <span>(26)</span></a></li>
+                                <li><a href="search.html" class="d-flex justify-content-between my-4">Complejos Familiares
+                                        <span>(30)</span></a></li>
+                                <li><a href="search.html" class="d-flex justify-content-between my-4">Oficinas Comerciales <span>(71)</span></a>
+                                </li>
+                                <li><a href="search.html" class="d-flex justify-content-between my-4">Proyectos de Lujo
+                                        <span>(56)</span></a></li>
+                                <li><a href="search.html" class="d-flex justify-content-between my-4">Casas Dúplex / Townhouses
+                                        <span>(60)</span></a></li>
+
+
+                        <div class="widget popular-widget">
+                            <h6 class="section-title">Proyectos Populares</h6>
+                            <div class="popular-slider">
+                                <div class="property-item">
+                                    <div class="property-image">
+                                        <img src="images/image-2.jpg" height="250" alt="Torre Residencial Soberana">
+                                    </div>
+                                    <div class="property-details">
+                                        <span class="info-label">En Construcción</span>
+                                        <h3 class="title">Torre Residencial Soberana</h3>
+                                        <div class="location">
+                                            <i class="bx bx-map"></i>
+                                            Zona Residencial, Andahuaylas
+                                        </div>
+                                        <ul>
+                                            <li>2 a 3 Hab.</li>
+                                            <li>2 Baños</li>
+                                            <li>65 a 130 m²</li>
+                                        </ul>
+                                        <div class="actions">
+                                            <a href="single.html" title="Ver detalles del proyecto"><i class="bx bx-expand-alt"></i></a>
+                                            <a href="#" title="Consultar por WhatsApp"><i class="bx bxl-whatsapp"></i></a>
+                                            <a href="contacto.html" title="Solicitar Cotización"><i class="bx bx-link"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="property-item">
+                                    <div class="property-image">
+                                        <img src="images/image-4.jpg" height="250" alt="Edificio Residencial Vanguardia">
+                                    </div>
+                                    <div class="property-details">
+                                        <span class="info-label">En Preventa / Pozo</span>
+                                        <h3 class="title">Edificio Residencial Vanguardia</h3>
+                                        <div class="location">
+                                            <i class="bx bx-map"></i>
+                                            Zona Norte, Andahuaylas
+                                        </div>
+                                        <ul>
+                                            <li>1 a 3 Hab.</li>
+                                            <li>1 a 2 Baños</li>
+                                            <li>45 a 110 m²</li>
+                                        </ul>
+                                        <div class="actions">
+                                            <a href="single.html" title="Ver detalles del proyecto"><i class="bx bx-expand-alt"></i></a>
+                                            <a href="#" title="Consultar por WhatsApp"><i class="bx bxl-whatsapp"></i></a>
+                                            <a href="contacto.html" title="Solicitar Cotización"><i class="bx bx-link"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="property-item">
+                                    <div class="property-image">
+                                        <img src="images/image-3.jpg" height="250" alt="Complejo Residencial Oasis">
+                                    </div>
+                                    <div class="property-details">
+                                        <span class="info-label">Listo para Entregar</span>
+                                        <h3 class="title">Complejo Residencial Oasis</h3>
+                                        <div class="location">
+                                            <i class="bx bx-map"></i>
+                                            Zona Centro, Andahuaylas
+                                        </div>
+                                        <ul>
+                                            <li>1 a 2 Hab.</li>
+                                            <li>1 Baño</li>
+                                            <li>40 a 85 m²</li>
+                                        </ul>
+                                        <div class="actions">
+                                            <a href="single.html" title="Ver detalles del proyecto"><i class="bx bx-expand-alt"></i></a>
+                                            <a href="#" title="Consultar por WhatsApp"><i class="bx bxl-whatsapp"></i></a>
+                                            <a href="contacto.html" title="Solicitar Cotización"><i class="bx bx-link"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="widget tag-widget">
+                            <h6 class="section-title">Etiquetas Buscadas</h6>
+                            <a href="search.html">Preventa</a>
+                            <a href="search.html">Planos 3D</a>
+                            <a href="search.html">Inversión</a>
+                            <a href="search.html">Planos m²</a>
+                            <a href="search.html">Ingeniería</a>
+                            <a href="search.html">Planos</a>
+                            <a href="search.html">Cocheras</a>
+                            <a href="search.html">Departamentos</a>
+                            <a href="search.html">Acabados</a>
+                            <a href="search.html">Edificios</a>
+                            <a href="search.html">Pozo</a>
+                            <a href="search.html">Arquitectura</a>
+                            <a href="search.html">Condominios</a>
+                            <a href="search.html">Andahuaylas</a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call To Action -->
+        <section class="section call-to-action-area position-relative pb-0 mb-0">
+            <div class="container">
+                <div class="call-to-action-inner">
+                    <div class="d-md-flex align-items-center mb-0 text-center text-md-start">
+                        <div class="me-auto">
+                            <h6>¿Estás listo para invertir en tu próximo departamento?</h6>
+                            <p>Contacta con nuestros asesores y solicita una cotización o catálogo personalizado.</p>
+                        </div>
+                        <a href="contacto.html" role="button">WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- ./call-to-action-area -->
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-4 mb-5 mb-md-0">
+                        <a href="index.html" title="eStateX">
+                            <img src="images/logo_reverse.png" alt="Logo">
+                        </a>
+                        <p class="my-3">Diseñamos y construimos desarrollos inmobiliarios 
+                        transformando espacios en inversiones inteligentes para tu futuro.</p>
+                        <ul class="nav flex-column ms-3">
+                            <li class="nav-item my-2">
+                                <i class="bx bx-map"></i>
+                                <a href="https://maps.app.goo.gl/tuPTubRzCG1Ykdqv7" target="_blank" rel="noopener" class="text-white text-decoration-none">
+                                    Av. los chankas 637 , Andahuaylas, Peru
+                                </a>
+                            </li>
+                            <li class="nav-item my-2">
+                                <i class="bx bx-phone"></i>
+                                 <a href="https://wa.link/wkljug" class="text-white text-decoration-none">
+                                    (+51) 912 830 351
+                                </a>
+                            </li>
+                            <li class="nav-item my-2">
+                                <i class="bx bx-envelope"></i>
+                                <a href="mailto:cfvingenieros@outlook.com" class="text-white text-decoration-none">
+                                    cfvingenieros@outlook.com
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/InmobiliariaCFV" target="_blank" title="Facebook"
+                                rel="noopener"><i class="bx bxl-facebook"></i></a>
+                            <a href="https://www.instagram.com/cfvinmobiliaria" target="_blank" title="Instagram"
+                                rel="noopener"><i class="bx bxl-instagram"></i></a>
+                            <!-- REEMPLAZADO LINKEDIN POR TIKTOK -->
+                            <a href="https://www.tiktok.com/@cfvinmobiliaria" target="_blank" title="TikTok"
+                                rel="noopener"><i class="bx bxl-tiktok"></i></a>
+                            <!-- WHATSAPP ACTUALIZADO -->
+                            <a href="https://wa.link/wkljug" target="_blank" title="WhatsApp" rel="noopener"><i
+                                    class="bx bxl-whatsapp"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-4 mb-5 mb-md-0">
+                        <h6>Empresa</h6>
+                        <ul class="nav flex-column page-list">
+                            <li class="nav-item">
+                                <a href="#about-us" class="nav-link">Nosotros</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Novedades</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="search.html" class="nav-link">Proyectos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">Preguntas Frecuentes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://wa.link/wkljug" class="nav-link border-0">Contáctanos</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-md-4 mb-5 mb-md-0">
+                        <h6>Boletín Informativo</h6>
+                        <p>Suscríbete a nuestro boletín para recibir novedades de obras y lanzamientos exclusivos en tu correo.</p>
+                        <form action="?" method="get">
+                            <input type="text" name="email" id="email" class="form-control" placeholder="Tu correo electrónico"
+                                autocomplete="email">
+                            <button type="button" class="btn" title="Suscribirse"><i class="bx bx-send"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ./footer -->
+
+
+<!-- Copy Rights -->
+        <div class="copy-right">
+            <div class="container">
+                <div class="d-md-flex align-items-center justify-content-between">
+                    <p class="text-capitalize text-center text-md-start">
+                        Todos los derechos reservados © <script>document.write(new Date().getFullYear());</script> CFV Ingenieros
+                    </p>
+                    <ul class="nav justify-content-center justify-content-md-start">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Términos y Condiciones</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#about-us" class="nav-link">Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="https://wa.link/wkljug" class="nav-link">Contacto</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- ./copy-right -->
+    </div>
+
+    <!-- Js Files & Libraries -->
+    <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="libs/jquery/jquery-3.7.1.min.js"></script>
+    <script src="libs/owl/owl.carousel.min.js"></script>
+    <script src="libs/counterjs/jquery.waypoints.min.js"></script>
+    <script src="libs/counterjs/jquery.counterup.min.js"></script>
+    <script src="libs/niceselect/js/jquery.nice-select.min.js"></script>
+    <script src="libs/jquery_ui/jquery-ui.js"></script>
+    <script src="libs/slick/slick.min.js"></script>
+    <script src="libs/lightcase/js/lightcase.js"></script>
+    <script src="libs/lightcase/js/jquery.events.touch.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
