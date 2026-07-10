@@ -1019,16 +1019,20 @@ form button i {
 
 .property-item {
     margin-bottom: 1.5rem;
-    position: relative !important; /* 1. MODIFICAR AQUÍ: Fija el límite del clic en el catálogo */
+    position: relative !important; /* Mantiene el límite del stretched-link para los textos */
 }
 
 .property-image {
-    position: static !important;   /* 2. MODIFICAR AQUÍ: Rompe el bloqueo de la foto en el buscador */
+    position: relative !important; /* CORRECCIÓN: Cambiado de static a relative para que el enlace tome tamaño real */
+    z-index: 1 !important;         /* Asegura que la caja de la foto flote en una capa limpia */
+    overflow: hidden;
 }
 
 .property-image img {
     width: 100%;
     object-fit: cover;
+    pointer-events: auto !important; /* CRÍTICO: Fuerza a la foto a reaccionar y capturar el clic obligatoriamente */
+    cursor: pointer !important;       /* Muestra el ícono de la mano de hipervínculo en el mouse */
 }
 
 /* MODIFICACIÓN PREMIUM: Vidrio Esmerilado (Glassmorphism) para los detalles del catálogo */
