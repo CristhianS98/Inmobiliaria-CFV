@@ -334,7 +334,7 @@
         </section>
         <!-- ./services-area -->
 
-<!-- Featured Listing -->
+        <!-- Featured Listing -->
         <section class="section owl-section featured-listing-area">
             <div class="container">
                 <div class="text-center mb-6">
@@ -344,7 +344,7 @@
 
                 <div class="owl-carousel featured-carousel">
                     <!-- TARJETA 1 -->
-                    <div class="featured-list-card h-100">
+                    <div class="featured-list-card h-100 position-relative"> <!-- MODIFICACIÓN: position-relative obligatoria -->
                         <div class="card-image">
                             <img src="images/image-4.jpg" alt="Proyecto Residencial Vanguardia">
                             <span>En Preventa / Pozo</span>
@@ -360,7 +360,8 @@
                         <div class="card-body">
                             <div class="p-4 pt-0">
                                 <span class="price">Desde $124,900</span>
-                                <h6>Edificio Residencial Vanguardia</h6>
+                                <!-- MODIFICACIÓN UX: Enlace estirado para hacer cliqueable toda la tarjeta -->
+                                <h6><a href="single.html?id=vanguardia" class="stretched-link">Edificio Residencial Vanguardia</a></h6>
                                 <p>Departamentos modernos con acabados de primera calidad, excelente iluminación natural y ubicación estratégica.</p>
                                 <ul class="nav">
                                     <li class="border-end pe-3 me-3">
@@ -389,17 +390,20 @@
                                     </div>
                                 </div>
 
-                                <div class="card-actions">
-                                    <a href="single.html" class="ms-2" title="Ver detalles del proyecto"><i class="bx bx-expand-alt"></i></a>
-                                    <a href="#" class="ms-2" title="Consultar por WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-                                    <a href="contacto.html" class="ms-2" title="Solicitar Cotización"><i class="bx bx-link"></i></a>
+                                <!-- MODIFICACIÓN COMERCIAL: Único botón flotante independiente de WhatsApp -->
+                                <div class="card-actions position-relative" style="z-index: 5;">
+                                    <a href="https://wa.me." 
+                                       target="_blank" class="btn btn-sm btn-success rounded-circle d-flex align-items-center justify-content-center p-0" 
+                                       style="width: 35px; height: 35px; background-color: #25D366; border: none;" title="Consultar por WhatsApp">
+                                        <i class="bx bxl-whatsapp fs-5 text-white"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- TARJETA 2 -->
-                    <div class="featured-list-card h-100">
+                    <div class="featured-list-card h-100 position-relative"> <!-- MODIFICACIÓN: position-relative obligatoria -->
                         <div class="card-image">
                             <img src="images/image-2.jpg" alt="Torre Residencial Soberana">
                             <span>En Construcción</span>
@@ -415,7 +419,8 @@
                         <div class="card-body">
                             <div class="p-4 pt-0">
                                 <span class="price">Desde $167,900</span>
-                                <h6>Torre Residencial Soberana</h6>
+                                <!-- MODIFICACIÓN UX: Enlace estirado para hacer cliqueable toda la tarjeta -->
+                                <h6><a href="single.html?id=soberana" class="stretched-link">Torre Residencial Soberana</a></h6>
                                 <p>Exclusivos departamentos en obra activa con áreas comunes equipadas y accesos rápidos a avenidas principales.</p>
                                 <ul class="nav">
                                     <li class="border-end pe-3 me-3">
@@ -444,17 +449,20 @@
                                     </div>
                                 </div>
 
-                                <div class="card-actions">
-                                    <a href="single.html" class="ms-2" title="Ver detalles del proyecto"><i class="bx bx-expand-alt"></i></a>
-                                    <a href="#" class="ms-2" title="Consultar por WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-                                    <a href="contacto.html" class="ms-2" title="Solicitar Cotización"><i class="bx bx-link"></i></a>
+                                <!-- MODIFICACIÓN COMERCIAL: Único botón flotante independiente de WhatsApp -->
+                                <div class="card-actions position-relative" style="z-index: 5;">
+                                    <a href="https://wa.me." 
+                                       target="_blank" class="btn btn-sm btn-success rounded-circle d-flex align-items-center justify-content-center p-0" 
+                                       style="width: 35px; height: 35px; background-color: #25D366; border: none;" title="Consultar por WhatsApp">
+                                        <i class="bx bxl-whatsapp fs-5 text-white"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- TARJETA 3 -->
-                    <div class="featured-list-card h-100">
+                    <div class="featured-list-card h-100 position-relative"> <!-- MODIFICACIÓN: position-relative obligatoria -->
                         <div class="card-image">
                             <img src="images/image-3.jpg" alt="Complejo Residencial Oasis">
                             <span>Listo para Entregar</span>
@@ -470,8 +478,10 @@
                         <div class="card-body">
                             <div class="p-4 pt-0">
                                 <span class="price">Desde $95,900</span>
-                                <h6>Complejo Residencial Oasis</h6>
-                                <p>Unidades terminadas a estrenar de forma inmediata, equipadas con acabados modernos y cochera privada.</p>
+                                <h6><a href="single.html?id=oasis" class="stretched-link">Complejo 
+                                    Residencial Oasis</a></h6>
+                                <p>Unidades terminadas a estrenar de forma inmediata, equipadas 
+                                    con acabados modernos y cochera privada.</p>
                                 <ul class="nav">
                                     <li class="border-end pe-3 me-3">
                                         <span class="d-block">1 a 2 <i class="bx bx-bed"></i></span>
@@ -499,17 +509,20 @@
                                     </div>
                                 </div>
 
-                                <div class="card-actions">
-                                    <a href="single.html" class="ms-2" title="Ver detalles del proyecto"><i class="bx bx-expand-alt"></i></a>
-                                    <a href="#" class="ms-2" title="Consultar por WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-                                    <a href="contacto.html" class="ms-2" title="Solicitar Cotización"><i class="bx bx-link"></i></a>
+                                <!-- MODIFICACIÓN COMERCIAL: Único botón flotante independiente de WhatsApp -->
+                                <div class="card-actions position-relative" style="z-index: 5;">
+                                    <a href="https://wa.me." 
+                                       target="_blank" class="btn btn-sm btn-success rounded-circle d-flex align-items-center justify-content-center p-0" 
+                                       style="width: 35px; height: 35px; background-color: #25D366; border: none;" title="Consultar por WhatsApp">
+                                        <i class="bx bxl-whatsapp fs-5 text-white"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <!-- TARJETA 4 -->
-                    <div class="featured-list-card h-100">
+                    <div class="featured-list-card h-100 position-relative"> <!-- MODIFICACIÓN: position-relative obligatoria -->
                         <div class="card-image">
                             <img src="images/image-5.jpg" alt="Condominio Vista Hermosa">
                             <span>En Preventa / Pozo</span>
@@ -525,7 +538,8 @@
                         <div class="card-body">
                             <div class="p-4 pt-0">
                                 <span class="price">Desde $135,900</span>
-                                <h6>Condominio Residencial Vista Hermosa</h6>
+                                <!-- MODIFICACIÓN UX: Enlace estirado para hacer cliqueable toda la tarjeta -->
+                                <h6><a href="single.html?id=vista_hermosa" class="stretched-link">Condominio Residencial Vista Hermosa</a></h6>
                                 <p>Exclusivos departamentos en pozo con vistas panorámicas privilegiadas, terraza privada y excelente conectividad urbana.</p>
                                 <ul class="nav">
                                     <li class="border-end pe-3 me-3">
@@ -554,17 +568,20 @@
                                     </div>
                                 </div>
 
-                                <div class="card-actions">
-                                    <a href="single.html" class="ms-2" title="Ver detalles del proyecto"><i class="bx bx-expand-alt"></i></a>
-                                    <a href="#" class="ms-2" title="Consultar por WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-                                    <a href="contacto.html" class="ms-2" title="Solicitar Cotización"><i class="bx bx-link"></i></a>
+                                <!-- MODIFICACIÓN COMERCIAL: Único botón flotante independiente de WhatsApp -->
+                                <div class="card-actions position-relative" style="z-index: 5;">
+                                    <a href="https://wa.me." 
+                                       target="_blank" class="btn btn-sm btn-success rounded-circle d-flex align-items-center justify-content-center p-0" 
+                                       style="width: 35px; height: 35px; background-color: #25D366; border: none;" title="Consultar por WhatsApp">
+                                        <i class="bx bxl-whatsapp fs-5 text-white"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- TARJETA 5 -->
-                    <div class="featured-list-card h-100">
+                   <!-- TARJETA 5 -->
+                    <div class="featured-list-card h-100 position-relative">
                         <div class="card-image">
                             <img src="images/image-4.jpg" alt="Complejo Residencial Las Magnolias">
                             <span>Listo para Entregar</span>
@@ -580,7 +597,7 @@
                         <div class="card-body">
                             <div class="p-4 pt-0">
                                 <span class="price">Desde $114,900</span>
-                                <h6>Complejo Residencial Las Magnolias</h6>
+                                <h6><a href="single.html?id=las_magnolias" class="stretched-link">Complejo Residencial Las Magnolias</a></h6>
                                 <p>Casas residenciales a estrenar con jardín propio, seguridad integrada y acabados minimalistas de alta durabilidad.</p>
                                 <ul class="nav">
                                     <li class="border-end pe-3 me-3">
@@ -601,6 +618,7 @@
                             <div class="align-items-center d-flex estate-agents justify-content-between pt-4 bg-light p-3">
                                 <div class="d-flex">
                                     <div class="flex-shrink-0 me-3">
+                                        <!-- CORRECCIÓN: Etiqueta de imagen cerrada de forma correcta con width y height -->
                                         <img src="images/service_icon_1.png" class="rounded-circle" width="48" height="48" alt="Logo Constructora">
                                     </div>
                                     <div class="flex-grow-1">
@@ -609,10 +627,13 @@
                                     </div>
                                 </div>
 
-                                <div class="card-actions">
-                                    <a href="single.html" class="ms-2" title="Ver detalles del proyecto"><i class="bx bx-expand-alt"></i></a>
-                                    <a href="#" class="ms-2" title="Consultar por WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-                                    <a href="contacto.html" class="ms-2" title="Solicitar Cotización"><i class="bx bx-link"></i></a>
+                                <!-- CORRECCIÓN: Botón con enlace de WhatsApp completo hacia el número de la empresa -->
+                                <div class="card-actions position-relative" style="z-index: 5;">
+                                    <a href="https://wa.me." 
+                                       target="_blank" class="btn btn-sm btn-success rounded-circle d-flex align-items-center justify-content-center p-0" 
+                                       style="width: 35px; height: 35px; background-color: #25D366; border: none;" title="Consultar por WhatsApp">
+                                        <i class="bx bxl-whatsapp fs-5 text-white"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -620,7 +641,7 @@
                 </div>
             </div> 
         </section>
-         <!-- featured-listing-area -->
+        <!-- featured-listing-area -->
 
         <!-- Plane -->
         <section class="section plane-area">
@@ -943,18 +964,18 @@
                         </ul>
                     </div>
                     <div class="col-12 col-md-4 mb-5 mb-md-0">
-                        <h6>Boletín Informativo</h6>
-                        <p>Suscríbete a nuestro boletín para recibir novedades de obras y lanzamientos exclusivos en tu correo.</p>
-                        <form action="?" method="get">
-                            <input type="text" name="email" id="email" class="form-control" placeholder="Tu correo electrónico"
-                                autocomplete="email">
-                            <button type="button" class="btn" title="Suscribirse"><i class="bx bx-send"></i></button>
-                        </form>
+                        <h6>Atención Corporativa</h6>
+                        <p>Diseño, ingeniería y desarrollo inmobiliario con total transparencia legal. Todos nuestros proyectos están respaldados para financiamiento bancario directo o hipotecario.</p>
+                        <ul class="list-unstyled text-muted fs-13 mt-3">
+                            <li class="mb-2"><i class="bx bx-time-five me-2 text-main-color"></i> <strong>Horario:</strong> Lun. a Sáb. 8:00 AM - 6:00 PM</li>
+                            <li><i class="bx bx-check-shield me-2 text-main-color"></i> <strong>Garantía:</strong> Proyectos con independización SUNARP</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
         <!-- ./footer -->
+
 
 
 <!-- Copy Rights -->

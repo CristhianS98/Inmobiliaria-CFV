@@ -16,6 +16,9 @@ $(function () {
         margin: 10,
         responsiveClass: true,
         autoplay: true,
+        autoplayTimeout: 5000,       // MODIFICACIÓN: Espera 5 segundos quieto antes de avanzar
+        autoplaySpeed: 1100,         // MODIFICACIÓN: Deslizamiento suave de 1.1 segundos
+        autoplayHoverPause: true,    // MODIFICACIÓN: Se congela si el usuario pone el mouse encima
         dots: true,
         navText: [
             "<i class='bx bx-left-arrow-alt' ></i>", "<i class='bx bx-right-arrow-alt' ></i>"
@@ -50,7 +53,8 @@ $(function () {
         margin: 10,
         responsiveClass: true,
         autoplay: true,
-        autoplayHoverPause:true,
+        autoplayTimeout: 5000,       // MODIFICACIÓN: Sincronizado a 5 segundos también para testimonios
+        autoplayHoverPause: true,
         dots: true,
         navText: [
             "<i class='bx bx-left-arrow-alt' ></i>", "<i class='bx bx-right-arrow-alt' ></i>"
