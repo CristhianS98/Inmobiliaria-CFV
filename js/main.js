@@ -78,6 +78,7 @@ $(function () {
 
     $("select").niceSelect();
 
+    // CORRECCIÓN AQUÍ: Se restauran los corchetes y los índices matemáticos originales del slider
     $("#price-range").slider({
         step: 500,
         range: true,
