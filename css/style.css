@@ -1019,6 +1019,7 @@ form button i {
 
 .property-item {
     margin-bottom: 1.5rem;
+    position: relative !important;
 }
 
 .property-image img {
@@ -1034,6 +1035,8 @@ form button i {
     border: 1px solid var(--border-color) !important;
     box-shadow: var(--box-shadow) !important;
     padding: 2rem;
+    position: relative !important; /* 2. AÑADIR ESTA LÍNEA */
+    z-index: 1 !important;        /* 3. AÑADIR ESTA LÍNEA */
     transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
@@ -1443,3 +1446,4 @@ article .section-title {
     border-radius: 100%;
     z-index: 999;
 }
+

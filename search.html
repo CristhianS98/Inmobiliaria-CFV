@@ -124,7 +124,7 @@
                             </div>
 
                             <div class="showing-number">
-                                <p>Mostrando 1-12 de 50 resultados</p>
+                                <p>Mostrando 1-4 de 4 resultados</p>
                             </div>
 
                             <select name="sort" id="sort" title="Orden de visualización">
@@ -143,15 +143,16 @@
                         </form>
 
                         <div class="row">
-                            <!-- TARJETA RESULTADO 1 -->
+
+                           <!-- TARJETA RESULTADO 1 -->
                             <div class="col-12 col-md-6">
-                                <div class="property-item">
+                                <div class="property-item position-relative">
                                     <div class="property-image">
                                         <img src="images/image-2.jpg" height="250" alt="Torre Residencial Soberana">
                                     </div>
                                     <div class="property-details">
                                         <span class="info-label">En Construcción</span>
-                                        <h3 class="title">Torre Residencial Soberana</h3>
+                                        <h3 class="title"><a href="single.html?id=soberana" class="stretched-link">Torre Residencial Soberana</a></h3>
                                         <div class="location">
                                             <i class="bx bx-map"></i>
                                             Zona Residencial, Andahuaylas
@@ -161,23 +162,30 @@
                                             <li>2 Baños</li>
                                             <li>65 a 130 m²</li>
                                         </ul>
-                                        <div class="actions">
-                                            <a href="single.html" title="Ver detalles del proyecto"><i class="bx bx-expand-alt"></i></a>
-                                            <a href="#" title="Consultar por WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-                                            <a href="contacto.html" title="Solicitar Cotización"><i class="bx bx-link"></i></a>
+                                        <!-- CORRECCIÓN: Botón con el formato idéntico del index para unificar el verde y las capas -->
+                                        <div class="actions position-relative" style="z-index: 10;">
+                                            <a href="https://wa.me." 
+                                               target="_blank" title="Consultar por WhatsApp" 
+                                               class="btn btn-sm btn-success rounded-circle d-flex align-items-center justify-content-center p-0" 
+                                               style="width: 40px; height: 40px; background-color: #25D366; border: none;">
+                                                <i class="bx bxl-whatsapp fs-5 text-white"></i>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             <!-- TARJETA RESULTADO 2 -->
                             <div class="col-12 col-md-6">
-                                <div class="property-item">
+                                <!-- MODIFICACIÓN: Se agrega position-relative para el enlace estirado -->
+                                <div class="property-item position-relative">
                                     <div class="property-image">
                                         <img src="images/image-4.jpg" height="250" alt="Edificio Residencial Vanguardia">
                                     </div>
                                     <div class="property-details">
                                         <span class="info-label">En Preventa / Pozo</span>
-                                        <h3 class="title">Edificio Residencial Vanguardia</h3>
+                                        <!-- MODIFICACIÓN UX: Enlace stretched-link para hacer interactiva toda la tarjeta -->
+                                        <h3 class="title"><a href="single.html?id=vanguardia" class="stretched-link">Edificio Residencial Vanguardia</a></h3>
                                         <div class="location">
                                             <i class="bx bx-map"></i>
                                             Zona Norte, Andahuaylas
@@ -187,24 +195,26 @@
                                             <li>1 a 2 Baños</li>
                                             <li>45 a 110 m²</li>
                                         </ul>
-                                        <div class="actions">
-                                            <a href="single.html" title="Ver detalles del proyecto"><i class="bx bx-expand-alt"></i></a>
-                                            <a href="#" title="Consultar por WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-                                            <a href="contacto.html" title="Solicitar Cotización"><i class="bx bx-link"></i></a>
+                                        <!-- MODIFICACIÓN COMERCIAL: Se aísla el botón de WhatsApp con z-index alto -->
+                                        <div class="actions position-relative" style="z-index: 10;">
+                                            <a href="https://wa.me." 
+                                               target="_blank" title="Consultar por WhatsApp" style="background-color: #25D366; color: white; border-radius: 50%; width: 40px; height: 40px; display: inline-grid; place-content: center;"><i class="bx bxl-whatsapp fs-5"></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                                                        <!-- TARJETA RESULTADO 3 -->
+                            <!-- TARJETA RESULTADO 3 -->
                             <div class="col-12 col-md-6">
-                                <div class="property-item">
+                                <!-- MODIFICACIÓN: Se agrega position-relative para el enlace estirado -->
+                                <div class="property-item position-relative">
                                     <div class="property-image">
                                         <img src="images/image-3.jpg" height="250" alt="Complejo Residencial Oasis">
                                     </div>
                                     <div class="property-details">
                                         <span class="info-label">Listo para Entregar</span>
-                                        <h3 class="title">Complejo Residencial Oasis</h3>
+                                        <!-- MODIFICACIÓN UX: Enlace stretched-link para hacer interactiva toda la tarjeta -->
+                                        <h3 class="title"><a href="single.html?id=oasis" class="stretched-link">Complejo Residencial Oasis</a></h3>
                                         <div class="location">
                                             <i class="bx bx-map"></i>
                                             Zona Centro, Andahuaylas
@@ -214,23 +224,24 @@
                                             <li>1 Baño</li>
                                             <li>40 a 85 m²</li>
                                         </ul>
-                                        <div class="actions">
-                                            <a href="single.html" title="Ver detalles del proyecto"><i class="bx bx-expand-alt"></i></a>
-                                            <a href="#" title="Consultar por WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-                                            <a href="contacto.html" title="Solicitar Cotización"><i class="bx bx-link"></i></a>
+                                        <!-- MODIFICACIÓN COMERCIAL: Se aísla el botón de WhatsApp con z-index alto -->
+                                        <div class="actions position-relative" style="z-index: 10;">
+                                            <a href="https://wa.me." 
+                                               target="_blank" title="Consultar por WhatsApp" style="background-color: #25D366; color: white; border-radius: 50%; width: 40px; height: 40px; display: inline-grid; place-content: center;"><i class="bx bxl-whatsapp fs-5"></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- TARJETA RESULTADO 4 -->
+                            
+                                                        <!-- TARJETA RESULTADO 4 -->
                             <div class="col-12 col-md-6">
-                                <div class="property-item">
+                                <div class="property-item position-relative">
                                     <div class="property-image">
                                         <img src="images/image-4.jpg" height="250" alt="Complejo Residencial Las Magnolias">
                                     </div>
                                     <div class="property-details">
                                         <span class="info-label">Listo para Entregar</span>
-                                        <h3 class="title">Complejo Residencial Las Magnolias</h3>
+                                        <h3 class="title"><a href="single.html?id=las_magnolias" class="stretched-link">Complejo Residencial Las Magnolias</a></h3>
                                         <div class="location">
                                             <i class="bx bx-map"></i>
                                             Zona Centro, Andahuaylas
@@ -240,23 +251,22 @@
                                             <li>2 Baños</li>
                                             <li>90 a 150 m²</li>
                                         </ul>
-                                        <div class="actions">
-                                            <a href="single.html" title="Ver detalles del proyecto"><i class="bx bx-expand-alt"></i></a>
-                                            <a href="#" title="Consultar por WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-                                            <a href="contacto.html" title="Solicitar Cotización"><i class="bx bx-link"></i></a>
+                                        <div class="actions position-relative" style="z-index: 10;">
+                                            <a href="https://wa.me." 
+                                               target="_blank" title="Consultar por WhatsApp" style="background-color: #25D366; color: white; border-radius: 50%; width: 40px; height: 40px; display: inline-grid; place-content: center;"><i class="bx bxl-whatsapp fs-5"></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- TARJETA RESULTADO 5 -->
                             <div class="col-12 col-md-6">
-                                <div class="property-item">
+                                <div class="property-item position-relative">
                                     <div class="property-image">
                                         <img src="images/image-5.jpg" height="250" alt="Condominio Residencial Vista Hermosa">
                                     </div>
                                     <div class="property-details">
                                         <span class="info-label">En Preventa / Pozo</span>
-                                        <h3 class="title">Condominio Residencial Vista Hermosa</h3>
+                                        <h3 class="title"><a href="single.html?id=vista_hermosa" class="stretched-link">Condominio Residencial Vista Hermosa</a></h3>
                                         <div class="location">
                                             <i class="bx bx-map"></i>
                                             Zona Residencial, Andahuaylas
@@ -266,23 +276,22 @@
                                             <li>2 Baños</li>
                                             <li>55 a 120 m²</li>
                                         </ul>
-                                        <div class="actions">
-                                            <a href="single.html" title="Ver detalles del proyecto"><i class="bx bx-expand-alt"></i></a>
-                                            <a href="#" title="Consultar por WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-                                            <a href="contacto.html" title="Solicitar Cotización"><i class="bx bx-link"></i></a>
+                                        <div class="actions position-relative" style="z-index: 10;">
+                                            <a href="https://wa.me." 
+                                               target="_blank" title="Consultar por WhatsApp" style="background-color: #25D366; color: white; border-radius: 50%; width: 40px; height: 40px; display: inline-grid; place-content: center;"><i class="bx bxl-whatsapp fs-5"></i></a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <!-- TARJETA RESULTADO 6 -->
                             <div class="col-12 col-md-6">
-                                <div class="property-item">
+                                <div class="property-item position-relative">
                                     <div class="property-image">
                                         <img src="images/image-6.jpg" height="250" alt="Proyecto Multifamiliar Sol">
                                     </div>
                                     <div class="property-details">
                                         <span class="info-label">En Construcción</span>
-                                        <h3 class="title">Proyecto Multifamiliar Sol</h3>
+                                        <h3 class="title"><a href="single.html?id=multifamiliar_sol" class="stretched-link">Proyecto Multifamiliar Sol</a></h3>
                                         <div class="location">
                                             <i class="bx bx-map"></i>
                                             Zona Norte, Andahuaylas
@@ -292,10 +301,9 @@
                                             <li>1 a 2 Baños</li>
                                             <li>50 a 95 m²</li>
                                         </ul>
-                                        <div class="actions">
-                                            <a href="single.html" title="Ver detalles del proyecto"><i class="bx bx-expand-alt"></i></a>
-                                            <a href="#" title="Consultar por WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-                                            <a href="contacto.html" title="Solicitar Cotización"><i class="bx bx-link"></i></a>
+                                        <div class="actions position-relative" style="z-index: 10;">
+                                            <a href="https://wa.me." 
+                                               target="_blank" title="Consultar por WhatsApp" style="background-color: #25D366; color: white; border-radius: 50%; width: 40px; height: 40px; display: inline-grid; place-content: center;"><i class="bx bxl-whatsapp fs-4"></i></a>
                                         </div>
                                     </div>
                                 </div>
