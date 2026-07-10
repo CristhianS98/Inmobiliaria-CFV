@@ -1019,7 +1019,11 @@ form button i {
 
 .property-item {
     margin-bottom: 1.5rem;
-    position: relative !important;
+    position: relative !important; /* 1. MODIFICAR AQUÍ: Fija el límite del clic en el catálogo */
+}
+
+.property-image {
+    position: static !important;   /* 2. MODIFICAR AQUÍ: Rompe el bloqueo de la foto en el buscador */
 }
 
 .property-image img {
