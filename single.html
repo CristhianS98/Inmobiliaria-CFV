@@ -294,6 +294,8 @@
                 <!-- Sidebar -->
                 <div class="col-12 col-md-4">
                     <aside class="sidebar">
+                        
+                        <!-- WIDGET 1: ASESOR INMOBILIARIO -->
                         <div class="widget author-widget">
                             <img src="images/man-1.jpg" alt="Asesor Inmobiliario">
                             <h5>Ing. Carlos Fuentes</h5>
@@ -307,213 +309,99 @@
                             </div>
                             <p>Especialista en desarrollo inmobiliario y gestión de inversiones en pozo. Contáctame directamente para recibir asesoría personalizada sobre financiamiento y planos de nuestras obras.</p>
                             <div class="socials">
-                                <a href="https://facebook.com" target="_blank" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
-                                    title="Facebook"><i class="bx bxl-facebook"></i></a>
-                                <a href="https://instagram.com" target="_blank" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
-                                    title="Instagram"><i class="bx bxl-instagram"></i></a>
-                                <a href="https://wa.me" target="_blank" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
-                                    title="WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-                                <a href="mailto:cfvingenieros@outlook.com" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip"
-                                    title="Correo"><i class="bx bx-envelope"></i></a>
+                                <a href="https://facebook.com" target="_blank" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" title="Facebook"><i class="bx bxl-facebook"></i></a>
+                                <a href="https://instagram.com" target="_blank" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" title="Instagram"><i class="bx bxl-instagram"></i></a>
+                                <a href="https://wa.me" target="_blank" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" title="WhatsApp"><i class="bx bxl-whatsapp"></i></a>
+                                <a href="mailto:cfvingenieros@outlook.com" data-bs-toggle="tooltip" data-bs-custom-class="custom-tooltip" title="Correo"><i class="bx bx-envelope"></i></a>
                             </div>
                         </div>
 
+                        <!-- WIDGET 2: BUSCADOR POR PALABRAS CLAVE -->
                         <div class="widget search-widget">
                             <h6 class="section-title">Buscar Proyectos</h6>
                             <form action="search.html" method="get" class="d-flex">
-                                <input type="text" name="search" class="form-control"
-                                    placeholder="Buscar palabra clave...">
+                                <input type="text" name="search" class="form-control" placeholder="Buscar palabra clave...">
                                 <button type="submit" class="btn" title="Buscar"><i class="bx bx-search"></i></button>
                             </form>
                         </div>
 
+                        <!-- WIDGET 3: SOLICITAR COTIZACIÓN POR WHATSAPP -->
                         <div class="widget form-widget">
                             <h6 class="section-title">Solicitar Cotización Directa</h6>
-                            <form action="#">
-                                <input type="text" name="yourname" class="form-control mb-3" placeholder="Tu Nombre Completo*">
-                                <input type="text" name="youremail" class="form-control mb-3"
-                                    placeholder="Tu Correo Electrónico*">
-                                <textarea name="yourmessage" rows="5" class="form-control mb-3"
-                                    placeholder="Escribe tu consulta sobre este proyecto..."></textarea>
-                                <button type="submit" class="btn">Enviar Mensaje</button>
+                            <form id="form-cotizacion-whatsapp">
+                                <input type="text" id="cotizar-nombre" class="form-control mb-3" placeholder="Tu Nombre Completo*" required>
+                                <input type="email" id="cotizar-correo" class="form-control mb-3" placeholder="Tu Correo Electrónico*" required>
+                                <textarea id="cotizar-mensaje" rows="5" class="form-control mb-3" placeholder="Escribe tu consulta sobre este proyecto..." required></textarea>
+                                <button type="submit" class="btn w-100" style="background-color: #121614ea; color: white; border: none;"><i class="bx bxl-whatsapp me-2"></i>Cotizar por WhatsApp</button>
                             </form>
                         </div>
 
+                        <!-- WIDGET 4: DESARROLLOS MÁS VALORADOS (RESTAURADO) -->
                         <div class="widget top-rated-widget">
                             <h6 class="section-title">Desarrollos Más Valorados</h6>
-                            <div class="d-flex mb-3">
+                            
+                            <!-- Mini Tarjeta Soberana -->
+                            <div class="d-flex mb-3 align-items-center position-relative">
                                 <div class="flex-shrink-0 me-3">
-                                    <a href="single.html">
-                                        <img src="images/image-2.jpg" width="100" alt="Torre Residencial Soberana">
-                                    </a>
+                                    <a href="single.html?id=soberana"><img src="images/image-2.jpg" width="90" height="65" style="object-fit: cover; border-radius: 4px;" alt="Torre Residencial Soberana"></a>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <div class="product-ratting">
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                    </div>
-                                    <h6><a href="single.html">Torre Residencial Soberana</a></h6>
-                                    <div class="product-price">
-                                        <span>Desde $167,900</span>
-                                    </div>
+                                    <div class="product-ratting"><i class="bx bxs-star text-warning"></i><i class="bx bxs-star text-warning"></i><i class="bx bxs-star text-warning"></i><i class="bx bxs-star text-warning"></i><i class="bx bxs-star text-warning"></i></div>
+                                    <h6 class="mb-0" style="font-size: 14px;"><a href="single.html?id=soberana" class="stretched-link text-decoration-none text-dark fw-semibold">Torre Residencial Soberana</a></h6>
+                                    <div class="product-price"><span class="text-danger small fw-bold">Desde $167,900</span></div>
                                 </div>
                             </div>
-                            <div class="d-flex mb-3">
+
+                            <!-- Mini Tarjeta Vanguardia -->
+                            <div class="d-flex mb-3 align-items-center position-relative">
                                 <div class="flex-shrink-0 me-3">
-                                    <a href="single.html">
-                                        <img src="images/image-4.jpg" width="100" alt="Edificio Residencial Vanguardia">
-                                    </a>
+                                    <a href="single.html?id=vanguardia"><img src="images/image-4.jpg" width="90" height="65" style="object-fit: cover; border-radius: 4px;" alt="Edificio Residencial Vanguardia"></a>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <div class="product-ratting">
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                    </div>
-                                    <h6><a href="single.html">Edificio Residencial Vanguardia</a></h6>
-                                    <div class="product-price">
-                                        <span>Desde $124,900</span>
-                                    </div>
+                                    <div class="product-ratting"><i class="bx bxs-star text-warning"></i><i class="bx bxs-star text-warning"></i><i class="bx bxs-star text-warning"></i><i class="bx bxs-star text-warning"></i><i class="bx bxs-star text-warning"></i></div>
+                                    <h6 class="mb-0" style="font-size: 14px;"><a href="single.html?id=vanguardia" class="stretched-link text-decoration-none text-dark fw-semibold">Edificio Residencial Vanguardia</a></h6>
+                                    <div class="product-price"><span class="text-danger small fw-bold">Desde $124,900</span></div>
                                 </div>
                             </div>
-                            <div class="d-flex mb-3">
+
+                            <!-- Mini Tarjeta Oasis -->
+                            <div class="d-flex mb-3 align-items-center position-relative">
                                 <div class="flex-shrink-0 me-3">
-                                    <a href="single.html">
-                                        <img src="images/image-3.jpg" width="100" alt="Complejo Residencial Oasis">
-                                    </a>
+                                    <a href="single.html?id=oasis"><img src="images/image-3.jpg" width="90" height="65" style="object-fit: cover; border-radius: 4px;" alt="Complejo Residencial Oasis"></a>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <div class="product-ratting">
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bxs-star text-warning"></i>
-                                        <i class="bx bx-star text-warning"></i>
-                                    </div>
-                                    <h6><a href="single.html">Complejo Residencial Oasis</a></h6>
-                                    <div class="product-price">
-                                        <span>Desde $95,900</span>
-                                    </div>
+                                    <div class="product-ratting"><i class="bx bxs-star text-warning"></i><i class="bx bxs-star text-warning"></i><i class="bx bxs-star text-warning"></i><i class="bx bxs-star text-warning"></i><i class="bx bx-star text-warning"></i></div>
+                                    <h6 class="mb-0" style="font-size: 14px;"><a href="single.html?id=oasis" class="stretched-link text-decoration-none text-dark fw-semibold">Complejo Residencial Oasis</a></h6>
+                                    <div class="product-price"><span class="text-danger small fw-bold">Desde $95,900</span></div>
                                 </div>
                             </div>
                         </div>
 
+                        <!-- WIDGET 5: CATEGORÍAS REALES CON CONTADORES AUTOMÁTICOS -->
                         <div class="widget category-widget">
                             <h6 class="section-title">Categorías Destacadas</h6>
-                            <ul>
-                                <li><a href="search.html" class="d-flex justify-content-between my-4">Departamentos Residenciales
-                                        <span>(26)</span></a></li>
-                                <li><a href="search.html" class="d-flex justify-content-between my-4">Complejos Familiares
-                                        <span>(30)</span></a></li>
-                                <li><a href="search.html" class="d-flex justify-content-between my-4">Oficinas Comerciales <span>(71)</span></a>
-                                </li>
-                                <li><a href="search.html" class="d-flex justify-content-between my-4">Proyectos de Lujo
-                                        <span>(56)</span></a></li>
-                                <li><a href="search.html" class="d-flex justify-content-between my-4">Casas Dúplex / Townhouses
-                                        <span>(60)</span></a></li>
+                            <ul class="list-unstyled mb-0">
+                                <li><a href="search.html?tipo=Departamento" class="d-flex justify-content-between my-3 text-decoration-none text-dark border-bottom pb-2">Departamentos Residenciales <span class="text-danger fw-bold" id="total-cat-departamentos">(0)</span></a></li>
+                                <li><a href="search.html?tipo=Casa" class="d-flex justify-content-between my-3 text-decoration-none text-dark border-bottom pb-2">Casas Residenciales <span class="text-danger fw-bold" id="total-cat-casas">(0)</span></a></li>
+                                <li><a href="search.html?tipo=Duplex" class="d-flex justify-content-between my-3 text-decoration-none text-dark border-bottom pb-2">Dúplex <span class="text-danger fw-bold" id="total-cat-duplex">(0)</span></a></li>
+                                <li><a href="search.html?tipo=Local" class="d-flex justify-content-between my-3 text-decoration-none text-dark border-bottom pb-2">Locales Comerciales <span class="text-danger fw-bold" id="total-cat-locales">(0)</span></a></li>
+                            </ul>
+                        </div>
 
-
-                        <div class="widget popular-widget">
-                            <h6 class="section-title">Proyectos Populares</h6>
-                            <div class="popular-slider">
-                                <div class="property-item">
-                                    <div class="property-image">
-                                        <img src="images/image-2.jpg" height="250" alt="Torre Residencial Soberana">
-                                    </div>
-                                    <div class="property-details">
-                                        <span class="info-label">En Construcción</span>
-                                        <h3 class="title">Torre Residencial Soberana</h3>
-                                        <div class="location">
-                                            <i class="bx bx-map"></i>
-                                            Zona Residencial, Andahuaylas
-                                        </div>
-                                        <ul>
-                                            <li>2 a 3 Hab.</li>
-                                            <li>2 Baños</li>
-                                            <li>65 a 130 m²</li>
-                                        </ul>
-                                        <div class="actions">
-                                            <a href="single.html" title="Ver detalles del proyecto"><i class="bx bx-expand-alt"></i></a>
-                                            <a href="#" title="Consultar por WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-                                            <a href="contacto.html" title="Solicitar Cotización"><i class="bx bx-link"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="property-item">
-                                    <div class="property-image">
-                                        <img src="images/image-4.jpg" height="250" alt="Edificio Residencial Vanguardia">
-                                    </div>
-                                    <div class="property-details">
-                                        <span class="info-label">En Preventa / Pozo</span>
-                                        <h3 class="title">Edificio Residencial Vanguardia</h3>
-                                        <div class="location">
-                                            <i class="bx bx-map"></i>
-                                            Zona Norte, Andahuaylas
-                                        </div>
-                                        <ul>
-                                            <li>1 a 3 Hab.</li>
-                                            <li>1 a 2 Baños</li>
-                                            <li>45 a 110 m²</li>
-                                        </ul>
-                                        <div class="actions">
-                                            <a href="single.html" title="Ver detalles del proyecto"><i class="bx bx-expand-alt"></i></a>
-                                            <a href="#" title="Consultar por WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-                                            <a href="contacto.html" title="Solicitar Cotización"><i class="bx bx-link"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="property-item">
-                                    <div class="property-image">
-                                        <img src="images/image-3.jpg" height="250" alt="Complejo Residencial Oasis">
-                                    </div>
-                                    <div class="property-details">
-                                        <span class="info-label">Listo para Entregar</span>
-                                        <h3 class="title">Complejo Residencial Oasis</h3>
-                                        <div class="location">
-                                            <i class="bx bx-map"></i>
-                                            Zona Centro, Andahuaylas
-                                        </div>
-                                        <ul>
-                                            <li>1 a 2 Hab.</li>
-                                            <li>1 Baño</li>
-                                            <li>40 a 85 m²</li>
-                                        </ul>
-                                        <div class="actions">
-                                            <a href="single.html" title="Ver detalles del proyecto"><i class="bx bx-expand-alt"></i></a>
-                                            <a href="#" title="Consultar por WhatsApp"><i class="bx bxl-whatsapp"></i></a>
-                                            <a href="contacto.html" title="Solicitar Cotización"><i class="bx bx-link"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
+                        <!-- WIDGET 6: ETIQUETAS BUSCADAS -->
+                        <div class="widget tags-widget">
+                            <h6 class="section-title">Etiquetas Buscadas</h6>
+                            <div class="d-flex flex-wrap gap-2 mt-3">
+                                <a href="search.html?estado=Preventa" class="badge bg-light text-dark p-2 text-decoration-none border">Preventa</a>
+                                <a href="search.html?ciudad=Andahuaylas" class="badge bg-light text-dark p-2 text-decoration-none border">Andahuaylas</a>
+                                <a href="search.html?cochera=Si" class="badge bg-light text-dark p-2 text-decoration-none border">Con Cochera</a>
+                                <a href="search.html?estado=Construccion" class="badge bg-light text-dark p-2 text-decoration-none border">En Construcción</a>
+                                <a href="search.html?ascensor=Si" class="badge bg-light text-dark p-2 text-decoration-none border">Con Ascensor</a>
                             </div>
                         </div>
 
-                        <div class="widget tag-widget">
-                            <h6 class="section-title">Etiquetas Buscadas</h6>
-                            <a href="search.html">Preventa</a>
-                            <a href="search.html">Planos 3D</a>
-                            <a href="search.html">Inversión</a>
-                            <a href="search.html">Planos m²</a>
-                            <a href="search.html">Ingeniería</a>
-                            <a href="search.html">Planos</a>
-                            <a href="search.html">Cocheras</a>
-                            <a href="search.html">Departamentos</a>
-                            <a href="search.html">Acabados</a>
-                            <a href="search.html">Edificios</a>
-                            <a href="search.html">Pozo</a>
-                            <a href="search.html">Arquitectura</a>
-                            <a href="search.html">Condominios</a>
-                            <a href="search.html">Andahuaylas</a>
-                        </div>
                     </aside>
                 </div>
-            </div>
-        </div>
 
         <!-- Call To Action -->
         <section class="section call-to-action-area position-relative pb-0 mb-0">
