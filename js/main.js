@@ -10,39 +10,27 @@ $(function () {
         })
     });
 
-
-    // SEGURO DE CONTROL: Evita que Owl Carousel colapse el navegador si hay menos tarjetas de las esperadas
     if ($('.featured-carousel').length > 0) {
         $('.featured-carousel').owlCarousel({
             loop: true,
             margin: 10,
             responsiveClass: true,
             autoplay: true,
-            autoplayTimeout: 5000,       // MODIFICACIÓN: Espera 5 segundos quieto antes de avanzar
-            autoplaySpeed: 1100,         // MODIFICACIÓN: Deslizamiento suave de 1.1 segundos
-            autoplayHoverPause: true,    // MODIFICACIÓN: Se congela si el usuario pone el mouse encima
+            autoplayTimeout: 5000,
+            autoplaySpeed: 1100,
+            autoplayHoverPause: true,
             dots: true,
             navText: [
                 "<i class='bx bx-left-arrow-alt' ></i>", "<i class='bx bx-right-arrow-alt' ></i>"
             ],
             responsive: {
-                0: {
-                    items: 1,
-                    nav: true
-                },
-                600: {
-                    items: 3,
-                    nav: false
-                },
-                1000: {
-                    items: 3,
-                    nav: true,
-                    loop: true
-                }
+                0: { items: 1, nav: true },
+                600: { items: 3, nav: false },
+                1000: { items: 3, nav: true, loop: true }
             }
         });
     }
-    // SEGURO DE CONTROL: Evita que el scroll colapse matemáticamente en páginas que se acortaron verticalmente
+
     if ($(".odometer").length > 0) {
         $(window).on("scroll", function(e) {
             if ($(this).scrollTop() > 700) {
@@ -53,42 +41,30 @@ $(function () {
         });
     }
 
-    // SEGURO DE CONTROL: Evita que el carrusel de testimonios rompa la carga si no se encuentra en la vista actual
     if ($(".testimonial-area .owl-carousel").length > 0) {
         $(".testimonial-area .owl-carousel").owlCarousel({
             loop: true,
             margin: 10,
             responsiveClass: true,
             autoplay: true,
-            autoplayTimeout: 5000,       // MODIFICACIÓN: Sincronizado a 5 segundos también para testimonios
+            autoplayTimeout: 5000,
             autoplayHoverPause: true,
             dots: true,
             navText: [
                 "<i class='bx bx-left-arrow-alt' ></i>", "<i class='bx bx-right-arrow-alt' ></i>"
             ],
             responsive: {
-                0: {
-                    items: 1,
-                    nav: true
-                },
-                600: {
-                    items: 3,
-                    nav: false
-                },
-                1000: {
-                    items: 1,
-                    nav: true,
-                    loop: true
-                }
+                0: { items: 1, nav: true },
+                600: { items: 3, nav: false },
+                1000: { items: 1, nav: true, loop: true }
             }
         });
     }
 
-    // SEGURO DE CONTROL: Inicializa selectores estilizados solo si existen en la página
     if ($("select").length > 0) {
         $("select").niceSelect();
     }
-    // SEGURO DE CONTROL: Blindaje del deslizador de precios (Si estás en index.html se salta esta línea en lugar de crashear)
+
     if ($("#price-range").length > 0) {
         $("#price-range").slider({
             step: 500,
@@ -98,11 +74,9 @@ $(function () {
             values:[0, 30000],
             slide: function (event, ui) { $("#priceRange").val(ui.values[0] + " - " + ui.values[1]); }
         });
-
         $("#priceRange").val($("#price-range").slider("values", 0) + " - " + $("#price-range").slider("values", 1));
     }
 
-    // SEGURO DE CONTROL: Evita fallas en la galería de fotos detalladas de single.html
     if ($('.property-gallery').length > 0) {
         $('.property-gallery').slick({
             centerMode: true,
@@ -143,10 +117,8 @@ $(function () {
             top: `${e.clientY}px`,
         })
     });
-    // =========================================================================
-    // INTEGRACIÓN DE GOOGLE SHEETS EN VIVO - CFV INMOBILIARIA
-    // =========================================================================
-    const API_SHEET_URL = "https://google.com";
+
+    const API_SHEET_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQ4dg7f_kOO8kpWFw3J1qXp2k6tEENE2pJ0sOZ0kalCUHfMwetZ-KhoM3eQVQcCOkt3XsYy48KxzemI/pub?gid=0&single=true&output=csv";
     let listaProyectosGlobal = [];
 
     function cargarBaseDeDatos() {
@@ -160,7 +132,7 @@ $(function () {
     }
 
     function parsearCSV(texto) {
-        const lineas = texto.split("\n");
+        const lineas = texto.replace(/\r/g, "").split("\n");
         const resultado = [];
         if (lineas.length <= 1) return resultado;
         const encabezados = lineas[0].split(",").map(h => h.trim().replace(/"/g, ''));
@@ -178,8 +150,8 @@ $(function () {
         }
         return resultado;
     }
+
     function inyectarDatosEnPantallas() {
-        // A. LÓGICA PORTADA (INDEX.HTML)
         if ($('.featured-carousel').length > 0) {
             const $carrusel = $('.featured-carousel');
             if ($carrusel.hasClass('owl-loaded')) { $carrusel.owlCarousel('destroy'); }
@@ -188,11 +160,12 @@ $(function () {
             listaProyectosGlobal.forEach(proyecto => {
                 const fotos = proyecto.renders_galeria ? proyecto.renders_galeria.split(",") : ["images/image-4.jpg"];
                 const fotoPrincipal = fotos[0].trim();
+
                 $carrusel.append(`
                     <div class="featured-list-card h-100 position-relative"> 
                         <div class="card-image">
                             <img src="${fotoPrincipal}" alt="${proyecto.titulo}" style="height:250px; object-fit:cover; width:100%;">
-                            <span>${proyecto.estado}</span>
+                            <span style="white-space: nowrap !important; width: auto !important; max-width: none !important;">Estado: ${proyecto.estado}</span>
                             <div class="location-gallery">
                                 <div class="location"><i class="bx bx-map-alt"></i> ${proyecto.ciudad}</div>
                                 <div class="gallery"><i class="bx bx-camera"></i> ${fotos.length}</div>
@@ -201,12 +174,23 @@ $(function () {
                         <div class="card-body">
                             <div class="p-4 pt-0">
                                 <span class="price">${proyecto.precio_texto}</span>
-                                <h6><a href="single.html?id=${proyecto.id}" class="stretched-link">${proyecto.titulo}</a></h6>
+                                <h6 style="white-space: normal !important; overflow: visible !important; height: auto !important; min-height: 44px; display: block;">
+                                    <a href="single.html?id=${proyecto.id}" class="stretched-link">${proyecto.titulo}</a>
+                                </h6>
                                 <p>${proyecto.descripcion.substring(0, 110)}...</p>
                                 <ul class="nav">
-                                    <li class="border-end pe-3 me-3"><span class="d-block">${proyecto.habitaciones} <i class="bx bx-bed"></i></span>Habitaciones</li>
-                                    <li class="border-end pe-3 me-3"><span class="d-block">${proyecto.banos} <i class="bx bx-shower"></i></span>Baños</li>
-                                    <li><span class="d-block">${proyecto.metraje} <i class="bx bx-area"></i></span>M²</li>
+                                    <li class="border-end pe-3 me-3 text-center">
+                                        <span class="d-block fw-bold">${proyecto.habitaciones}</span>
+                                        <i class="bx bx-bed"></i> Hab.
+                                    </li>
+                                    <li class="border-end pe-3 me-3 text-center">
+                                        <span class="d-block fw-bold">${proyecto.banos}</span>
+                                        <i class="bx bx-shower"></i> Baños
+                                    </li>
+                                    <li class="text-center">
+                                        <span class="d-block fw-bold">${proyecto.metraje}</span>
+                                        <i class="bx bx-area"></i> M²
+                                    </li>
                                 </ul>
                             </div>
                             <div class="align-items-center d-flex estate-agents justify-content-between pt-4 bg-light p-3">
@@ -215,7 +199,7 @@ $(function () {
                                     <div class="flex-grow-1"><span class="fw-semibold d-block">Asesor Comercial</span><small class="text-muted">Contacto Directo</small></div>
                                 </div>
                                 <div class="card-actions position-relative" style="z-index: 5;">
-                                    <a href="https://wa.me{encodeURIComponent(proyecto.titulo)}." target="_blank" class="btn btn-sm btn-success rounded-circle d-flex align-items-center justify-content-center p-0" style="width:35px; height:35px; background-color:#25D366; border:none;"><i class="bx bxl-whatsapp fs-5 text-white"></i></a>
+                                    <a href="https://wa.me?text=${encodeURIComponent('Hola, me interesa el proyecto ' + proyecto.titulo)}" target="_blank" class="btn btn-sm btn-success rounded-circle d-flex align-items-center justify-content-center p-0" style="width:35px; height:35px; background-color:#25D366; border:none;"><i class="bx bxl-whatsapp fs-5 text-white"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -229,19 +213,19 @@ $(function () {
             });
         }
 
-        // B. LÓGICA CATÁLOGO (SEARCH.HTML)
         if ($(".filter-results-area").length > 0) {
             const $grilla = $(".filter-results-area .row"); $grilla.empty();
             $("#total-proyectos-conteo").text(listaProyectosGlobal.length);
             listaProyectosGlobal.forEach(proyecto => {
                 const fotos = proyecto.renders_galeria ? proyecto.renders_galeria.split(",") : ["images/image-4.jpg"];
                 const fotoPrincipal = fotos[0].trim();
+
                 $grilla.append(`
                     <div class="col-12 col-md-6 mb-4">
                         <div class="featured-list-card h-100 position-relative border rounded overflow-hidden shadow-sm"> 
                             <div class="card-image">
                                 <img src="${fotoPrincipal}" alt="${proyecto.titulo}" style="height:230px; object-fit:cover; width:100%;">
-                                <span>${proyecto.estado}</span>
+                                <span style="white-space: nowrap !important; width: auto !important; max-width: none !important;">Estado: ${proyecto.estado}</span>
                                 <div class="location-gallery">
                                     <div class="location"><i class="bx bx-map-alt"></i> ${proyecto.ciudad}</div>
                                     <div class="gallery"><i class="bx bx-camera"></i> ${fotos.length}</div>
@@ -250,7 +234,9 @@ $(function () {
                             <div class="card-body bg-white">
                                 <div class="p-3">
                                     <span class="price d-block text-danger fw-bold h5 mb-1">${proyecto.precio_texto}</span>
-                                    <h6 class="fw-bold"><a href="single.html?id=${proyecto.id}" class="stretched-link text-decoration-none text-dark">${proyecto.titulo}</a></h6>
+                                    <h6 class="fw-bold" style="white-space: normal !important; overflow: visible !important; height: auto !important;">
+                                        <a href="single.html?id=${proyecto.id}" class="stretched-link text-decoration-none text-dark">${proyecto.titulo}</a>
+                                    </h6>
                                     <p class="text-muted small">${proyecto.descripcion.substring(0, 95)}...</p>
                                     <ul class="nav small justify-content-between border-top pt-2 mt-2 list-unstyled">
                                         <li>${proyecto.habitaciones} <i class="bx bx-bed text-muted"></i> Hab.</li>
@@ -265,8 +251,8 @@ $(function () {
         }
         inyectarFichaTecnicaYWidgets();
     }
+
     function inyectarFichaTecnicaYWidgets() {
-        // C. LÓGICA DETALLES (SINGLE.HTML)
         if ($(".property-info-content").length > 0) {
             const parametrosUrl = new URLSearchParams(window.location.search);
             const idProyectoUrl = parametrosUrl.get('id');
@@ -317,23 +303,53 @@ $(function () {
         }
         actualizarSidebarYFormularios();
     }
-    function inyectarMediaAdicionalSingle(proyecto) {
-        if (proyecto.mapa_url) {
-            $(".mapa-contenedor-dinamico").remove();
-            $(".property-info-content").append(`<div class="mapa-contenedor-dinamico"><h6 class="section-title mt-5">Ubicación del Proyecto</h6><div class="ratio ratio-21x9 rounded overflow-hidden shadow-sm border mb-4" style="height: 350px;"><iframe src="${proyecto.mapa_url}" style="border:0; width:100%; height:100%;" allowfullscreen="" loading="lazy"></iframe></div></div>`);
-        }
-        if (proyecto.brochure_pdf) {
-            $(".brochure-contenedor-dinamico").remove();
-            $(".property-info-content").append(`<div class="brochure-contenedor-dinamico mt-4 p-4 border rounded bg-light d-flex align-items-center justify-content-between"><div><h6 class="fw-bold mb-1">Dossier Técnico Comercial Oficial</h6><small class="text-muted">Descarga los planos de arquitectura.</small></div><a href="${proyecto.brochure_pdf}" target="_blank" class="btn btn-danger btn-sm px-4 fw-semibold"><i class="bx bx-file-pdf me-2"></i>Descargar Brochure</a></div>`);
-        }
-        if (proyecto.amenidades) {
-            const $listaAmenidades = $("#lista-amenidades"); $listaAmenidades.empty();
-            const amenidadesMarcadas = proyecto.amenidades.split(",");
-            amenidadesMarcadas.forEach(amenidad => {
-                if (amenidad.trim()) { $listaAmenidades.append(`<li class="w-50 float-start mb-2"><i class="bx bx-check-double text-main-color me-2"></i>${amenidad.trim()}</li>`); }
-            });
-        }
+
+   function inyectarMediaAdicionalSingle(proyecto) {
+    // 1. Actualizar el Mapa
+    if (proyecto.mapa_url) {
+        $("#mapa-iframe").attr("src", proyecto.mapa_url);
+        $("#link-mapa-real").attr("href", proyecto.mapa_url);
     }
+
+    // 2. Actualizar el Brochure (Detecta enlaces de Forms y Drive)
+    if (proyecto.brochure_pdf) {
+        let urlDescarga = proyecto.brochure_pdf;
+        let idArchivo = null;
+
+        // Cubrimos todos los formatos posibles de Drive, especialmente los de Google Forms
+        if (urlDescarga.includes("/file/d/")) {
+            idArchivo = urlDescarga.split("/file/d/")[1].split("/")[0];
+        } else if (urlDescarga.includes("open?id=")) {
+            idArchivo = urlDescarga.split("open?id=")[1].split("&")[0];
+        } else if (urlDescarga.includes("id=")) {
+            idArchivo = urlDescarga.split("id=")[1].split("&")[0];
+        }
+
+        // Si encontramos el ID, forzamos la URL de descarga directa
+        if (idArchivo) {
+            urlDescarga = `https://drive.google.com/uc?export=download&id=${idArchivo}`;
+        }
+
+        // Asignamos la URL y quitamos el target para que no abra una pestaña nueva
+        $("#btn-descargar-brochure").attr("href", urlDescarga).removeAttr("target");
+        
+    } else {
+        // Ocultar si no hay PDF
+        $("#btn-descargar-brochure").closest('.col-12').hide();
+    }
+
+    // 3. Amenidades (tal como lo tenías)
+    if (proyecto.amenidades) {
+        const $listaAmenidades = $("#lista-amenidades"); 
+        $listaAmenidades.empty();
+        const amenidadesMarcadas = proyecto.amenidades.split(",");
+        amenidadesMarcadas.forEach(amenidad => {
+            if (amenidad.trim()) { 
+                $listaAmenidades.append(`<li class="w-50 float-start mb-2"><i class="bx bx-check-double text-main-color me-2"></i>${amenidad.trim()}</li>`); 
+            }
+        });
+    }
+}
 
     function actualizarSidebarYFormularios() {
         if ($(".sidebar").length === 0) return;
@@ -349,6 +365,7 @@ $(function () {
         $("#total-cat-duplex").text(`(${duplex.toString().padStart(2, '0')})`);
         $("#total-cat-locales").text(`(${locales.toString().padStart(2, '0')})`);
     }
+
     $(document).on("submit", "#form-cotizacion-whatsapp", function (e) {
         e.preventDefault();
         const nombre = $("#cotizar-nombre").val();
@@ -356,9 +373,8 @@ $(function () {
         const mensaje = $("#cotizar-mensaje").val();
         const tituloProyecto = $(".property-info-content h2").text() || "un proyecto de CFV";
         const textoMensaje = `Hola CFV Inmobiliaria, mi nombre es *${nombre}* (${correo}). Deseo solicitar una cotización formal y asesoría personalizada sobre el proyecto *${tituloProyecto}*. Mi consulta es: ${mensaje}`;
-        window.open(`https://wa.me{encodeURIComponent(textoMensaje)}`, '_blank');
+        window.open(`https://wa.me/?text=${encodeURIComponent(textoMensaje)}`, '_blank');
     });
 
-    // ENCENDER EL MOTOR DE DATOS EN LA NUBE DE GOOGLE SHEETS AL ABRIR LA WEB
     cargarBaseDeDatos();
 });
