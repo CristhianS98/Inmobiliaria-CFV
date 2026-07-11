@@ -1,15 +1,6 @@
 $(function () {
     "use strict";
 
-    $("section.about-us-area").on("mousemove", function (e) {
-        $("section.about-us-area img:nth-child(1)").css({
-            transform: `translateX(${e.clientX / 50}px) translateY(${e.clientY / 50}px)`
-        })
-        $("section.about-us-area img:nth-child(2)").css({
-            transform: `translateX(${e.clientX / 20}px) translateY(${e.clientY / 20}px)`
-        })
-    });
-
     if ($('.featured-carousel').length > 0) {
         $('.featured-carousel').owlCarousel({
             loop: true,
@@ -135,15 +126,37 @@ $(function () {
         const lineas = texto.replace(/\r/g, "").split("\n");
         const resultado = [];
         if (lineas.length <= 1) return resultado;
+        
+        // Parsear encabezados
         const encabezados = lineas[0].split(",").map(h => h.trim().replace(/"/g, ''));
 
         for (let i = 1; i < lineas.length; i++) {
             if (!lineas[i].trim()) continue;
-            const celdas = lineas[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || lineas[i].split(",");
+            
+            // Lógica robusta que no corta los textos con espacios
+            const celdas = [];
+            let currentCell = '';
+            let inQuotes = false;
+            
+            for (let j = 0; j < lineas[i].length; j++) {
+                const char = lineas[i][j];
+                if (char === '"') {
+                    inQuotes = !inQuotes; 
+                } else if (char === ',' && !inQuotes) {
+                    celdas.push(currentCell);
+                    currentCell = '';
+                } else {
+                    currentCell += char; 
+                }
+            }
+            celdas.push(currentCell);
+
             const objeto = {};
             encabezados.forEach((encabezado, index) => {
                 let valor = celdas[index] ? celdas[index].trim() : "";
-                if (valor.startsWith('"') && valor.endsWith('"')) { valor = valor.substring(1, valor.length - 1); }
+                if (valor.startsWith('"') && valor.endsWith('"')) { 
+                    valor = valor.substring(1, valor.length - 1); 
+                }
                 objeto[encabezado] = valor;
             });
             resultado.push(objeto);
@@ -151,24 +164,48 @@ $(function () {
         return resultado;
     }
 
+    function convertirEnlaceDriveAImagen(url) {
+    if (!url || url.trim() === "") return "images/image-4.jpg";
+    let urlLimpia = url.trim();
+    let idArchivo = null;
+    
+    if (urlLimpia.includes("/file/d/")) {
+        idArchivo = urlLimpia.split("/file/d/")[1].split("/")[0];
+    } else if (urlLimpia.includes("open?id=")) {
+        idArchivo = urlLimpia.split("open?id=")[1].split("&")[0];
+    } else if (urlLimpia.includes("id=")) {
+        idArchivo = urlLimpia.split("id=")[1].split("&")[0];
+    }
+
+    if (idArchivo) {
+        // Usamos el servicio externo para procesar la imagen de Drive
+        // Esto evita el error de 'Source could not be found'
+        return `https://images.weserv.nl/?url=drive.google.com/uc?export=view%26id=${idArchivo}`;
+    }
+    return urlLimpia;
+}
+
     function inyectarDatosEnPantallas() {
+        // --- SECCIÓN: CARRUSEL INICIO ---
         if ($('.featured-carousel').length > 0) {
             const $carrusel = $('.featured-carousel');
             if ($carrusel.hasClass('owl-loaded')) { $carrusel.owlCarousel('destroy'); }
             $carrusel.empty();
 
             listaProyectosGlobal.forEach(proyecto => {
-                const fotos = proyecto.renders_galeria ? proyecto.renders_galeria.split(",") : ["images/image-4.jpg"];
-                const fotoPrincipal = fotos[0].trim();
+                // Separamos si hay múltiples fotos y convertimos la primera
+                const fotosRaw = proyecto.renders_galeria ? proyecto.renders_galeria : "";
+                const fotos = fotosRaw.split(",");
+                const urlImagenDirecta = convertirEnlaceDriveAImagen(fotos[0]);
 
                 $carrusel.append(`
                     <div class="featured-list-card h-100 position-relative"> 
                         <div class="card-image">
-                            <img src="${fotoPrincipal}" alt="${proyecto.titulo}" style="height:250px; object-fit:cover; width:100%;">
-                            <span style="white-space: nowrap !important; width: auto !important; max-width: none !important;">Estado: ${proyecto.estado}</span>
+                            <img src="${urlImagenDirecta}" alt="${proyecto.titulo}" style="height:250px; object-fit:cover; width:100%;">
+                            <span style="white-space: normal !important; width: auto !important; max-width: none !important;">Estado: ${proyecto.estado}</span>
                             <div class="location-gallery">
                                 <div class="location"><i class="bx bx-map-alt"></i> ${proyecto.ciudad}</div>
-                                <div class="gallery"><i class="bx bx-camera"></i> ${fotos.length}</div>
+                                <div class="gallery"><i class="bx bx-camera"></i> ${fotos[0].trim() !== "" ? fotos.length : 0}</div>
                             </div>
                         </div>
                         <div class="card-body">
@@ -177,7 +214,7 @@ $(function () {
                                 <h6 style="white-space: normal !important; overflow: visible !important; height: auto !important; min-height: 44px; display: block;">
                                     <a href="single.html?id=${proyecto.id}" class="stretched-link">${proyecto.titulo}</a>
                                 </h6>
-                                <p>${proyecto.descripcion.substring(0, 110)}...</p>
+                                <p>${(proyecto.descripcion || "").substring(0, 110)}...</p>
                                 <ul class="nav">
                                     <li class="border-end pe-3 me-3 text-center">
                                         <span class="d-block fw-bold">${proyecto.habitaciones}</span>
@@ -213,22 +250,24 @@ $(function () {
             });
         }
 
+        // --- SECCIÓN: GRILLA DE BUSCADOR (Si estás en la vista de búsqueda) ---
         if ($(".filter-results-area").length > 0) {
             const $grilla = $(".filter-results-area .row"); $grilla.empty();
             $("#total-proyectos-conteo").text(listaProyectosGlobal.length);
             listaProyectosGlobal.forEach(proyecto => {
-                const fotos = proyecto.renders_galeria ? proyecto.renders_galeria.split(",") : ["images/image-4.jpg"];
-                const fotoPrincipal = fotos[0].trim();
+                const fotosRaw = proyecto.renders_galeria ? proyecto.renders_galeria : "";
+                const fotos = fotosRaw.split(",");
+                const urlImagenDirecta = convertirEnlaceDriveAImagen(fotos[0]);
 
                 $grilla.append(`
                     <div class="col-12 col-md-6 mb-4">
                         <div class="featured-list-card h-100 position-relative border rounded overflow-hidden shadow-sm"> 
                             <div class="card-image">
-                                <img src="${fotoPrincipal}" alt="${proyecto.titulo}" style="height:230px; object-fit:cover; width:100%;">
-                                <span style="white-space: nowrap !important; width: auto !important; max-width: none !important;">Estado: ${proyecto.estado}</span>
+                                <img src="${urlImagenDirecta}" alt="${proyecto.titulo}" style="height:230px; object-fit:cover; width:100%;">
+                                <span style="white-space: normal !important; width: auto !important; max-width: none !important;">Estado: ${proyecto.estado}</span>
                                 <div class="location-gallery">
                                     <div class="location"><i class="bx bx-map-alt"></i> ${proyecto.ciudad}</div>
-                                    <div class="gallery"><i class="bx bx-camera"></i> ${fotos.length}</div>
+                                    <div class="gallery"><i class="bx bx-camera"></i> ${fotos[0].trim() !== "" ? fotos.length : 0}</div>
                                 </div>
                             </div>
                             <div class="card-body bg-white">
@@ -237,7 +276,7 @@ $(function () {
                                     <h6 class="fw-bold" style="white-space: normal !important; overflow: visible !important; height: auto !important;">
                                         <a href="single.html?id=${proyecto.id}" class="stretched-link text-decoration-none text-dark">${proyecto.titulo}</a>
                                     </h6>
-                                    <p class="text-muted small">${proyecto.descripcion.substring(0, 95)}...</p>
+                                    <p class="text-muted small">${(proyecto.descripcion || "").substring(0, 95)}...</p>
                                     <ul class="nav small justify-content-between border-top pt-2 mt-2 list-unstyled">
                                         <li>${proyecto.habitaciones} <i class="bx bx-bed text-muted"></i> Hab.</li>
                                         <li>${proyecto.banos} <i class="bx bx-shower text-muted"></i> Baños</li>
@@ -253,58 +292,68 @@ $(function () {
     }
 
     function inyectarFichaTecnicaYWidgets() {
-        if ($(".property-info-content").length > 0) {
-            const parametrosUrl = new URLSearchParams(window.location.search);
-            const idProyectoUrl = parametrosUrl.get('id');
-            const proyecto = listaProyectosGlobal.find(p => p.id === idProyectoUrl) || listaProyectosGlobal[0];
+    if ($(".property-info-content").length > 0) {
+        const parametrosUrl = new URLSearchParams(window.location.search);
+        const idProyectoUrl = parametrosUrl.get('id');
+        const proyecto = listaProyectosGlobal.find(p => p.id === idProyectoUrl) || listaProyectosGlobal[0];
 
-            if (proyecto) {
-                document.title = `${proyecto.titulo} - CFV Ingenieros`;
-                $(".property-info-content h2").text(proyecto.titulo);
-                $(".meta-location").html(`<i class="bx bx-map"></i> ${proyecto.direccion_completa}, ${proyecto.ciudad}, Perú`);
-                $(".property-info-content p").first().text(proyecto.descripcion);
-                $(".meta-category.bg-orange").text(proyecto.estado);
+        if (proyecto) {
+            document.title = `${proyecto.titulo} - CFV Ingenieros`;
+            $(".property-info-content h2").text(proyecto.titulo);
+            $(".meta-location").html(`<i class="bx bx-map"></i> ${proyecto.direccion_completa}, ${proyecto.ciudad}, Perú`);
+            $(".property-info-content p").first().text(proyecto.descripcion);
+            $(".meta-category.bg-orange").text(proyecto.estado);
 
-                const fichaTecnicaHtml = `
-                    <ul>
-                        <li><label>ID Proyecto:</label> <span>CFV-${proyecto.id.toUpperCase()}</span></li>
-                        <li><label>Área Construida:</label> <span>${proyecto.metraje}</span></li>
-                        <li><label>Ambientes:</label> <span>${proyecto.ambientes}</span></li>
-                        <li><label>Baños:</label> <span>${proyecto.banos}</span></li>
-                        <li><label>Año de Entrega:</label> <span>2026</span></li>
-                    </ul>
-                    <ul>
-                        <li><label>Niveles:</label> <span>${proyecto.niveles}</span></li>
-                        <li><label>Dormitorios:</label> <span>${proyecto.habitaciones}</span></li>
-                        <li><label>Precio:</label> <span>${proyecto.precio_texto}</span></li>
-                        <li><label>Cochera:</label> <span>${proyecto.cochera}</span></li>
-                        <li><label>Estado Obra:</label> <span>${proyecto.estado}</span></li>
-                    </ul>`;
-                $(".property-detail-info-list").html(fichaTecnicaHtml);
+            const fichaTecnicaHtml = `
+                <ul>
+                    <li><label>ID Proyecto:</label> <span>CFV-${proyecto.id.toUpperCase()}</span></li>
+                    <li><label>Área Construida:</label> <span>${proyecto.metraje}</span></li>
+                    <li><label>Ambientes:</label> <span>${proyecto.ambientes}</span></li>
+                    <li><label>Baños:</label> <span>${proyecto.banos}</span></li>
+                    <li><label>Año de Entrega:</label> <span>2026</span></li>
+                </ul>
+                <ul>
+                    <li><label>Niveles:</label> <span>${proyecto.niveles}</span></li>
+                    <li><label>Dormitorios:</label> <span>${proyecto.habitaciones}</span></li>
+                    <li><label>Precio:</label> <span>${proyecto.precio_texto}</span></li>
+                    <li><label>Cochera:</label> <span>${proyecto.cochera}</span></li>
+                    <li><label>Estado Obra:</label> <span>${proyecto.estado}</span></li>
+                </ul>`;
+            $(".property-detail-info-list").html(fichaTecnicaHtml);
 
-                const $galeriaSlick = $('.property-gallery');
-                if ($galeriaSlick.length > 0) {
-                    if ($galeriaSlick.hasClass('slick-initialized')) { $galeriaSlick.slick('unslick'); }
-                    $galeriaSlick.empty();
-                    const fotos = proyecto.renders_galeria ? proyecto.renders_galeria.split(",") : [];
-                    fotos.forEach(fotoUrl => {
-                        if (fotoUrl.trim()) {
-                            $galeriaSlick.append(`<a href="${fotoUrl.trim()}" data-rel="lightcase:myCollection:slideshow"><img src="${fotoUrl.trim()}" style="height:320px; object-fit:cover; width:100%; padding:4px; border-radius:6px;"></a>`);
-                        }
-                    });
-                    $('.property-gallery').slick({
-                        centerMode: true, centerPadding: '60px', arrows: true, slidesToShow: 3, slidesToScroll: 1, prevArrow: $('.prev'), nextArrow: $('.next'),
-                        responsive: [{ breakpoint: 576, settings: { slidesToShow: 1, slidesToScroll: 1 } }]
-                    });
-                    $("a[data-rel]").lightcase();
-                }
-                inyectarMediaAdicionalSingle(proyecto);
+            const $galeriaSlick = $('.property-gallery');
+            if ($galeriaSlick.length > 0) {
+                if ($galeriaSlick.hasClass('slick-initialized')) { $galeriaSlick.slick('unslick'); }
+                $galeriaSlick.empty();
+                const fotos = proyecto.renders_galeria ? proyecto.renders_galeria.split(",") : [];
+                
+                fotos.forEach(fotoUrl => {
+                    if (fotoUrl.trim()) {
+                        // Limpiamos la URL usando el convertidor de servidores estáticos (LH3)
+                        const urlImagenDirecta = convertirEnlaceDriveAImagen(fotoUrl.trim());
+                        
+                        // Inyectamos la URL limpia tanto en el href (para Lightcase) como en el src (para la miniatura)
+                        $galeriaSlick.append(`
+                            <a href="${urlImagenDirecta}" data-rel="lightcase:myCollection:slideshow">
+                                <img src="${urlImagenDirecta}" style="height:320px; object-fit:cover; width:100%; padding:4px; border-radius:6px;">
+                            </a>
+                        `);
+                    }
+                });
+                
+                $('.property-gallery').slick({
+                    centerMode: true, centerPadding: '60px', arrows: true, slidesToShow: 3, slidesToScroll: 1, prevArrow: $('.prev'), nextArrow: $('.next'),
+                    responsive: [{ breakpoint: 576, settings: { slidesToShow: 1, slidesToScroll: 1 } }]
+                });
+                $("a[data-rel]").lightcase();
             }
+            inyectarMediaAdicionalSingle(proyecto);
         }
-        actualizarSidebarYFormularios();
     }
+    actualizarSidebarYFormularios();
+}
 
-   function inyectarMediaAdicionalSingle(proyecto) {
+function inyectarMediaAdicionalSingle(proyecto) {
     // 1. Actualizar el Mapa
     if (proyecto.mapa_url) {
         $("#mapa-iframe").attr("src", proyecto.mapa_url);
@@ -316,7 +365,6 @@ $(function () {
         let urlDescarga = proyecto.brochure_pdf;
         let idArchivo = null;
 
-        // Cubrimos todos los formatos posibles de Drive, especialmente los de Google Forms
         if (urlDescarga.includes("/file/d/")) {
             idArchivo = urlDescarga.split("/file/d/")[1].split("/")[0];
         } else if (urlDescarga.includes("open?id=")) {
@@ -325,20 +373,17 @@ $(function () {
             idArchivo = urlDescarga.split("id=")[1].split("&")[0];
         }
 
-        // Si encontramos el ID, forzamos la URL de descarga directa
         if (idArchivo) {
             urlDescarga = `https://drive.google.com/uc?export=download&id=${idArchivo}`;
         }
 
-        // Asignamos la URL y quitamos el target para que no abra una pestaña nueva
         $("#btn-descargar-brochure").attr("href", urlDescarga).removeAttr("target");
         
     } else {
-        // Ocultar si no hay PDF
         $("#btn-descargar-brochure").closest('.col-12').hide();
     }
 
-    // 3. Amenidades (tal como lo tenías)
+    // 3. Amenidades
     if (proyecto.amenidades) {
         const $listaAmenidades = $("#lista-amenidades"); 
         $listaAmenidades.empty();
