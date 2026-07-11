@@ -315,9 +315,19 @@ $(function () {
             }
 
             if (idArchivo) {
-                urlDescarga = `https://drive.google.com/uc?export=download&id=${idArchivo}`;
+                // TRUCO: Creamos un número único basado en la hora actual
+                let cacheBuster = new Date().getTime();
+                // Se lo pegamos al final de la URL (&t=...) para engañar a la caché de Google
+                urlDescarga = `https://drive.google.com/uc?export=download&id=${idArchivo}&t=${cacheBuster}`;
             }
-            $("#btn-descargar-brochure").attr("href", urlDescarga).removeAttr("target");
+            
+            // También forzamos el atributo HTML5 'download' como capa extra de seguridad
+            let nombreLimpio = proyecto.titulo ? `Brochure_${proyecto.titulo.replace(/\s+/g, '_')}.pdf` : "Brochure.pdf";
+            
+            $("#btn-descargar-brochure")
+                .attr("href", urlDescarga)
+                .attr("download", nombreLimpio)
+                .removeAttr("target");
         } else {
             $("#btn-descargar-brochure").closest('.col-12').hide();
         }
