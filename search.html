@@ -6,14 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inmobiliaria - CFV</title>
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-    <!-- Css Files & Libraries -->
     <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="libs/boxicons/css/boxicons.min.css">
     <link rel="stylesheet" href="libs/owl/assets/owl.carousel.min.css">
@@ -28,14 +24,12 @@
 <body>
 
     <div id="app">
-        <!-- Navbar Start -->
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="index.html" title="Logo">
                     <img src="images/logo.png" height="50" alt="">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" title="Menu Toggle"
-                    data-bs-target="#offcanvas" aria-controls="offcanvas">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" title="Menu Toggle" data-bs-target="#offcanvas" aria-controls="offcanvas">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="offcanvas offcanvas-end w-100" id="offcanvas">
@@ -54,8 +48,7 @@
                                 <a class="nav-link" href="index.html#about-us">Nosotros</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
+                                <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Propiedades
                                 </a>
                                 <ul class="dropdown-menu">
@@ -94,9 +87,6 @@
                 </div>
             </div>
         </nav>
-        <!-- ./navbar -->
-
-        <!-- Breadcrumbs -->
         <section class="section page-breadcrumb mb-5">
             <div class="container">
                 <h2>Filtro Avanzado</h2>
@@ -108,18 +98,13 @@
                 </nav>
             </div>
         </section>
-        <!-- ./page-breadcrumb -->
-
-
         <div class="container">
             <div class="row">
-                <!-- Main Page Content -->
                 <div class="col-12 col-md-8">
                     <main class="filter-results-area">
                         <div class="filter-options">
                             <div class="grid-view">
-                                <a href="#" role="button" title="Vista en cuadrícula" class="active"><i
-                                        class="bx bx-category"></i></a>
+                                <a href="#" role="button" title="Vista en cuadrícula" class="active"><i class="bx bx-category"></i></a>
                                 <a href="#" role="button" title="Vista en lista"><i class="bx bx-list-ol"></i></a>
                             </div>
 
@@ -127,106 +112,59 @@
                                 <p>Mostrando <span id="total-proyectos-conteo">0</span> resultados</p>
                             </div>
 
-
                             <select name="sort" id="sort" title="Orden de visualización">
-                                <option data-display="Orden Predeterminado">Orden Predeterminado</option>
-                                <option value="">Más buscados</option>
-                                <option value="">Novedades y lanzamientos</option>
-                                <option value="">Precio: bajo a alto</option>
-                                <option value="">Precio: alto a bajo</option>
+                                <option value="predeterminado" data-display="Orden Predeterminado">Orden Predeterminado</option>
+                                <option value="mas_buscados">Más buscados</option>
+                                <option value="lanzamientos">Novedades y lanzamientos</option>
+                                <option value="precio_bajo">Precio: bajo a alto</option>
+                                <option value="precio_alto">Precio: alto a bajo</option>
                             </select>
                         </div>
 
-
-                        <form action="#" method="get">
-                            <input type="text" name="search" class="form-control" placeholder="Buscar palabra clave...">
-                            <button type="submit" class="btn" title="Buscar"><i class="bx bx-search"></i></button>
+                        <form id="form-busqueda-texto" action="#" method="get" onsubmit="return false;">
+                            <input type="text" id="search-keyword" name="search" class="form-control" placeholder="Buscar palabra clave...">
+                            <button type="button" id="btn-buscar-texto" class="btn" title="Buscar"><i class="bx bx-search"></i></button>
                         </form>
 
-                        <div class="row">
-
-                           <!-- TARJETA RESULTADO 1 -->
-                            <div class="col-12 col-md-6">
-                                <div class="property-item position-relative">
-                                    <div class="property-image" style="position: relative !important; z-index: 1 !important;">
-                                        <!-- Envolvemos físicamente la foto en un enlace real -->
-                                        <a href="single.html?id=soberana" style="display: block; width: 100%; height: 100%; pointer-events: auto !important; cursor: pointer !important;">
-                                            <img src="images/image-2.jpg" height="250" alt="Torre Residencial Soberana" style="pointer-events: auto !important;">
-                                        </a>
-                                    </div>
-
-                                    <div class="property-details">
-                                        <span class="info-label">En Construcción</span>
-                                        <h3 class="title"><a href="single.html?id=soberana" class="stretched-link">Torre Residencial Soberana</a></h3>
-                                        <div class="location">
-                                            <i class="bx bx-map"></i>
-                                            Zona Residencial, Andahuaylas
-                                        </div>
-                                        <ul>
-                                            <li>2 a 3 Hab.</li>
-                                            <li>2 Baños</li>
-                                            <li>65 a 130 m²</li>
-                                        </ul>
-                                        <!-- CORRECCIÓN COMERCIAL: Enlace de WhatsApp completo y unificado -->
-                                        <div class="actions position-relative" style="z-index: 10;">
-                                            <a href="https://wa.me." 
-                                               target="_blank" title="Consultar por WhatsApp" 
-                                               class="btn btn-sm btn-success rounded-circle d-flex align-items-center justify-content-center p-0" 
-                                               style="width: 40px; height: 40px; background-color: #25D366; border: none;">
-                                                <i class="bx bxl-whatsapp fs-5 text-white"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="row" id="grid-proyectos-dinamico">
+                            <div class="col-12 text-center py-5">
+                                <p class="text-muted fs-5">Cargando propiedades disponibles...</p>
                             </div>
-<!-- TARJETA RESULTADO 1 -->
-                           <nav aria-label="Page navigation example">
-                                <ul class="pagination my-4">
-                                    <li class="page-item"><a class="page-link" href="#" title="Anterior"><i
-                                                class="bx bx-chevrons-left"></i></a></li>
-                                    <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#" title="Siguiente"><i
-                                                class="bx bx-chevrons-right"></i></a></li>
-                                </ul>
-                            </nav>
                         </div>
                     </main>
                 </div>
 
-                <!-- Sidebar -->
                 <div class="col-12 col-md-4">
                     <aside class="filter-sidebar sticky-md-top">
-                        <form action="search.html" method="get">
+                        <form id="form-filtros-avanzados" action="search.html" method="get" onsubmit="return false;">
                             <h4 class="border-0 pt-0">Tipo de Propiedad</h4>
                             <ul>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
+                                        <input type="checkbox" class="form-check-input" name="tipo_propiedad" value="Departamento">
                                         Departamentos
-                                        <span>2,912</span>
+                                        <span data-count="tipo_propiedad_Departamento">0</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
+                                        <input type="checkbox" class="form-check-input" name="tipo_propiedad" value="Casa">
                                         Casa Residencial
-                                        <span>1,853</span>
+                                        <span data-count="tipo_propiedad_Casa">0</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
+                                        <input type="checkbox" class="form-check-input" name="tipo_propiedad" value="Dúplex">
                                         Dúplex
-                                        <span>893</span>
+                                        <span data-count="tipo_propiedad_Dúplex">0</span>
                                     </label>
                                 </li>
-                                 <li>
+                                <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
+                                        <input type="checkbox" class="form-check-input" name="tipo_propiedad" value="Local">
                                         Local Comercial / Oficinas
-                                        <span>893</span>
+                                        <span data-count="tipo_propiedad_Local">0</span>
                                     </label>
                                 </li>
                             </ul>
@@ -235,44 +173,44 @@
                             <ul>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
+                                        <input type="checkbox" class="form-check-input" name="amenidades" value="Estacionamiento Privado">
                                         Estacionamiento Privado
-                                        <span>3,924</span>
+                                        <span data-count="amenidades_Estacionamiento Privado">0</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
+                                        <input type="checkbox" class="form-check-input" name="amenidades" value="Piscina">
                                         Piscina
-                                        <span>3,610</span>
+                                        <span data-count="amenidades_Piscina">0</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
+                                        <input type="checkbox" class="form-check-input" name="amenidades" value="Sistemas Inteligentes">
                                         Sistemas Inteligentes
-                                        <span>2,912</span>
+                                        <span data-count="amenidades_Sistemas Inteligentes">0</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
+                                        <input type="checkbox" class="form-check-input" name="amenidades" value="Clósets / Roperos Empotrados">
                                         Clósets / Roperos Empotrados
-                                        <span>2,687</span>
+                                        <span data-count="amenidades_Clósets / Roperos Empotrados">0</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
+                                        <input type="checkbox" class="form-check-input" name="amenidades" value="Zonas Comerciales Cercanas">
                                         Zonas Comerciales Cercanas
-                                        <span>1,853</span>
+                                        <span data-count="amenidades_Zonas Comerciales Cercanas">0</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
+                                        <input type="checkbox" class="form-check-input" name="amenidades" value="Área Infantil / Recreativa">
                                         Área Infantil / Recreativa
-                                        <span>893</span>
+                                        <span data-count="amenidades_Área Infantil / Recreativa">0</span>
                                     </label>
                                 </li>
                             </ul>
@@ -281,21 +219,21 @@
                             <ul>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
+                                        <input type="checkbox" class="form-check-input" name="rango_presupuesto" value="economico">
                                         Económico
                                         <span>$50,000 - $100,000</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" checked="checked">
+                                        <input type="checkbox" class="form-check-input" name="rango_presupuesto" value="medio">
                                         Medio
                                         <span>$100,000 - $300,000</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
+                                        <input type="checkbox" class="form-check-input" name="rango_presupuesto" value="premium">
                                         Inversión Premium
                                         <span>$300,000 a más</span>
                                     </label>
@@ -313,30 +251,30 @@
                             <ul>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" checked="checked">
+                                        <input type="checkbox" class="form-check-input" name="habitaciones_conteo" value="1">
                                         1 Habitación / Baño
-                                        <span>3,924</span>
+                                        <span data-count="habitaciones_1">0</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
+                                        <input type="checkbox" class="form-check-input" name="habitaciones_conteo" value="2">
                                         2 Habitaciones / Baños
-                                        <span>3,610</span>
+                                        <span data-count="habitaciones_2">0</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
+                                        <input type="checkbox" class="form-check-input" name="habitaciones_conteo" value="3">
                                         Hasta 3 o más
-                                        <span>2,912</span>
+                                        <span data-count="habitaciones_3">0</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
+                                        <input type="checkbox" class="form-check-input" name="habitaciones_conteo" value="5">
                                         Hasta 5 o más
-                                        <span>2,687</span>
+                                        <span data-count="habitaciones_5">0</span>
                                     </label>
                                 </li>
                             </ul>
@@ -345,29 +283,29 @@
                             <ul>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
+                                        <input type="checkbox" class="form-check-input" name="estado_proyecto" value="En Construcción">
                                         En Construcción
-                                        <span>3,610</span>
+                                        <span data-count="estado_En Construcción">0</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" checked="checked">
+                                        <input type="checkbox" class="form-check-input" name="estado_proyecto" value="En Preventa">
                                         En Preventa
-                                        <span>3,924</span>
+                                        <span data-count="estado_En Preventa">0</span>
                                     </label>
                                 </li>
                                 <li>
                                     <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input">
+                                        <input type="checkbox" class="form-check-input" name="estado_proyecto" value="Listo para Entregar">
                                         Listo para Entregar
-                                        <span>2,912</span>
+                                        <span data-count="estado_Listo para Entregar">0</span>
                                     </label>
                                 </li>
                             </ul>
 
                             <div class="text-center">
-                                <button type="button" class="btn">Aplicar Filtros</button>
+                                <button type="button" id="btn-aplicar-filtros" class="btn">Aplicar Filtros</button>
                             </div>
                         </form>
                     </aside>
@@ -375,8 +313,6 @@
             </div>
         </div>
 
-
-        <!-- Call To Action -->
         <section class="section call-to-action-area position-relative pb-0 mb-0">
             <div class="container">
                 <div class="call-to-action-inner">
@@ -385,22 +321,16 @@
                             <h6>¿Estás listo para invertir en tu próximo departamento?</h6>
                             <p>Contacta con nuestros asesores y solicita una cotización o catálogo personalizado.</p>
                         </div>
-                        <a href="https://wa.link/wkljug" 
-                           target="_blank" role="button">
-                           <i class='bx bxl-whatsapp me-2'></i> Iniciar Conversación
+                        <a href="https://wa.link/wkljug" target="_blank" role="button">
+                            <i class='bx bxl-whatsapp me-2'></i> Iniciar Conversación
                         </a>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- ./call-to-action-area -->
-
-        <!-- Footer -->
         <div class="footer">
             <div class="container">
                 <div class="row">
-                    
-                    <!-- Columna 1: Logo y Contacto -->
                     <div class="col-12 col-md-4 mb-5 mb-md-0 d-flex justify-content-center">
                         <div style="max-width: 300px; width: 100%; text-align: left;">
                             <a href="index.html" title="eStateX">
@@ -436,7 +366,6 @@
                         </div>
                     </div>
 
-                    <!-- Columna 2: Atención Corporativa -->
                     <div class="col-12 col-md-4 mb-5 mb-md-0 d-flex justify-content-center">
                         <div style="max-width: 300px; width: 100%; text-align: left;">
                             <h6>Atención Corporativa</h6>
@@ -448,7 +377,6 @@
                         </div>
                     </div>
 
-                    <!-- Columna 3: Empresa (Con padding-left añadido) -->
                     <div class="col-12 col-md-4 mb-5 mb-md-0 d-flex justify-content-center" style="padding-left: 40px;">
                         <div style="max-width: 300px; width: 100%; text-align: left;">
                             <h6>Empresa</h6>
@@ -461,14 +389,9 @@
                             </ul>
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
-        <!-- ./footer -->
-
-
-<!-- Copy Rights -->
         <div class="copy-right">
             <div class="container">
                 <div class="d-md-flex align-items-center justify-content-between">
@@ -489,9 +412,8 @@
                 </div>
             </div>
         </div>
-        <!-- ./copy-right -->
+        </div>
 
-    <!-- Js Files & Libraries -->
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="libs/jquery/jquery-3.7.1.min.js"></script>
     <script src="libs/owl/owl.carousel.min.js"></script>
