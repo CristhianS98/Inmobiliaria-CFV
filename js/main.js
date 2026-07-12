@@ -403,6 +403,7 @@ $(function () {
             if (proyecto) {
                 document.title = `${escapeHTML(proyecto.titulo)} - CFV Ingenieros`;
                 $(".property-info-content h2").text(proyecto.titulo);
+                $("#proyecto-referencia").val(proyecto.titulo || "");
                 $(".meta-location").html(`<i class="bx bx-map"></i> ${escapeHTML(proyecto.direccion_comercial)}, ${escapeHTML(proyecto.ciudad)}, Perú`);
                 $(".property-info-content p").first().text(proyecto.descripcion);
                 $(".meta-category.bg-orange").text(proyecto.estado);
@@ -424,34 +425,98 @@ $(function () {
                     </ul>`;
                 $(".property-detail-info-list").html(fichaTecnicaHtml);
 
-                // Galería Slick Dinámica
-                const $galeriaSlick = $('.property-gallery');
-                if ($galeriaSlick.length > 0) {
-                    if ($galeriaSlick.hasClass('slick-initialized')) { $galeriaSlick.slick('unslick'); }
-                    
-                    let slickHTML = '';
-                    const fotos = proyecto.renders_galeria ? proyecto.renders_galeria.split(",") : [];
-                    
-                    fotos.forEach(fotoUrl => {
-                        if (fotoUrl.trim()) {
-                            const urlImagenDirecta = convertirEnlaceDriveAImagen(fotoUrl.trim());
-                            slickHTML += `
-                                <a href="${urlImagenDirecta}" data-rel="lightcase:myCollection:slideshow">
-                                    <img src="${urlImagenDirecta}" style="height:320px; object-fit:cover; width:100%; padding:4px; border-radius:6px;">
-                                </a>`;
-                        }
+                // Galería exclusiva de single.html: una imagen completa por vez, sin deformarla.
+                const $galeriaPrincipal = $('#single-property-slider');
+                const $contadorGaleria = $('#single-gallery-counter');
+                if ($galeriaPrincipal.length > 0) {
+                    if ($galeriaPrincipal.hasClass('slick-initialized')) $galeriaPrincipal.slick('unslick');
+                    $galeriaPrincipal.off('afterChange.singleGallery');
+
+                    const fotos = (proyecto.renders_galeria || '')
+                        .split(',')
+                        .map(foto => foto.trim())
+                        .filter(Boolean)
+                        .map(convertirEnlaceDriveAImagen);
+                    let principalHTML = '';
+
+                    fotos.forEach((urlImagen, indice) => {
+                        principalHTML += `
+                            <a href="${urlImagen}" data-rel="lightcase:galeria-proyecto" aria-label="Abrir imagen ${indice + 1}">
+                                <img src="${urlImagen}" class="gallery-main-image" alt="${escapeHTML(proyecto.titulo)} - imagen ${indice + 1}">
+                            </a>`;
                     });
-                    
-                    $galeriaSlick.html(slickHTML);
-                    $galeriaSlick.slick({
-                        centerMode: true, centerPadding: '60px', arrows: true, slidesToShow: 3, slidesToScroll: 1, prevArrow: $('.prev'), nextArrow: $('.next'),
-                        responsive: [{ breakpoint: 576, settings: { slidesToShow: 1, slidesToScroll: 1 } }]
-                    });
-                    $("a[data-rel]").lightcase();
+
+                    $galeriaPrincipal.html(principalHTML);
+                    $contadorGaleria.text(fotos.length ? `1 / ${fotos.length}` : '0 / 0');
+
+                    if (fotos.length > 0) {
+                        $galeriaPrincipal.slick({
+                            slidesToShow: 1,
+                            slidesToScroll: 1,
+                            arrows: true,
+                            fade: false,
+                            speed: 300,
+                            adaptiveHeight: true,
+                            infinite: fotos.length > 1,
+                            prevArrow: $('.single-gallery-prev'),
+                            nextArrow: $('.single-gallery-next')
+                        });
+                        $galeriaPrincipal.on('afterChange.singleGallery', function (evento, slick, indiceActual) {
+                            $contadorGaleria.text(`${indiceActual + 1} / ${slick.slideCount}`);
+                        });
+                        $galeriaPrincipal.find('a[data-rel]').lightcase();
+                    }
                 }
                 inyectarMediaAdicionalSingle(proyecto);
+                renderizarSidebarSingle(proyecto);
             }
         }
+    }
+
+    // Widgets exclusivos de single.html: destacados, categorías y referencia de cotización.
+    function renderizarSidebarSingle(proyectoActual) {
+        if (!$(".property-info-content").length) return;
+
+        const obtenerValoracion = proyecto => {
+            const valor = proyecto.valoracion || proyecto.rating || proyecto.puntuacion || 0;
+            return parseFloat(String(valor).replace(",", ".")) || 0;
+        };
+        const destacados = listaProyectosGlobal
+            .filter(proyecto => proyecto.id !== proyectoActual.id)
+            .sort((a, b) => obtenerValoracion(b) - obtenerValoracion(a))
+            .slice(0, 3);
+
+        const destacadosHtml = destacados.length
+            ? destacados.map(proyecto => {
+                const foto = convertirEnlaceDriveAImagen((proyecto.renders_galeria || "").split(",")[0]);
+                return `
+                    <div class="d-flex mb-3 align-items-center">
+                        <a href="single.html?id=${encodeURIComponent(proyecto.id || "")}" class="flex-shrink-0 me-3">
+                            <img src="${foto}" alt="${escapeHTML(proyecto.titulo)}" width="76" height="76" style="object-fit:cover; border-radius:4px;">
+                        </a>
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1"><a href="single.html?id=${encodeURIComponent(proyecto.id || "")}" class="text-decoration-none text-dark">${escapeHTML(proyecto.titulo)}</a></h6>
+                            <small class="d-block text-muted"><i class="bx bx-map-alt"></i> ${escapeHTML(proyecto.ciudad)}</small>
+                            <span class="text-main-color fw-semibold">${escapeHTML(proyecto.precio_texto)}</span>
+                        </div>
+                    </div>`;
+            }).join("")
+            : '<p class="text-muted mb-0">Próximamente mostraremos más desarrollos.</p>';
+
+        $("#contenedor-destacados").html(destacadosHtml);
+
+        const categorias = [
+            ["Departamento", "#total-cat-departamentos"],
+            ["Casa", "#total-cat-casas"],
+            ["Dúplex", "#total-cat-duplex"],
+            ["Local", "#total-cat-locales"]
+        ];
+        categorias.forEach(([categoria, selector]) => {
+            const total = listaProyectosGlobal.filter(proyecto =>
+                normalizar(proyecto.tipo_propiedad).includes(normalizar(categoria))
+            ).length;
+            $(selector).text(total);
+        });
     }
 
     function inyectarMediaAdicionalSingle(proyecto) {
@@ -541,7 +606,7 @@ $(function () {
         const nombre = $("#cotizar-nombre").val();
         const correo = $("#cotizar-correo").val();
         const mensaje = $("#cotizar-mensaje").val();
-        const tituloProyecto = $(".property-info-content h2").text() || "un proyecto de CFV";
+        const tituloProyecto = $("#proyecto-referencia").val() || "un proyecto de CFV";
         const textoMensaje = `Hola CFV Inmobiliaria, mi nombre es *${nombre}* (${correo}). Deseo solicitar una cotización formal y asesoría personalizada sobre el proyecto *${tituloProyecto}*. Mi consulta es: ${mensaje}`;
         
         window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(textoMensaje)}`, '_blank');
@@ -549,3 +614,4 @@ $(function () {
 
     cargarBaseDeDatos();
 });
+

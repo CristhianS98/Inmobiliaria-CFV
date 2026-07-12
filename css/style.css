@@ -1110,16 +1110,6 @@ span.info-label {
     opacity: 1;
 }
 
-/* MODIFICACIÓN PREMIUM: Barra lateral de filtros con efecto esmerilado translúcido */
-.filter-sidebar {
-    background: var(--glass-bg) !important;
-    backdrop-filter: var(--glass-blur) !important;
-    -webkit-backdrop-filter: var(--glass-blur) !important;
-    border: 1px solid var(--border-color) !important;
-    box-shadow: var(--box-shadow) !important;
-    padding: 2rem;
-}
-
 .filter-sidebar h4 {
     font-size: 17px;
     font-weight: 500;
@@ -1281,13 +1271,7 @@ article p {
     color: var(--main-color);
 }
 
-/* MODIFICACIÓN PREMIUM: Vidrio Esmerilado para el cuadro de envío de reseñas */
 .comment-form {
-    background: var(--glass-bg) !important;
-    backdrop-filter: var(--glass-blur) !important;
-    -webkit-backdrop-filter: var(--glass-blur) !important;
-    border: 1px solid var(--border-color) !important;
-    box-shadow: var(--box-shadow) !important;
     padding: 3rem;
     border-top: 0;
 }
@@ -1341,13 +1325,7 @@ article .section-title {
     margin-top: 3.5rem;
 }
 
-/* MODIFICACIÓN PREMIUM: Widgets laterales translúcidos al estilo de la web de Prospera */
 .widget {
-    background: var(--glass-bg) !important;
-    backdrop-filter: var(--glass-blur) !important;
-    -webkit-backdrop-filter: var(--glass-blur) !important;
-    border: 1px solid var(--border-color) !important;
-    box-shadow: var(--box-shadow) !important;
     padding: 2rem;
     margin-bottom: 2rem;
 }
