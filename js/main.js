@@ -464,7 +464,7 @@ $(function () {
                         $galeriaPrincipal.on('afterChange.singleGallery', function (evento, slick, indiceActual) {
                             $contadorGaleria.text(`${indiceActual + 1} / ${slick.slideCount}`);
                         });
-                        $galeriaPrincipal.find('a[data-rel]').lightcase();
+                        $galeriaPrincipal.find('a[data-rel]').lightcase({ type: 'image' });
                     }
                 }
                 inyectarMediaAdicionalSingle(proyecto);
