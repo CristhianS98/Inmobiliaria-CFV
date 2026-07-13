@@ -430,17 +430,19 @@ $(function () {
                 const fichaTecnicaHtml = `
                     <ul>
                         <li><label>ID Proyecto:</label> <span>CFV-${escapeHTML(proyecto.id).toUpperCase()}</span></li>
+                        <li><label>Dormitorios:</label> <span>${escapeHTML(proyecto.habitaciones)}</span></li>
                         <li><label>Área:</label> <span>${escapeHTML(proyecto.metraje)} m²</span></li>
-                        <li><label>Ambientes:</label> <span>${escapeHTML(proyecto.ambientes)}</span></li>
                         <li><label>Baños:</label> <span>${escapeHTML(proyecto.banos)}</span></li>
-                        <li><label>Año de Entrega:</label> <span>2026</span></li>
+                        <li><label>Pisos:</label> <span>${escapeHTML(proyecto.niveles)}</span></li>
+                        <li><label>Estado Obra:</label> <span>${escapeHTML(proyecto.estado)}</span></li>                
                     </ul>
                     <ul>
-                        <li><label>Niveles:</label> <span>${escapeHTML(proyecto.niveles)}</span></li>
-                        <li><label>Dormitorios:</label> <span>${escapeHTML(proyecto.habitaciones)}</span></li>
                         <li><label>Precio:</label> <span>${escapeHTML(proyecto.precio_texto)}</span></li>
+                        <li><label> Lugar:</label> <span>${escapeHTML(proyecto.ciudad)}</span></li>
+                        <li><label>Ambientes:</label> <span>${escapeHTML(proyecto.ambientes)}</span></li>
                         <li><label>Cochera:</label> <span>${escapeHTML(proyecto.cochera)}</span></li>
-                        <li><label>Estado Obra:</label> <span>${escapeHTML(proyecto.estado)}</span></li>
+                        <li><label> Ascensor:</label> <span>${escapeHTML(proyecto.ascensor)}</span></li>
+                        <li><label>Año de Entrega:</label> <span>2026</span></li>
                     </ul>`;
                 $(".property-detail-info-list").html(fichaTecnicaHtml);
 
