@@ -425,11 +425,14 @@ $(function () {
                     </ul>`;
                 $(".property-detail-info-list").html(fichaTecnicaHtml);
 
-                // Galería exclusiva de single.html: una imagen completa por vez, sin deformarla.
+                // Galería exclusiva de single.html: principal + miniaturas
                 const $galeriaPrincipal = $('#single-property-slider');
+                const $galeriaMiniaturas = $('#single-property-thumbnails');
                 const $contadorGaleria = $('#single-gallery-counter');
+                
                 if ($galeriaPrincipal.length > 0) {
                     if ($galeriaPrincipal.hasClass('slick-initialized')) $galeriaPrincipal.slick('unslick');
+                    if ($galeriaMiniaturas.length > 0 && $galeriaMiniaturas.hasClass('slick-initialized')) $galeriaMiniaturas.slick('unslick');
                     $galeriaPrincipal.off('afterChange.singleGallery');
 
                     const fotos = (proyecto.renders_galeria || '')
@@ -437,30 +440,56 @@ $(function () {
                         .map(foto => foto.trim())
                         .filter(Boolean)
                         .map(convertirEnlaceDriveAImagen);
+                        
                     let principalHTML = '';
+                    let miniaturasHTML = '';
 
                     fotos.forEach((urlImagen, indice) => {
+                        // CORRECCIÓN: object-fit:cover elimina el espacio en blanco lateral
                         principalHTML += `
-                            <a href="${urlImagen}" data-rel="lightcase:galeria-proyecto" aria-label="Abrir imagen ${indice + 1}">
-                                <img src="${urlImagen}" class="gallery-main-image" alt="${escapeHTML(proyecto.titulo)} - imagen ${indice + 1}">
-                            </a>`;
+                            <div>
+                                <a href="${urlImagen}" data-rel="lightcase:galeria-proyecto" aria-label="Abrir imagen ${indice + 1}">
+                                    <img src="${urlImagen}" class="gallery-main-image" style="width:100%; height:450px; object-fit:cover; border-radius:12px;" alt="${escapeHTML(proyecto.titulo)} - imagen ${indice + 1}">
+                                </a>
+                            </div>`;
+                            
+                        miniaturasHTML += `
+                            <div class="px-1" style="cursor:pointer;">
+                                <img src="${urlImagen}" style="width:100%; height:90px; object-fit:cover; border-radius:6px;" alt="miniatura ${indice + 1}">
+                            </div>`;
                     });
 
                     $galeriaPrincipal.html(principalHTML);
+                    if ($galeriaMiniaturas.length > 0) $galeriaMiniaturas.html(miniaturasHTML);
                     $contadorGaleria.text(fotos.length ? `1 / ${fotos.length}` : '0 / 0');
 
                     if (fotos.length > 0) {
+                        // Inicializa el grande
                         $galeriaPrincipal.slick({
                             slidesToShow: 1,
                             slidesToScroll: 1,
-                            arrows: true,
-                            fade: false,
-                            speed: 300,
-                            adaptiveHeight: true,
-                            infinite: fotos.length > 1,
-                            prevArrow: $('.single-gallery-prev'),
-                            nextArrow: $('.single-gallery-next')
+                            arrows: false,
+                            fade: true,
+                            asNavFor: '#single-property-thumbnails'
                         });
+                        
+                        // Inicializa las miniaturas
+                        if ($galeriaMiniaturas.length > 0) {
+                            $galeriaMiniaturas.slick({
+                                slidesToShow: 3,
+                                slidesToScroll: 1,
+                                asNavFor: '#single-property-slider',
+                                dots: false,
+                                arrows: true,
+                                centerMode: false,
+                                focusOnSelect: true,
+                                infinite: fotos.length > 3,
+                                // CORRECCIÓN: Flechas más adentro (5px) y de color rojo transparente
+                                prevArrow: '<button type="button" style="position:absolute; top:50%; left:5px; transform:translateY(-50%); z-index:10; background:rgba(235, 60, 60, 0.7); border:none; width:30px; height:30px; border-radius:50%; display:flex; justify-content:center; align-items:center; color:#fff; cursor:pointer;"><i class="bx bx-chevron-left" style="font-size:22px;"></i></button>',
+                                nextArrow: '<button type="button" style="position:absolute; top:50%; right:5px; transform:translateY(-50%); z-index:10; background:rgba(235, 60, 60, 0.7); border:none; width:30px; height:30px; border-radius:50%; display:flex; justify-content:center; align-items:center; color:#fff; cursor:pointer;"><i class="bx bx-chevron-right" style="font-size:22px;"></i></button>'
+                            });
+                        }
+
                         $galeriaPrincipal.on('afterChange.singleGallery', function (evento, slick, indiceActual) {
                             $contadorGaleria.text(`${indiceActual + 1} / ${slick.slideCount}`);
                         });

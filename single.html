@@ -23,7 +23,8 @@
     <style>
         /* Galería exclusiva de la ficha: no afecta los carruseles de index.html. */
         .single-gallery {
-            max-width: 680px;
+            max-width: 1100px;
+            margin: 0 auto 3rem;
             margin: 0 auto 3rem;
             padding: 0 1rem;
             position: relative;
@@ -127,9 +128,10 @@
             </div>
         </section>
         <div class="single-gallery">
-            <div id="single-property-slider" class="single-gallery-main"></div>
-            <button type="button" class="single-gallery-nav single-gallery-prev" aria-label="Imagen anterior"><i class='bx bx-left-arrow-alt'></i></button>
-            <button type="button" class="single-gallery-nav single-gallery-next" aria-label="Imagen siguiente"><i class='bx bx-right-arrow-alt'></i></button>
+            <div id="single-property-slider" class="single-gallery-main mb-2"></div>
+            
+            <div id="single-property-thumbnails" style="margin: 0 -5px;"></div>
+            
             <span id="single-gallery-counter" class="single-gallery-counter" aria-live="polite">0 / 0</span>
         </div>
         <div class="container">
