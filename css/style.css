@@ -1432,25 +1432,3 @@ article .section-title {
     border-radius: 100%;
     z-index: 999;
 }
-
-/* Asegura que la imagen mantenga su tamaño real sin deformarse */
-.single-gallery-main .gallery-main-image { 
-    display: block; 
-    width: auto; 
-    height: auto; 
-    max-width: 100%; 
-    max-height: 600px; /* Le damos un poco más de altura máxima permitida */
-    margin: 0 auto; 
-}
-
-/* Evita que el contenedor oculte la parte superior/inferior de la foto */
-.single-gallery-main .slick-slide {
-    height: auto !important; 
-}
-
-/* Elimina el cuadro blanco de Lightcase al abrir la foto */
-#lightcase-content { 
-    border: none !important; 
-    background: transparent !important; 
-    box-shadow: none !important; 
-}
