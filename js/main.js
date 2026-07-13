@@ -429,6 +429,7 @@ $(function () {
                 const $galeriaPrincipal = $('#single-property-slider');
                 const $galeriaMiniaturas = $('#single-property-thumbnails');
                 const $contadorGaleria = $('#single-gallery-counter');
+                const $contenedorGaleria = $galeriaPrincipal.closest('.single-gallery');
                 
                 if ($galeriaPrincipal.length > 0) {
                     if ($galeriaPrincipal.hasClass('slick-initialized')) $galeriaPrincipal.slick('unslick');
@@ -445,11 +446,10 @@ $(function () {
                     let miniaturasHTML = '';
 
                     fotos.forEach((urlImagen, indice) => {
-                        // CORRECCIÓN: object-fit:cover elimina el espacio en blanco lateral
                         principalHTML += `
                             <div>
                                 <a href="${urlImagen}" data-rel="lightcase:galeria-proyecto" aria-label="Abrir imagen ${indice + 1}">
-                                    <img src="${urlImagen}" class="gallery-main-image" style="width:100%; height:450px; object-fit:cover; border-radius:12px;" alt="${escapeHTML(proyecto.titulo)} - imagen ${indice + 1}">
+                                    <img src="${urlImagen}" class="gallery-main-image" style="border-radius:12px;" alt="${escapeHTML(proyecto.titulo)} - imagen ${indice + 1}">
                                 </a>
                             </div>`;
                             
@@ -490,9 +490,38 @@ $(function () {
                             });
                         }
 
+                        const ajustarAltoGaleria = function () {
+                            // El contador se mantiene sobre la esquina inferior de la foto principal.
+                            const rectContenedor = $contenedorGaleria[0].getBoundingClientRect();
+                            const rectPrincipal = $galeriaPrincipal[0].getBoundingClientRect();
+                            const altoContador = $contadorGaleria.outerHeight();
+                            const posicionContador = rectPrincipal.bottom - rectContenedor.top - altoContador - 18;
+                            $contadorGaleria.css({ top: `${Math.max(18, Math.round(posicionContador))}px`, bottom: 'auto' });
+                        };
+
                         $galeriaPrincipal.on('afterChange.singleGallery', function (evento, slick, indiceActual) {
                             $contadorGaleria.text(`${indiceActual + 1} / ${slick.slideCount}`);
+                            ajustarAltoGaleria();
                         });
+
+                        // Slick calcula el alto antes de que las imágenes remotas terminen de cargar.
+                        // Ajustarlo al alto real evita el espacio vacío debajo de las miniaturas.
+                        const actualizarAltoGaleria = function () {
+                            if ($galeriaPrincipal.hasClass('slick-initialized')) {
+                                $galeriaPrincipal.slick('setPosition');
+                                ajustarAltoGaleria();
+                            }
+                        };
+                        $galeriaPrincipal.find('.gallery-main-image')
+                            .on('load.singleGallery', actualizarAltoGaleria)
+                            .each(function () {
+                                if (this.complete) $(this).trigger('load.singleGallery');
+                            });
+
+                        $(window)
+                            .off('resize.singleGallery')
+                            .on('resize.singleGallery', actualizarAltoGaleria);
+
                         $galeriaPrincipal.find('a[data-rel]').lightcase({ type: 'image' });
                     }
                 }
