@@ -11,6 +11,11 @@ $(function () {
     let filtroPrecioMax = 300000;
     let limitePrecioMax = 300000;
 
+    // [ESTÁNDAR GUARDIAS DE DOM]
+    // Cada bloque de vista verifica su contenedor antes de inicializarse. Esta
+    // documentación no altera la lógica: index.html, search.html y single.html
+    // comparten este archivo y deben permanecer aislados por presencia de DOM.
+
     // --- FUNCIÓN DE SEGURIDAD (ANTI-XSS) ---
     function escapeHTML(str) {
         if (str === null || str === undefined) return "";
@@ -23,6 +28,7 @@ $(function () {
     }
 
     // --- CAROUSELS Y COMPONENTES ESTÁTICOS INICIALES ---
+    // [BLOQUE VISTA: INICIO] -> index.html | Guardia: .featured-carousel
     if ($('.featured-carousel').length > 0) {
         $('.featured-carousel').owlCarousel({
             loop: true, margin: 10, responsiveClass: true, autoplay: true, autoplayTimeout: 5000, autoplaySpeed: 1100, autoplayHoverPause: true, dots: true,
@@ -31,6 +37,7 @@ $(function () {
         });
     }
 
+    // [BLOQUE VISTA: INICIO] -> index.html | Guardia: .testimonial-area .owl-carousel
     if ($(".testimonial-area .owl-carousel").length > 0) {
         $(".testimonial-area .owl-carousel").owlCarousel({
             loop: true, margin: 10, responsiveClass: true, autoplay: true, autoplayTimeout: 5000, autoplayHoverPause: true, dots: true,
@@ -39,6 +46,7 @@ $(function () {
         });
     }
 
+    // [BLOQUE VISTA: INICIO] -> index.html | Guardia: .odometer
     if ($(".odometer").length > 0) {
         $(window).on("scroll", function() {
             if ($(this).scrollTop() > 700) {
@@ -49,10 +57,12 @@ $(function () {
         });
     }
 
+    // [BLOQUE VISTA: BUSCADOR] -> search.html | Guardia: select
     if ($("select").length > 0) {
         $("select").niceSelect();
     }
 
+    // [BLOQUE VISTA: BUSCADOR] -> search.html | Guardia: #price-range
     // Inicialización del Slider de Precios con rangos dinámicos
     if ($("#price-range").length > 0) {
         $("#price-range").slider({
@@ -69,13 +79,16 @@ $(function () {
         filtroPrecioMax = $("#price-range").slider("values", 1);
     }
 
+    // [BLOQUE VISTA: INICIO] -> index.html | Guardia: .popular-slider
     if ($('.popular-slider').length > 0) {
         $('.popular-slider').slick({ centerMode: true, centerPadding: '60px', slidesToShow: 1, dots: true });
     }
 
+    // [BLOQUE VISTA: DETALLE] -> single.html | Colección vacía segura en jQuery.
     $("a[data-rel]").lightcase();
     $("[data-bs-toggle='tooltip']").tooltip();
 
+    // [BLOQUE VISTA: INICIO] -> index.html | .cursor ausente es una colección vacía segura.
     $(window).on("mousemove", function (e) {
         $(".cursor").css({ left: `${e.clientX}px`, top: `${e.clientY}px` });
     });
@@ -171,6 +184,8 @@ $(function () {
     }
 
     // --- LÓGICA DE FILTRADO DINÁMICO ---
+    // [BLOQUE VISTA: BUSCADOR] -> search.html | ejecutarFiltradoDinamico sale
+    // de forma segura si no existe la grilla ni el área de resultados.
     function normalizar(valor) {
         return (valor || "")
             .toString()
@@ -239,6 +254,7 @@ $(function () {
 
     // --- INYECCIÓN Y RENDERIZADO EN PANTALLAS ---
     function inyectarDatosEnPantallas() {
+        // [BLOQUE VISTA: INICIO] -> index.html | Guardia: .featured-carousel
         // 1. Carrusel Estático de Inicio (Index)
         if ($('.featured-carousel').length > 0) {
             const $carrusel = $('.featured-carousel');
@@ -303,12 +319,14 @@ $(function () {
             });
         }
 
+        // [BLOQUE VISTA: BUSCADOR] -> search.html | Guardia: .filter-results-area
         // 2. Grilla Inicial del Buscador (Muestra todo al cargar por primera vez)
         if ($(".filter-results-area").length > 0) {
             renderizarGrillaBuscador(listaProyectosGlobal);
             actualizarContadoresFiltros(listaProyectosGlobal);
         }
         
+        // [BLOQUE VISTA: DETALLE] -> single.html | La función contiene su propia guardia.
         // 3. Ficha Técnica Única
         inyectarFichaTecnicaYWidgets();
     }
@@ -394,6 +412,7 @@ $(function () {
     }
 
     // --- VISTA DETALLE (SINGLE.HTML) ---
+    // [BLOQUE VISTA: DETALLE] -> single.html | Guardia: .property-info-content
     function inyectarFichaTecnicaYWidgets() {
         if ($(".property-info-content").length > 0) {
             const parametrosUrl = new URLSearchParams(window.location.search);
@@ -531,6 +550,7 @@ $(function () {
         }
     }
 
+    // [BLOQUE VISTA: DETALLE] -> single.html | Guardia: .property-info-content
     // Widgets exclusivos de single.html: destacados, categorías y referencia de cotización.
     function renderizarSidebarSingle(proyectoActual) {
         if (!$(".property-info-content").length) return;
@@ -577,6 +597,7 @@ $(function () {
         });
     }
 
+    // [BLOQUE VISTA: DETALLE] -> single.html | Se invoca solo desde la ficha guardada.
     function inyectarMediaAdicionalSingle(proyecto) {
         if (proyecto.mapa_url) {
             $("#mapa-iframe").attr("src", proyecto.mapa_url);
@@ -634,6 +655,8 @@ $(function () {
         $("#total-cat-locales").text(`(${locales.toString().padStart(2, '0')})`);
     }
 
+    // [BLOQUE VISTA: BUSCADOR] -> search.html | Delegación segura: sin controles
+    // coincidentes los eventos no ejecutan cambios en las otras vistas.
     // Eventos exclusivos del buscador. No modifican la plantilla de las tarjetas.
     $(document).on("click", "#btn-aplicar-filtros, #btn-buscar-texto", ejecutarFiltradoDinamico);
     $(document).on("change", "#form-filtros-avanzados input, #sort", ejecutarFiltradoDinamico);
@@ -659,6 +682,7 @@ $(function () {
     });
 
     // --- FORMULARIO DE COTIZACIÓN VÍA WHATSAPP ---
+    // [BLOQUE VISTA: DETALLE] -> single.html | Delegación segura por #form-cotizacion-whatsapp.
     $(document).on("submit", "#form-cotizacion-whatsapp", function (e) {
         e.preventDefault();
         const nombre = $("#cotizar-nombre").val();

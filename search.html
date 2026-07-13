@@ -4,7 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inmobiliaria - CFV</title>
+    <title>Buscar Proyectos Inmobiliarios en Andahuaylas | CFV Ingenieros</title>
+    <meta name="description" content="Explora y filtra departamentos, casas, dúplex y locales de CFV Ingenieros en Andahuaylas, Apurímac, por precio, estado y características.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="author" content="CFV Ingenieros">
+    <link rel="canonical" href="https://www.cfvingenieros.com/inmobiliaria/search.html">
+    <meta property="og:locale" content="es_PE">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CFV Ingenieros">
+    <meta property="og:title" content="Buscar Proyectos Inmobiliarios en Andahuaylas | CFV Ingenieros">
+    <meta property="og:description" content="Filtra proyectos de CFV Ingenieros por tipo de inmueble, precio, estado y características.">
+    <meta property="og:url" content="https://www.cfvingenieros.com/inmobiliaria/search.html">
+    <meta property="og:image" content="https://www.cfvingenieros.com/inmobiliaria/images/frontage.jpg">
+    <meta property="og:image:alt" content="Portafolio inmobiliario de CFV Ingenieros">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Buscar Proyectos Inmobiliarios | CFV Ingenieros">
+    <meta name="twitter:description" content="Encuentra tu próximo inmueble o inversión en Andahuaylas.">
+    <meta name="twitter:image" content="https://www.cfvingenieros.com/inmobiliaria/images/frontage.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,13 +37,13 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body data-page="search">
 
     <div id="app">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="index.html" title="Logo">
-                    <img src="images/logo.png" height="50" alt="">
+                    <img src="images/Logo.png" height="50" alt="CFV Ingenieros">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" title="Menu Toggle" data-bs-target="#offcanvas" aria-controls="offcanvas">
                     <span class="navbar-toggler-icon"></span>
@@ -35,7 +51,7 @@
                 <div class="offcanvas offcanvas-end w-100" id="offcanvas">
                     <div class="offcanvas-header">
                         <a class="navbar-brand" href="index.html" title="Logo">
-                            <img src="images/logo.png" height="50" alt="">
+                            <img src="images/Logo.png" height="50" alt="CFV Ingenieros">
                         </a>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
@@ -56,7 +72,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="contacto.html">Contacto</a>
+                                <a class="nav-link" href="https://wa.link/wkljug" target="_blank" rel="noopener">Contacto</a>
                             </li>
                         </ul>
                         <div class="row">
@@ -101,7 +117,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-8">
-                    <main class="filter-results-area">
+                    <main class="filter-results-area" aria-label="Resultados de proyectos inmobiliarios">
+                        <h1 class="visually-hidden">Buscador de proyectos inmobiliarios de CFV Ingenieros</h1>
                         <div class="filter-options">
                             <div class="grid-view">
                                 <a href="#" role="button" title="Vista en cuadrícula" class="active"><i class="bx bx-category"></i></a>
@@ -328,7 +345,7 @@
                 </div>
             </div>
         </section>
-        <div class="footer">
+        <footer class="footer">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-4 mb-5 mb-md-0 d-flex justify-content-center">
@@ -391,7 +408,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </footer>
         <div class="copy-right">
             <div class="container">
                 <div class="d-md-flex align-items-center justify-content-between">
@@ -403,7 +420,7 @@
                             <a href="#" class="nav-link">Términos y Condiciones</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#about-us" class="nav-link">Nosotros</a>
+                            <a href="index.html#about-us" class="nav-link">Nosotros</a>
                         </li>
                         <li class="nav-item">
                             <a href="https://wa.link/wkljug" class="nav-link">Contacto</a>
@@ -417,14 +434,61 @@
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="libs/jquery/jquery-3.7.1.min.js"></script>
     <script src="libs/owl/owl.carousel.min.js"></script>
+    <!-- [CUARENTENA 2026-07-13] Waypoints/CounterUp no existen en libs/ ni son invocados.
     <script src="libs/counterjs/jquery.waypoints.min.js"></script>
     <script src="libs/counterjs/jquery.counterup.min.js"></script>
+    Se conserva la referencia comentada para trazabilidad; esta vista no usa esos plugins. -->
     <script src="libs/niceselect/js/jquery.nice-select.min.js"></script>
     <script src="libs/jquery_ui/jquery-ui.js"></script>
     <script src="libs/slick/slick.min.js"></script>
     <script src="libs/lightcase/js/lightcase.js"></script>
     <script src="libs/lightcase/js/jquery.events.touch.min.js"></script>
     <script src="js/main.js"></script>
+    <script id="cfv-schema-base" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "RealEstateAgent",
+          "@id": "https://www.cfvingenieros.com/inmobiliaria#real-estate-agent",
+          "name": "CFV Ingenieros",
+          "url": "https://www.cfvingenieros.com/inmobiliaria",
+          "telephone": "+51912830351",
+          "email": "cfvingenieros@outlook.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. Los Chankas 637",
+            "addressLocality": "Andahuaylas",
+            "addressRegion": "Apurímac",
+            "addressCountry": "PE"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.cfvingenieros.com/inmobiliaria#website",
+          "name": "CFV Ingenieros Inmobiliaria",
+          "url": "https://www.cfvingenieros.com/inmobiliaria",
+          "inLanguage": "es-PE"
+        },
+        {
+          "@type": "CollectionPage",
+          "@id": "https://www.cfvingenieros.com/inmobiliaria/search.html#webpage",
+          "url": "https://www.cfvingenieros.com/inmobiliaria/search.html",
+          "name": "Buscar Proyectos Inmobiliarios en Andahuaylas | CFV Ingenieros",
+          "description": "Listado filtrable de proyectos inmobiliarios de CFV Ingenieros en Andahuaylas.",
+          "inLanguage": "es-PE",
+          "isPartOf": { "@id": "https://www.cfvingenieros.com/inmobiliaria#website" },
+          "about": { "@id": "https://www.cfvingenieros.com/inmobiliaria#real-estate-agent" },
+          "mainEntity": {
+            "@type": "ItemList",
+            "@id": "https://www.cfvingenieros.com/inmobiliaria/search.html#listado-proyectos",
+            "name": "Listado de proyectos inmobiliarios de CFV Ingenieros"
+          }
+        }
+      ]
+    }
+    </script>
+    <script src="js/seo-schema.js"></script>
 </body>
 
 </html>

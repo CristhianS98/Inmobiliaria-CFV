@@ -4,7 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inmobiliaria - CFV</title>
+    <title>Detalle de Proyecto Inmobiliario en Andahuaylas | CFV Ingenieros</title>
+    <meta name="description" content="Consulta precios, características, ubicación, planos y disponibilidad de los proyectos inmobiliarios de CFV Ingenieros en Andahuaylas.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="author" content="CFV Ingenieros">
+    <link rel="canonical" href="https://www.cfvingenieros.com/inmobiliaria/single.html">
+    <meta property="og:locale" content="es_PE">
+    <meta property="og:type" content="product">
+    <meta property="og:site_name" content="CFV Ingenieros">
+    <meta property="og:title" content="Detalle de Proyecto Inmobiliario | CFV Ingenieros">
+    <meta property="og:description" content="Precio, características, ubicación y asesoría para proyectos de CFV Ingenieros en Andahuaylas.">
+    <meta property="og:url" content="https://www.cfvingenieros.com/inmobiliaria/single.html">
+    <meta property="og:image" content="https://www.cfvingenieros.com/inmobiliaria/images/frontage.jpg">
+    <meta property="og:image:alt" content="Proyecto inmobiliario de CFV Ingenieros">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Detalle de Proyecto Inmobiliario | CFV Ingenieros">
+    <meta name="twitter:description" content="Conoce las características y disponibilidad de los proyectos de CFV Ingenieros.">
+    <meta name="twitter:image" content="https://www.cfvingenieros.com/inmobiliaria/images/frontage.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,13 +67,13 @@
     </style>
 </head>
 
-<body>
+<body data-page="detail">
 
     <div id="app">
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="index.html" title="Logo">
-                    <img src="images/logo.png" height="50" alt="">
+                    <img src="images/Logo.png" height="50" alt="CFV Ingenieros">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" title="Menu Toggle"
                     data-bs-target="#offcanvas" aria-controls="offcanvas">
@@ -66,7 +82,7 @@
                 <div class="offcanvas offcanvas-end w-100" id="offcanvas">
                     <div class="offcanvas-header">
                         <a class="navbar-brand" href="index.html" title="Logo">
-                            <img src="images/logo.png" height="50" alt="">
+                            <img src="images/Logo.png" height="50" alt="CFV Ingenieros">
                         </a>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
@@ -87,7 +103,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="contacto.html">Contacto</a>
+                                <a class="nav-link" href="https://wa.link/wkljug" target="_blank" rel="noopener">Contacto</a>
                             </li>
                         </ul>
                         <div class="row">
@@ -118,6 +134,9 @@
                 </div>
             </div>
         </nav>
+        <main id="contenido-principal">
+            <h1 class="visually-hidden">Detalle de proyecto inmobiliario de CFV Ingenieros</h1>
+
         <section class="section page-breadcrumb">
             <div class="container">
                 <h2>Detalles del Proyecto</h2>
@@ -139,7 +158,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-8">
-                    <article class="property-info-content">
+                    <article class="property-info-content" aria-label="Ficha técnica del proyecto inmobiliario">
                         <div class="d-flex align-items-center">
                             <span class="meta-category">Destacado</span>
                             <span class="meta-category bg-orange">Cargando...</span>
@@ -167,7 +186,7 @@
                         <h6 class="section-title">Ubicación del Proyecto</h6>
                         <div class="g-map">
                             <div id="embed-ded-map-canvas">
-                                <iframe id="mapa-iframe" src="" style="border:0; width:100%; height:100%;" allowfullscreen></iframe>
+                                <iframe id="mapa-iframe" src="" title="Ubicación del proyecto inmobiliario" style="border:0; width:100%; height:100%;" allowfullscreen></iframe>
                             </div>
                             <a class="code-for-google-map" href="#" id="link-mapa-real" target="_blank">Google Maps Dirección Real</a>
                         </div>
@@ -240,9 +259,9 @@
                             <h6 class="section-title">Solicitar Cotización Directa</h6>
                             <form id="form-cotizacion-whatsapp">
                                 <input type="hidden" id="proyecto-referencia" value="">
-                                <input type="text" id="cotizar-nombre" class="form-control mb-3" placeholder="Tu Nombre Completo*" required>
-                                <input type="email" id="cotizar-correo" class="form-control mb-3" placeholder="Tu Correo Electrónico*" required>
-                                <textarea id="cotizar-mensaje" rows="5" class="form-control mb-3" placeholder="Escribe tu consulta sobre este proyecto..." required></textarea>
+                                <input type="text" id="cotizar-nombre" class="form-control mb-3" placeholder="Tu Nombre Completo*" aria-label="Tu nombre completo" required>
+                                <input type="email" id="cotizar-correo" class="form-control mb-3" placeholder="Tu Correo Electrónico*" aria-label="Tu correo electrónico" required>
+                                <textarea id="cotizar-mensaje" rows="5" class="form-control mb-3" placeholder="Escribe tu consulta sobre este proyecto..." aria-label="Consulta sobre el proyecto" required></textarea>
                                 <button type="submit" class="btn w-100" style="background-color: #121614ea; color: white; border: none;"><i class="bx bxl-whatsapp me-2"></i>Consultar por WhatsApp</button>
                             </form>
                         </div>
@@ -295,9 +314,11 @@
                 </div>
             </div>
         </section>
+
+        </main>
         
         <!-- Footer -->
-        <div class="footer">
+        <footer class="footer">
             <div class="container">
                 <div class="row">
                     
@@ -365,7 +386,7 @@
                     
                 </div>
             </div>
-        </div>
+        </footer>
         <!-- ./footer -->
 
         <div class="copy-right">
@@ -376,7 +397,7 @@
                     </p>
                     <ul class="nav justify-content-center justify-content-md-start">
                         <li class="nav-item"><a href="#" class="nav-link">Términos y Condiciones</a></li>
-                        <li class="nav-item"><a href="#about-us" class="nav-link">Nosotros</a></li>
+                        <li class="nav-item"><a href="index.html#about-us" class="nav-link">Nosotros</a></li>
                         <li class="nav-item"><a href="https://wa.link/wkljug" class="nav-link">Contacto</a></li>
                     </ul>
                 </div>
@@ -387,14 +408,56 @@
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="libs/jquery/jquery-3.7.1.min.js"></script>
     <script src="libs/owl/owl.carousel.min.js"></script>
+    <!-- [CUARENTENA 2026-07-13] Waypoints/CounterUp no existen en libs/ ni son invocados.
     <script src="libs/counterjs/jquery.waypoints.min.js"></script>
     <script src="libs/counterjs/jquery.counterup.min.js"></script>
+    Se conserva la referencia comentada para trazabilidad; esta vista no usa esos plugins. -->
     <script src="libs/niceselect/js/jquery.nice-select.min.js"></script>
     <script src="libs/jquery_ui/jquery-ui.js"></script>
     <script src="libs/slick/slick.min.js"></script>
     <script src="libs/lightcase/js/lightcase.js"></script>
     <script src="libs/lightcase/js/jquery.events.touch.min.js"></script>
     <script src="js/main.js"></script>
+    <script id="cfv-schema-base" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "RealEstateAgent",
+          "@id": "https://www.cfvingenieros.com/inmobiliaria#real-estate-agent",
+          "name": "CFV Ingenieros",
+          "url": "https://www.cfvingenieros.com/inmobiliaria",
+          "telephone": "+51912830351",
+          "email": "cfvingenieros@outlook.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. Los Chankas 637",
+            "addressLocality": "Andahuaylas",
+            "addressRegion": "Apurímac",
+            "addressCountry": "PE"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.cfvingenieros.com/inmobiliaria#website",
+          "name": "CFV Ingenieros Inmobiliaria",
+          "url": "https://www.cfvingenieros.com/inmobiliaria",
+          "inLanguage": "es-PE"
+        },
+        {
+          "@type": "ItemPage",
+          "@id": "https://www.cfvingenieros.com/inmobiliaria/single.html#webpage",
+          "url": "https://www.cfvingenieros.com/inmobiliaria/single.html",
+          "name": "Detalle de Proyecto Inmobiliario en Andahuaylas | CFV Ingenieros",
+          "description": "Ficha de proyecto inmobiliario con precio, características, ubicación y consulta comercial.",
+          "inLanguage": "es-PE",
+          "isPartOf": { "@id": "https://www.cfvingenieros.com/inmobiliaria#website" },
+          "about": { "@id": "https://www.cfvingenieros.com/inmobiliaria#real-estate-agent" }
+        }
+      ]
+    }
+    </script>
+    <script src="js/seo-schema.js"></script>
 </body>
 
 </html>

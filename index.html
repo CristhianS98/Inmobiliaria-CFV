@@ -4,7 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inmobiliaria - CFV</title>
+    <title>CFV Ingenieros | Inmobiliaria y Proyectos en Andahuaylas</title>
+    <meta name="description" content="CFV Ingenieros desarrolla proyectos inmobiliarios en Andahuaylas, Apurímac: departamentos, viviendas e inversiones con asesoría técnica personalizada.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="author" content="CFV Ingenieros">
+    <link rel="canonical" href="https://www.cfvingenieros.com/inmobiliaria">
+    <meta property="og:locale" content="es_PE">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="CFV Ingenieros">
+    <meta property="og:title" content="CFV Ingenieros | Inmobiliaria y Proyectos en Andahuaylas">
+    <meta property="og:description" content="Conoce los proyectos inmobiliarios de CFV Ingenieros en Andahuaylas, Apurímac.">
+    <meta property="og:url" content="https://www.cfvingenieros.com/inmobiliaria">
+    <meta property="og:image" content="https://www.cfvingenieros.com/inmobiliaria/images/frontage.jpg">
+    <meta property="og:image:alt" content="Proyecto inmobiliario de CFV Ingenieros en Andahuaylas">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CFV Ingenieros | Inmobiliaria y Proyectos en Andahuaylas">
+    <meta name="twitter:description" content="Proyectos inmobiliarios, asesoría técnica e inversión en Andahuaylas.">
+    <meta name="twitter:image" content="https://www.cfvingenieros.com/inmobiliaria/images/frontage.jpg">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +42,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body data-page="home">
 
     <div id="app">
 
@@ -34,7 +50,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand" href="index.html" title="Logo">
-                    <img src="images/logo.png" height="50" alt="">
+                    <img src="images/Logo.png" height="50" alt="CFV Ingenieros">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" title="Menu Toggle"
                     data-bs-target="#offcanvas" aria-controls="offcanvas">
@@ -43,7 +59,7 @@
                 <div class="offcanvas offcanvas-end w-100" id="offcanvas">
                     <div class="offcanvas-header">
                         <a class="navbar-brand" href="index.html" title="Logo">
-                            <img src="images/logo.png" height="50" alt="">
+                            <img src="images/Logo.png" height="50" alt="CFV Ingenieros">
                         </a>
                         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
@@ -98,6 +114,9 @@
         </nav>
         <!-- ./navbar -->
 
+
+        <main id="contenido-principal">
+            <h1 class="visually-hidden">CFV Ingenieros: proyectos inmobiliarios en Andahuaylas</h1>
 
         <!-- Header Start -->
         <header class="header">
@@ -319,7 +338,7 @@
                                 <img src="images/service_icon_2.png" alt="Construcción Llave en Mano">
                                 <h5><a href="#">Asesoría Estructural</a></h5>
                                 <p>Ejecutamos obras desde la cimentación hasta los acabados finales. Nos encargamos de la gestión de materiales, planos y dirección de obra.</p>
-                                <a href="contacto.html">Cotizar Obra <i class="bx bx-right-arrow-alt"></i></a>
+                                <a href="https://wa.link/wkljug" target="_blank" rel="noopener">Cotizar Obra <i class="bx bx-right-arrow-alt"></i></a>
                             </div>
                         </div>
                     </div>
@@ -349,7 +368,7 @@
             <div class="owl-carousel featured-carousel">
                 <div class="featured-list-card h-100 position-relative"> 
                     <div class="card-image">
-                        <img src="images/image-4.jpg" alt="Proyecto Residencial Vanguardia">
+                        <img src="images/image-4.png" alt="Proyecto Residencial Vanguardia">
                         <span class="property-status-label" style="white-space: nowrap !important; width: auto !important;">Estado: En Preventa</span>
                         
                         <div class="location-gallery">
@@ -669,9 +688,10 @@
         </section>
         <!-- ./call-to-action-area -->
 
+        </main>
 
         <!-- Footer -->
-        <div class="footer">
+        <footer class="footer">
             <div class="container">
                 <div class="row">
                     
@@ -739,7 +759,7 @@
                     
                 </div>
             </div>
-        </div>
+        </footer>
         <!-- ./footer -->
 
 
@@ -775,8 +795,10 @@
     <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="libs/jquery/jquery-3.7.1.min.js"></script>
     <script src="libs/owl/owl.carousel.min.js"></script>
+    <!-- [CUARENTENA 2026-07-13] Waypoints/CounterUp no existen en libs/ ni son invocados.
     <script src="libs/counterjs/jquery.waypoints.min.js"></script>
     <script src="libs/counterjs/jquery.counterup.min.js"></script>
+    Se conserva la referencia comentada para trazabilidad; los contadores usan Odometer. -->
     <script src="libs/niceselect/js/jquery.nice-select.min.js"></script>
     <script src="libs/jquery_ui/jquery-ui.js"></script>
     <script src="libs/slick/slick.min.js"></script>
@@ -784,12 +806,70 @@
     <script src="libs/lightcase/js/jquery.events.touch.min.js"></script>
     <script src="libs/odometer/odometer.js"></script>
     <script src="js/main.js"></script>
+    <script id="cfv-schema-base" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "RealEstateAgent",
+          "@id": "https://www.cfvingenieros.com/inmobiliaria#real-estate-agent",
+          "name": "CFV Ingenieros",
+          "url": "https://www.cfvingenieros.com/inmobiliaria",
+          "logo": "https://www.cfvingenieros.com/inmobiliaria/images/Logo.png",
+          "image": "https://www.cfvingenieros.com/inmobiliaria/images/frontage.jpg",
+          "description": "Empresa de ingeniería, construcción y desarrollo inmobiliario en Andahuaylas, Apurímac.",
+          "telephone": "+51912830351",
+          "email": "cfvingenieros@outlook.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. Los Chankas 637",
+            "addressLocality": "Andahuaylas",
+            "addressRegion": "Apurímac",
+            "addressCountry": "PE"
+          },
+          "areaServed": {
+            "@type": "City",
+            "name": "Andahuaylas"
+          },
+          "knowsAbout": ["desarrollo inmobiliario", "construcción", "vivienda", "inversión inmobiliaria", "proyectos en preventa"],
+          "sameAs": [
+            "https://www.facebook.com/InmobiliariaCFV",
+            "https://www.instagram.com/cfvinmobiliaria",
+            "https://www.tiktok.com/@cfvinmobiliaria"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.cfvingenieros.com/inmobiliaria#website",
+          "name": "CFV Ingenieros Inmobiliaria",
+          "url": "https://www.cfvingenieros.com/inmobiliaria",
+          "inLanguage": "es-PE",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.cfvingenieros.com/inmobiliaria/search.html?search={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://www.cfvingenieros.com/inmobiliaria#webpage",
+          "url": "https://www.cfvingenieros.com/inmobiliaria",
+          "name": "CFV Ingenieros | Inmobiliaria y Proyectos en Andahuaylas",
+          "description": "Proyectos inmobiliarios y asesoría técnica en Andahuaylas, Apurímac.",
+          "isPartOf": { "@id": "https://www.cfvingenieros.com/inmobiliaria#website" },
+          "about": { "@id": "https://www.cfvingenieros.com/inmobiliaria#real-estate-agent" },
+          "inLanguage": "es-PE"
+        }
+      ]
+    }
+    </script>
+    <script src="js/seo-schema.js"></script>
 
     <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content bg-transparent border-0">
                 <div class="modal-body p-0">
-                    <video width="100%" controls autoplay loop muted>
+                    <video width="100%" controls autoplay loop muted aria-label="Video de proyectos inmobiliarios de CFV Ingenieros">
                         <source src="images/home.mp4" type="video/mp4">
                         Tu navegador no soporta el formato de video.
                     </video>
