@@ -93,6 +93,45 @@ $(function () {
         $(".cursor").css({ left: `${e.clientX}px`, top: `${e.clientY}px` });
     });
 
+    // [BLOQUE VISTA: INICIO / BUSCADOR] -> Guardia: .estate-search-box
+    // Maneja el buscador rápido de la página de inicio (index.html)
+    if ($('.estate-search-box').length > 0) {
+        $('#btn-buscar').on('click', function (e) {
+            e.preventDefault(); 
+            
+            const location = $('#location').val();
+            const estate = $('#property_estate').val();
+            const type = $('#property_type').val();
+
+            if ($(".filter-results-area").length > 0) {
+                if (location) $("#search-keyword").val(location);
+                
+                if (estate) {
+                    $('input[name="estado_proyecto"]').prop('checked', false);
+                    $('input[name="estado_proyecto"]').filter(function() {
+                        return normalizar($(this).val()).includes(normalizar(estate));
+                    }).prop('checked', true);
+                }
+                
+                if (type) {
+                    $('input[name="tipo_propiedad"]').prop('checked', false);
+                    $('input[name="tipo_propiedad"]').filter(function() {
+                        return normalizar($(this).val()).includes(normalizar(type));
+                    }).prop('checked', true);
+                }
+                
+                ejecutarFiltradoDinamico();
+            } else {
+                const params = new URLSearchParams();
+                if (location) params.append('location', location);
+                if (estate) params.append('estate', estate);
+                if (type) params.append('type', type);
+
+                window.location.href = `search.html?${params.toString()}`;
+            }
+        });
+    }
+
     // --- PROCESAMIENTO Y PARSEO DE LA API (GOOGLE SHEETS) ---
     function cargarBaseDeDatos() {
         fetch(API_SHEET_URL)
@@ -252,6 +291,48 @@ $(function () {
         actualizarContadoresFiltros(proyectosFiltrados);
     }
 
+    function procesarFiltrosUrl() {
+        const params = new URLSearchParams(window.location.search);
+        const location = params.get('location');
+        const estate = params.get('estate');
+        const type = params.get('type');
+        let huboCambios = false;
+
+        if (location) {
+            $("#search-keyword").val(location);
+            if ($('#location').length > 0) $('#location').val(location).niceSelect('update');
+            huboCambios = true;
+        }
+
+        if (estate) {
+            const $checkboxEstado = $('input[name="estado_proyecto"]').filter(function() {
+                return normalizar($(this).val()).includes(normalizar(estate));
+            });
+            if ($checkboxEstado.length > 0) {
+                $checkboxEstado.prop('checked', true);
+                huboCambios = true;
+            }
+            if ($('#property_estate').length > 0) $('#property_estate').val(estate).niceSelect('update');
+        }
+
+        if (type) {
+            const $checkboxTipo = $('input[name="tipo_propiedad"]').filter(function() {
+                return normalizar($(this).val()).includes(normalizar(type));
+            });
+            if ($checkboxTipo.length > 0) {
+                $checkboxTipo.prop('checked', true);
+                huboCambios = true;
+            }
+            if ($('#property_type').length > 0) $('#property_type').val(type).niceSelect('update');
+        }
+
+        if (huboCambios) {
+            ejecutarFiltradoDinamico();
+            return true; 
+        }
+        return false; 
+    }
+
     // --- INYECCIÓN Y RENDERIZADO EN PANTALLAS ---
     function inyectarDatosEnPantallas() {
         // [BLOQUE VISTA: INICIO] -> index.html | Guardia: .featured-carousel
@@ -322,8 +403,13 @@ $(function () {
         // [BLOQUE VISTA: BUSCADOR] -> search.html | Guardia: .filter-results-area
         // 2. Grilla Inicial del Buscador (Muestra todo al cargar por primera vez)
         if ($(".filter-results-area").length > 0) {
-            renderizarGrillaBuscador(listaProyectosGlobal);
-            actualizarContadoresFiltros(listaProyectosGlobal);
+            const aplicoFiltrosUrl = procesarFiltrosUrl();
+            
+            // <-- CORRECCIÓN: Solo pinta todos los proyectos si la URL vino limpia (sin filtros)
+            if (!aplicoFiltrosUrl) {
+                renderizarGrillaBuscador(listaProyectosGlobal);
+                actualizarContadoresFiltros(listaProyectosGlobal);
+            }
         }
         
         // [BLOQUE VISTA: DETALLE] -> single.html | La función contiene su propia guardia.
@@ -342,7 +428,15 @@ $(function () {
         $("#total-proyectos-conteo").text(proyectos.length);
 
         if (proyectos.length === 0) {
-            $grilla.html('<div class="col-12 text-center py-5"><p class="text-muted fs-5">No se encontraron proyectos que coincidan con los filtros seleccionados.</p></div>');
+            $grilla.html(`
+                <div class="col-12 text-center py-5">
+                    <i class="bx bx-search text-muted" style="font-size: 4rem; opacity: 0.5;"></i>
+                    <p class="text-muted fs-5 mt-3 mb-4">No se encontraron proyectos que coincidan con los filtros seleccionados.</p>
+                    <button type="button" class="btn btn-limpiar-filtros-rapido" style="background: #222; color: #fff; padding: 10px 25px; border-radius: 6px; border: none; transition: 0.3s;">
+                        <i class="bx bx-refresh"></i> Limpiar todos los filtros
+                    </button>
+                </div>
+            `);
             return;
         }
 
@@ -667,11 +761,23 @@ $(function () {
         evento.preventDefault();
         ejecutarFiltradoDinamico();
     });
-    $(document).on("click", "#btn-limpiar-filtros", function () {
+    // Actualizado para escuchar tanto al botón del sidebar como al nuevo botón rápido
+    $(document).on("click", "#btn-limpiar-filtros, .btn-limpiar-filtros-rapido", function () {
         const formularioFiltros = $("#form-filtros-avanzados")[0];
         const formularioTexto = $("#form-busqueda-texto")[0];
+        
+        // 1. Resetea los formularios si existen
         if (formularioFiltros) formularioFiltros.reset();
         if (formularioTexto) formularioTexto.reset();
+        
+        // 2. FORZAR limpieza manual (Seguridad extra por si los inputs no están dentro de un form)
+        $('input[type="checkbox"], input[type="radio"]').prop('checked', false);
+        $("#search-keyword").val("");
+        if ($('#location').length > 0) $('#location').val("").niceSelect('update');
+        if ($('#property_estate').length > 0) $('#property_estate').val("").niceSelect('update');
+        if ($('#property_type').length > 0) $('#property_type').val("").niceSelect('update');
+
+        // 3. Resetea el ordenamiento y slider de precios
         $("#sort").val("predeterminado");
         if ($("#sort").next(".nice-select").length) $("#sort").niceSelect("update");
         if ($("#price-range").length) {
@@ -680,6 +786,12 @@ $(function () {
         }
         filtroPrecioMin = 0;
         filtroPrecioMax = limitePrecioMax;
+        
+        // 4. Limpiar la URL para que no queden parámetros colgados
+        const nuevaUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+        window.history.replaceState({path: nuevaUrl}, '', nuevaUrl);
+
+        // 5. Ejecutar la búsqueda limpia (renderizará todos los proyectos nuevamente)
         ejecutarFiltradoDinamico();
     });
 

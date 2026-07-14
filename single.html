@@ -182,29 +182,21 @@
                             <ul id="lista-amenidades" class="overflow-hidden ps-5">
                                 </ul>
                         </div>
-                        <div class="tour-360-section" style="width: 100%; max-width: 1200px; margin: 3rem auto; padding: 0 1rem;">
-                            
+                       <div class="tour-360-section" style="width: 100%; max-width: 1200px; margin: 3rem auto; padding: 0 1rem; box-sizing: border-box;">
                             <h3 class="section-title" style="margin-bottom: 1.5rem;">Experiencia 360°</h3>
                             
-                            <div class="tour-360-wrapper" style="width: 100%; height: 60vh; min-height: 350px; max-height: 500px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                            <div class="tour-360-wrapper" style="position: relative; width: 100%; height: 500px; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); z-index: 10; -webkit-overflow-scrolling: touch;">
                                 
                                 <iframe 
                                     src="https://www.esferic360.com/panoramas/residencial-hatun-kawsay" 
-                                    width="100%" 
-                                    height="100%" 
-                                    frameborder="0" 
+                                    scrolling="no"
                                     allowfullscreen="true" 
-                                    allow="accelerometer; magnetometer; gyroscope; pointer-lock"
+                                    allow="accelerometer; gyroscope; magnetometer; xr-spatial-tracking"
                                     loading="lazy"
-                                    style="pointer-events: auto;">
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; display: block; pointer-events: auto;">
                                 </iframe>
                                 
                             </div>
-                            
-                            <p style="text-align: center; font-size: 0.85rem; color: #666; margin-top: 0.5rem;">
-                                <i>Desliza para explorar o toca el ícono de [ ] para ver en pantalla completa.</i>
-                            </p>
-
                         </div>
                         <h6 class="section-title">Ubicación del Proyecto</h6>
                         <div class="g-map">
