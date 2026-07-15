@@ -152,6 +152,10 @@ $(function () {
                 
                 // Renderizado inicial completo
                 inyectarDatosEnPantallas();
+
+                // === AVISO PARA EL TOUR 360 ===
+                window.listaProyectosGlobal = listaProyectosGlobal;
+                $(document).trigger("datos:cargados");
                 
             })
             .catch(error => console.error("Error conectando con la API de Google Sheets:", error));
