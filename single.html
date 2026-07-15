@@ -40,29 +40,113 @@
         /* Galería exclusiva de la ficha: no afecta los carruseles de index.html. */
         .single-gallery {
             max-width: 1100px;
-            /* Slick deja un bloque interno vacío tras las miniaturas. */
-            margin: 0 auto -12rem;
+            margin: 0 auto 3rem;
             padding: 0 1rem;
+            display: flex;
+            gap: 10px;
             position: relative;
         }
-        .single-gallery-main { --gallery-main-height: 440px; overflow: hidden; border-radius: 12px; background: transparent; }
-        /* Anula el alto fijo global de Slick solo en la galería de la ficha. */
+
+        /* Contenedor de la imagen principal (Izquierda) */
+        .single-gallery-main { 
+            width: 78%; 
+            --gallery-main-height: 500px; /* Un poco más alto para igualar 4 miniaturas verticales */
+            overflow: hidden; 
+            border-radius: 12px; 
+            background: #f8f9fa; 
+        }
+        
         .single-gallery-main .slick-list { height: var(--gallery-main-height) !important; }
-        .single-gallery-main .slick-slide { height: var(--gallery-main-height); overflow: visible; }
+        .single-gallery-main .slick-slide { height: var(--gallery-main-height); overflow: hidden; }
         .single-gallery-main a { display: flex !important; height: 100%; justify-content: center; align-items: center; }
-        .single-gallery-main .gallery-main-image { display: block; width: auto; max-width: 100%; height: auto; max-height: 100%; object-fit: contain; }
-        .single-gallery-nav { position: absolute; top: 50%; z-index: 3; width: 44px; height: 44px; border: 0; border-radius: 50%; background: rgba(18, 22, 20, .82); color: #fff; display: grid; place-items: center; transform: translateY(-50%); }
-        .single-gallery-prev { left: 28px; }
-        .single-gallery-next { right: 28px; }
-        .single-gallery-nav:hover { background: var(--main-color); }
-        .single-gallery-counter { position: absolute; right: 30px; bottom: 108px; z-index: 3; padding: .35rem .7rem; border-radius: 999px; background: rgba(18, 22, 20, .82); color: #fff; font-size: .8rem; }
-        @media (max-width: 575.98px) {
-            .single-gallery { margin-bottom: -8rem; padding: 0; }
-            .single-gallery-main { --gallery-main-height: 320px; border-radius: 0; }
-            .single-gallery-nav { width: 38px; height: 38px; }
-            .single-gallery-prev { left: 12px; }
-            .single-gallery-next { right: 12px; }
-            .single-gallery-counter { right: 14px; bottom: 102px; }
+        
+        /* Imagen principal ajustada para cubrir el espacio sin deformarse */
+        .single-gallery-main .gallery-main-image { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            border-radius: 12px;
+        }
+
+        /* Contenedor de las miniaturas (Derecha) */
+        .single-property-thumbnails-wrapper {
+            width: 22%;
+            position: relative;
+        }
+        
+        /* Las miniaturas ahora se apilan hacia abajo */
+        #single-property-thumbnails .slick-slide {
+            margin-bottom: 10px; 
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        /* Efecto de miniatura activa */
+        #single-property-thumbnails .slick-current {
+            border-color: var(--main-color, #eb3c3c);
+            opacity: 1 !important;
+        }
+
+        #single-property-thumbnails img {
+            width: 100%; 
+            height: 115px; /* Altura calculada para encajar ~4 imágenes al lado de la principal */
+            object-fit: cover; 
+            border-radius: 6px;
+        }
+
+        /* Botones de navegación reposicionados para layout vertical */
+        .single-gallery-nav { 
+            position: absolute; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            z-index: 3; 
+            width: 30px; 
+            height: 30px; 
+            border: 0; 
+            border-radius: 50%; 
+            background: rgba(18, 22, 20, .82); 
+            color: #fff; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            cursor: pointer;
+        }
+        .single-gallery-nav:hover { background: var(--main-color, #eb3c3c); }
+        .single-gallery-prev { top: -15px; } /* Flecha arriba */
+        .single-gallery-next { bottom: -5px; } /* Flecha abajo */
+
+        /* Contador flotante sobre la imagen principal */
+        .single-gallery-counter { 
+            position: absolute; 
+            left: 20px; 
+            bottom: 20px; 
+            z-index: 3; 
+            padding: .35rem .8rem; 
+            border-radius: 999px; 
+            background: rgba(18, 22, 20, .82); 
+            color: #fff; 
+            font-size: .85rem; 
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* Responsividad: En móviles vuelve a ponerse una debajo de la otra */
+        @media (max-width: 767.98px) {
+            .single-gallery { 
+                flex-direction: column; 
+                margin-bottom: 2rem; 
+            }
+            .single-gallery-main { width: 100%; --gallery-main-height: 300px; border-radius: 8px;}
+            .single-property-thumbnails-wrapper { width: 100%; margin-top: 10px; }
+            #single-property-thumbnails .slick-slide { margin-bottom: 0; margin-right: 10px; }
+            #single-property-thumbnails img { height: 80px; }
+            
+            /* En móvil las flechas vuelven a ser laterales */
+            .single-gallery-nav { top: 50%; transform: translateY(-50%); }
+            .single-gallery-prev { left: 5px; top: 50%; }
+            .single-gallery-next { right: 5px; left: auto; top: 50%; bottom: auto; }
         }
     </style>
 </head>

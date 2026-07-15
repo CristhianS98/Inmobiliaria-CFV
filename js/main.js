@@ -544,12 +544,16 @@ $(function () {
                     </ul>`;
                 $(".property-detail-info-list").html(fichaTecnicaHtml);
 
-                // Galería exclusiva de single.html: principal + miniaturas
+               // Galería exclusiva de single.html: principal + miniaturas (Layout Vertical Derecho)
                 const $galeriaPrincipal = $('#single-property-slider');
                 const $galeriaMiniaturas = $('#single-property-thumbnails');
                 const $contadorGaleria = $('#single-gallery-counter');
-                const $contenedorGaleria = $galeriaPrincipal.closest('.single-gallery');
                 
+                // Envolvemos las miniaturas en un div relativo para posicionar mejor las flechas verticales
+                if ($galeriaMiniaturas.parent('.single-property-thumbnails-wrapper').length === 0) {
+                    $galeriaMiniaturas.wrap('<div class="single-property-thumbnails-wrapper"></div>');
+                }
+
                 if ($galeriaPrincipal.length > 0) {
                     if ($galeriaPrincipal.hasClass('slick-initialized')) $galeriaPrincipal.slick('unslick');
                     if ($galeriaMiniaturas.length > 0 && $galeriaMiniaturas.hasClass('slick-initialized')) $galeriaMiniaturas.slick('unslick');
@@ -568,19 +572,22 @@ $(function () {
                         principalHTML += `
                             <div>
                                 <a href="${urlImagen}" data-rel="lightcase:galeria-proyecto" aria-label="Abrir imagen ${indice + 1}">
-                                    <img src="${urlImagen}" class="gallery-main-image" style="border-radius:12px;" alt="${escapeHTML(proyecto.titulo)} - imagen ${indice + 1}">
+                                    <img src="${urlImagen}" class="gallery-main-image" alt="${escapeHTML(proyecto.titulo)} - imagen ${indice + 1}">
                                 </a>
                             </div>`;
                             
                         miniaturasHTML += `
-                            <div class="px-1" style="cursor:pointer;">
-                                <img src="${urlImagen}" style="width:100%; height:90px; object-fit:cover; border-radius:6px;" alt="miniatura ${indice + 1}">
+                            <div style="cursor:pointer; outline:none;">
+                                <img src="${urlImagen}" alt="miniatura ${indice + 1}">
                             </div>`;
                     });
 
                     $galeriaPrincipal.html(principalHTML);
                     if ($galeriaMiniaturas.length > 0) $galeriaMiniaturas.html(miniaturasHTML);
                     $contadorGaleria.text(fotos.length ? `1 / ${fotos.length}` : '0 / 0');
+                    
+                    // Colocamos el contador dentro del slider principal para que flote sobre la foto
+                    $galeriaPrincipal.append($contadorGaleria);
 
                     if (fotos.length > 0) {
                         // Inicializa el grande
@@ -592,54 +599,31 @@ $(function () {
                             asNavFor: '#single-property-thumbnails'
                         });
                         
-                        // Inicializa las miniaturas
+                        // Determinar si estamos en móvil para apagar la verticalidad
+                        const esMovil = window.innerWidth <= 767;
+
+                        // Inicializa las miniaturas a la derecha
                         if ($galeriaMiniaturas.length > 0) {
                             $galeriaMiniaturas.slick({
-                                slidesToShow: 3,
+                                slidesToShow: 4, // Mostramos 4 imágenes hacia abajo
                                 slidesToScroll: 1,
                                 asNavFor: '#single-property-slider',
                                 dots: false,
                                 arrows: true,
                                 centerMode: false,
                                 focusOnSelect: true,
-                                infinite: fotos.length > 3,
-                                // CORRECCIÓN: Flechas más adentro (5px) y de color rojo transparente
-                                prevArrow: '<button type="button" style="position:absolute; top:50%; left:5px; transform:translateY(-50%); z-index:10; background:rgba(235, 60, 60, 0.7); border:none; width:30px; height:30px; border-radius:50%; display:flex; justify-content:center; align-items:center; color:#fff; cursor:pointer;"><i class="bx bx-chevron-left" style="font-size:22px;"></i></button>',
-                                nextArrow: '<button type="button" style="position:absolute; top:50%; right:5px; transform:translateY(-50%); z-index:10; background:rgba(235, 60, 60, 0.7); border:none; width:30px; height:30px; border-radius:50%; display:flex; justify-content:center; align-items:center; color:#fff; cursor:pointer;"><i class="bx bx-chevron-right" style="font-size:22px;"></i></button>'
+                                vertical: !esMovil, // ¡CLAVE! Activa el scroll hacia abajo solo en PC
+                                verticalSwiping: !esMovil,
+                                infinite: fotos.length > 4,
+                                // Flechas adaptadas para apuntar arriba y abajo
+                                prevArrow: `<button type="button" class="single-gallery-nav single-gallery-prev"><i class="bx ${esMovil ? 'bx-chevron-left' : 'bx-chevron-up'}" style="font-size:22px;"></i></button>`,
+                                nextArrow: `<button type="button" class="single-gallery-nav single-gallery-next"><i class="bx ${esMovil ? 'bx-chevron-right' : 'bx-chevron-down'}" style="font-size:22px;"></i></button>`
                             });
                         }
 
-                        const ajustarAltoGaleria = function () {
-                            // El contador se mantiene sobre la esquina inferior de la foto principal.
-                            const rectContenedor = $contenedorGaleria[0].getBoundingClientRect();
-                            const rectPrincipal = $galeriaPrincipal[0].getBoundingClientRect();
-                            const altoContador = $contadorGaleria.outerHeight();
-                            const posicionContador = rectPrincipal.bottom - rectContenedor.top - altoContador - 18;
-                            $contadorGaleria.css({ top: `${Math.max(18, Math.round(posicionContador))}px`, bottom: 'auto' });
-                        };
-
                         $galeriaPrincipal.on('afterChange.singleGallery', function (evento, slick, indiceActual) {
                             $contadorGaleria.text(`${indiceActual + 1} / ${slick.slideCount}`);
-                            ajustarAltoGaleria();
                         });
-
-                        // Slick calcula el alto antes de que las imágenes remotas terminen de cargar.
-                        // Ajustarlo al alto real evita el espacio vacío debajo de las miniaturas.
-                        const actualizarAltoGaleria = function () {
-                            if ($galeriaPrincipal.hasClass('slick-initialized')) {
-                                $galeriaPrincipal.slick('setPosition');
-                                ajustarAltoGaleria();
-                            }
-                        };
-                        $galeriaPrincipal.find('.gallery-main-image')
-                            .on('load.singleGallery', actualizarAltoGaleria)
-                            .each(function () {
-                                if (this.complete) $(this).trigger('load.singleGallery');
-                            });
-
-                        $(window)
-                            .off('resize.singleGallery')
-                            .on('resize.singleGallery', actualizarAltoGaleria);
 
                         $galeriaPrincipal.find('a[data-rel]').lightcase({ type: 'image' });
                     }

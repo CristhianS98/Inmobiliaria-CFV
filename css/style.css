@@ -1435,7 +1435,6 @@ article .section-title {
 
 /* ========================================================================== */
 /* Capa responsive aislada — solo móvil/tablet; no altera el escritorio.      */
-/* El atributo data-page permite que cada regla afecte únicamente su vista.   */
 /* ========================================================================== */
 @media (max-width: 767.98px) {
     body[data-page] {
@@ -1546,6 +1545,7 @@ article .section-title {
         width: 100%;
     }
 
+    /* Ajustes para el Carrusel en Detalle */
     body[data-page="detail"] .single-gallery {
         width: 100%;
         margin-bottom: -6.5rem !important;
@@ -1553,13 +1553,29 @@ article .section-title {
     }
 
     body[data-page="detail"] .single-gallery-main {
-        --gallery-main-height: 270px;
+        --gallery-main-height: 350px; /* Aumentada para dar espacio al folleto */
+        background-color: #f4f5f7; 
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    body[data-page="detail"] .single-gallery-main .slick-list,
+    body[data-page="detail"] .single-gallery-main .slick-track {
+        height: 100% !important;
+    }
+
+    body[data-page="detail"] .single-gallery-main a {
+        display: flex !important;
+        width: 100%;
+        height: 100% !important;
+        justify-content: center;
+        align-items: center;
     }
 
     body[data-page="detail"] .single-gallery-main .gallery-main-image {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
+        max-width: 100%;
+        height: 100% !important;
+        object-fit: contain !important;
     }
 
     body[data-page="detail"] .single-gallery-counter {
