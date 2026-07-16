@@ -30,13 +30,7 @@ a:hover,
     color: inherit;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
+h1, h2, h3, h4, h5, h6, p {
     margin: 0;
 }
 
@@ -79,13 +73,7 @@ ul {
 }
 
 @media (min-width: 1400px) {
-
-    .container,
-    .container-lg,
-    .container-md,
-    .container-sm,
-    .container-xl,
-    .container-xxl {
+    .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
         max-width: 1200px;
     }
 }
@@ -96,7 +84,7 @@ ul {
     --element-height: 3rem;
     border-radius: 0;
     font-size: inherit;
-    height: var(--elment-height);
+    height: var(--element-height);
     text-transform: capitalize;
 }
 
@@ -122,7 +110,7 @@ textarea.form-control {
     text-transform: uppercase;
     border-color: var(--main-color);
     background-color: var(--main-color);
-    line-height: calc(var(--elment-height) - 13px);
+    line-height: calc(var(--element-height) - 13px);
 }
 
 .btn:after {
@@ -175,7 +163,7 @@ ul.list {
     width: 100%;
 }
 
-/*  =========================================================================   Navbar  */
+/* =========================================================================   Navbar  */
 .navbar {
     padding: 0;
     height: 100px;
@@ -308,7 +296,7 @@ ul.list {
     }
 }
 
-/*  =========================================================================   Header  */
+/* =========================================================================   Header  */
 .header {
     background: url("../images/frontage.jpg");
     background-position: center;
@@ -323,7 +311,6 @@ ul.list {
     position: absolute;
     width: 100%;
     height: 100%;
-    /* Gradiente ajustado con matiz oscuro y transparente */
     background: linear-gradient(135deg, var(--dark-color), transparent 60%);
     top: 0;
 }
@@ -421,7 +408,6 @@ a.play-video-btn.pulse:after {
     animation: pulsing 2s linear infinite;
 }
 
-/* MODIFICACIÓN: Aplicación del efecto Vidrio Esmerilado (Glassmorphism) a las cajas principales */
 .estate-search-box,
 .filter-sidebar, 
 .sidebar, 
@@ -439,7 +425,6 @@ a.play-video-btn.pulse:after {
     position: relative;
 }
 
-/* Ajustes complementarios de entradas de texto sobre transparencias */
 .form-control {
     background: rgba(255, 255, 255, 0.6) !important;
     border: 1px solid rgba(0, 0, 0, 0.1) !important;
@@ -449,7 +434,7 @@ a.play-video-btn.pulse:after {
     background: rgba(255, 255, 255, 0.95) !important;
 }
 
-/*  =========================================================================   About  */
+/* =========================================================================   About  */
 .list-icons i {
     --icon-height: 45px;
     background-color: rgb(var(--main-rgb-color), 0.10);
@@ -472,7 +457,7 @@ a.play-video-btn.pulse:after {
     bottom: .9375rem;
 }
 
-/*  =========================================================================   Statistics  */
+/* =========================================================================   Statistics  */
 .statistic-area {
     color: white;
     padding: 0;
@@ -480,7 +465,6 @@ a.play-video-btn.pulse:after {
 
 @media (min-width: 992px) {
     .statistic-area {
-        /* ACTUALIZACIÓN: Gradiente corporativo alineado al gris y rojo de CFV */
         background: linear-gradient(to right, var(--main-color) 50%, var(--dark-color) 50%);
     }
 }
@@ -521,22 +505,20 @@ a.play-video-btn.pulse:after {
     margin-top: 12px;
 }
 
-/* MODIFICACIÓN: Degradado secuencial sofisticado de grises oscuros institucionales para las barras de progreso */
 .statistic-area .col-lg-2:nth-child(2) { background-color: #121212; }
 .statistic-area .col-lg-2:nth-child(3) { background-color: #1c1c1c; }
 .statistic-area .col-lg-2:nth-child(4) { background-color: #262626; }
 .statistic-area .col-lg-2:nth-child(5) { background-color: #303030; }
 .statistic-area .col-lg-2:nth-child(6) { background-color: #3a3a3a; }
 
-/*  =========================================================================   Property Store  */
+/* =========================================================================   Property Store  */
 .bg-main-color {
     background-color: var(--main-color);
     color: white;
 }
 
-/*  =========================================================================   Services  */
+/* =========================================================================   Services  */
 .services-card {
-    /* ACTUALIZACIÓN: Estilo refinado para las tarjetas de servicios integrando la nueva identidad */
     border: 1px solid var(--dark-color);
     box-shadow: 5px 5px var(--dark-color);
     transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
@@ -575,8 +557,7 @@ a.play-video-btn.pulse:after {
     box-shadow: 5px 5px var(--main-color);
 }
 
-/*  =========================================================================   Featured Listing Properties  */
-/* MODIFICACIÓN PREMIUM: Inyección de efecto de Vidrio Esmerilado translúcido a las tarjetas del catálogo */
+/* =========================================================================   Featured Listing Properties  */
 .featured-list-card {
     background: var(--glass-bg) !important;
     backdrop-filter: var(--glass-blur) !important;
@@ -658,7 +639,7 @@ a.play-video-btn.pulse:after {
     border-top: none;
 }
 
-/*  =========================================================================   Plane Area  */
+/* =========================================================================   Plane Area  */
 .sketch-details {
     background-color: var(--main-color);
     color: white;
@@ -697,7 +678,7 @@ a.play-video-btn.pulse:after {
     font-size: 14px;
 }
 
-/*  =========================================================================   Aminities Area  */
+/* =========================================================================   Aminities Area  */
 .aminity-card {
     display: grid;
     place-content: center;
@@ -707,7 +688,7 @@ a.play-video-btn.pulse:after {
     text-align: center;
     transition: 0.2s linear;
     border: 1px solid transparent;
-    background-color: #F8FAFC; /* Un tono gris claro premium más limpio */
+    background-color: #F8FAFC;
 }
 
 .aminity-card:hover {
@@ -728,7 +709,7 @@ a.play-video-btn.pulse:after {
     margin: 0.75rem auto;
 }
 
-/*  =========================================================================   Owl Carousel  */
+/* =========================================================================   Owl Carousel  */
 .owl-stage-outer {
     height: 10%;
 }
@@ -800,8 +781,7 @@ a.play-video-btn.pulse:after {
     }
 }
 
-/*  =========================================================================   Clients Testimonails  */
-/* MODIFICACIÓN: Efecto vidrio esmerilado translúcido aplicado a los testimonios de clientes */
+/* =========================================================================   Clients Testimonials  */
 .card.feedback-card {
     background: var(--glass-bg) !important;
     backdrop-filter: var(--glass-blur) !important;
@@ -837,7 +817,7 @@ a.play-video-btn.pulse:after {
     top: -25px;
 }
 
-/*  =========================================================================   Call To Action  */
+/* =========================================================================   Call To Action  */
 .call-to-action-inner {
     background-color: var(--main-color);
     color: white;
@@ -868,9 +848,9 @@ a.play-video-btn.pulse:after {
     color: #333;
     align-self: center;
     padding: 1rem 2rem;
-    display: inline-flex !important;  /* MODIFICACIÓN: Une el icono y texto horizontalmente */
-    white-space: nowrap !important;   /* MODIFICACIÓN: Evita que el texto se parta en dos */
-    border-radius: 30px !important;   /* MODIFICACIÓN: Le da el acabado redondeado moderno */
+    display: inline-flex !important;
+    white-space: nowrap !important;
+    border-radius: 30px !important;
     align-items: center;
     text-transform: uppercase;
     transition: 0.3s ease;
@@ -895,9 +875,7 @@ a.play-video-btn.pulse:after {
     }
 }
 
-/*  =========================================================================   Call To Action  */
-
-
+/* =========================================================================   Footer  */
 .footer {
     padding: 2.25rem;
     background-color: var(--dark-color);
@@ -956,11 +934,11 @@ a.play-video-btn.pulse:after {
 }
 
 .copy-right {
-    background-color: #262626; /* Gris carbón balanceado para la banda de créditos */
+    background-color: #262626;
     color: white;
 }
 
-/*  =========================================================================   Search.html  */
+/* =========================================================================  Search.html  */
 .page-breadcrumb {
     background-color: #F1F5F9;
     margin: 0;
@@ -999,7 +977,6 @@ a.play-video-btn.pulse:after {
 }
 
 .grid-view a.active {
-    /* ACTUALIZACIÓN: Adaptación segura al RGB de tu nuevo color rojo de marca */
     background-color: rgba(var(--main-rgb-color), 0.1);
     color: var(--main-color);
     border-color: rgba(var(--main-rgb-color), 0.1);
@@ -1019,23 +996,22 @@ form button i {
 
 .property-item {
     margin-bottom: 1.5rem;
-    position: relative !important; /* Mantiene el límite del stretched-link para los textos */
+    position: relative !important;
 }
 
 .property-image {
-    position: relative !important; /* CORRECCIÓN: Cambiado de static a relative para que el enlace tome tamaño real */
-    z-index: 1 !important;         /* Asegura que la caja de la foto flote en una capa limpia */
+    position: relative !important;
+    z-index: 1 !important;
     overflow: hidden;
 }
 
 .property-image img {
     width: 100%;
     object-fit: cover;
-    pointer-events: auto !important; /* CRÍTICO: Fuerza a la foto a reaccionar y capturar el clic obligatoriamente */
-    cursor: pointer !important;       /* Muestra el ícono de la mano de hipervínculo en el mouse */
+    pointer-events: auto !important;
+    cursor: pointer !important;
 }
 
-/* MODIFICACIÓN PREMIUM: Vidrio Esmerilado (Glassmorphism) para los detalles del catálogo */
 .property-details {
     background: var(--glass-bg) !important;
     backdrop-filter: var(--glass-blur) !important;
@@ -1043,8 +1019,8 @@ form button i {
     border: 1px solid var(--border-color) !important;
     box-shadow: var(--box-shadow) !important;
     padding: 2rem;
-    position: relative !important; /* 2. AÑADIR ESTA LÍNEA */
-    z-index: 1 !important;        /* 3. AÑADIR ESTA LÍNEA */
+    position: relative !important;
+    z-index: 1 !important;
     transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
@@ -1081,7 +1057,6 @@ span.info-label {
 }
 
 .property-details ul li {
-    /* display: inline-block; */
     margin-right: 1.25rem;
 }
 
@@ -1102,7 +1077,6 @@ span.info-label {
 }
 
 .slider-gallery .slick-slider:hover img {
-    /* filter: grayscale(1) blur(2px); */
     opacity: 0.3;
 }
 
@@ -1211,8 +1185,7 @@ a.page-link {
     border-bottom-right-radius: 50%;
 }
 
-
-/*  =========================================================================   Single.html  */
+/* =========================================================================  Single.html  */
 .meta-category {
     background-color: var(--main-color);
     color: white;
@@ -1229,7 +1202,7 @@ a.page-link {
 }
 
 .bg-orange {
-    background-color: var(--main-color) !important; /* Sincronizado con el rojo corporativo */
+    background-color: var(--main-color) !important;
 }
 
 .property-info-content h2 {
@@ -1293,7 +1266,7 @@ article p {
 }
 
 .product-ratting i {
-    color: #FFC107; /* Amarillo dorado limpio para las estrellas */
+    color: #FFC107;
     font-size: 13px;
 }
 
@@ -1368,7 +1341,7 @@ article .section-title {
 }
 
 .product-price {
-    color: var(--main-color); /* Cambiado de red fijo a tu variable global */
+    color: var(--main-color);
     font-size: 13px;
     font-weight: 600;
 }
@@ -1379,7 +1352,7 @@ article .section-title {
 }
 
 .tag-widget a {
-    background-color: rgba(0, 0, 0, 0.05); /* Fondo gris claro suave para las etiquetas */
+    background-color: rgba(0, 0, 0, 0.05);
     font-size: 12px;
     padding: .5rem 1rem;
     margin-bottom: 4px;
@@ -1391,7 +1364,7 @@ article .section-title {
 
 .tag-widget a:hover {
     color: white;
-    background-color: var(--main-color); /* Al pasar el mouse se ilumina con el rojo de CFV */
+    background-color: var(--main-color);
     border-color: var(--main-color);
 }
 
@@ -1428,7 +1401,7 @@ article .section-title {
     left: 0;
     width: 20px;
     height: 20px;
-    background-color: rgba(var(--main-rgb-color), 0.5); /* Cambiado el verde anterior por el rojo rgb translúcido */
+    background-color: rgba(var(--main-rgb-color), 0.5);
     border-radius: 100%;
     z-index: 999;
 }
@@ -1437,56 +1410,21 @@ article .section-title {
 /* Capa responsive aislada — solo móvil/tablet; no altera el escritorio.      */
 /* ========================================================================== */
 @media (max-width: 767.98px) {
-    body[data-page] {
-        overflow-x: hidden;
-    }
-
-    body[data-page] .container {
-        width: 100%;
-        padding-right: 1rem;
-        padding-left: 1rem;
-    }
-
-    body[data-page] .navbar {
-        height: auto;
-        min-height: 72px;
-    }
-
-    body[data-page] .navbar-brand img {
-        width: auto;
-        height: 42px;
-    }
-
-    body[data-page] .offcanvas-body .row {
-        margin-top: 1rem;
-    }
-
-    body[data-page] .footer [style*="padding-left"] {
-        padding-left: 0 !important;
-    }
-
-    body[data-page] .footer .nav-link {
-        padding-right: 0;
-        padding-left: 0;
-    }
-
-    body[data-page="home"] .header {
-        padding: 4rem 0 3rem;
-        background-position: 62% center;
-    }
-
-    body[data-page="home"] .header .text-content h2 {
-        font-size: clamp(2rem, 10vw, 3rem);
-        line-height: 1.05;
-    }
-
+    body[data-page] { overflow-x: hidden; }
+    body[data-page] .container { width: 100%; padding-right: 1rem; padding-left: 1rem; }
+    body[data-page] .navbar { height: auto; min-height: 72px; }
+    body[data-page] .navbar-brand img { width: auto; height: 42px; }
+    body[data-page] .offcanvas-body .row { margin-top: 1rem; }
+    body[data-page] .footer [style*="padding-left"] { padding-left: 0 !important; }
+    body[data-page] .footer .nav-link { padding-right: 0; padding-left: 0; }
+    body[data-page="home"] .header { padding: 4rem 0 3rem; background-position: 62% center; }
+    body[data-page="home"] .header .text-content h2 { font-size: clamp(2rem, 10vw, 3rem); line-height: 1.05; }
+    
     body[data-page="home"] .estate-search-box,
     body[data-page="search"] .filter-sidebar,
     body[data-page="detail"] .sidebar,
     body[data-page="detail"] .comment-form {
-        width: 100%;
-        padding: 1.25rem;
-        margin-top: 1rem;
+        width: 100%; padding: 1.25rem; margin-top: 1rem;
     }
 
     body[data-page="home"] .featured-listing-area,
@@ -1495,139 +1433,45 @@ article .section-title {
     body[data-page="home"] .plane-area,
     body[data-page="home"] .aminities-area,
     body[data-page="home"] .testimonial-area {
-        padding-top: 2.25rem;
-        padding-bottom: 2.25rem;
+        padding-top: 2.25rem; padding-bottom: 2.25rem;
     }
 
     body[data-page="home"] .featured-list-card .card-image img,
     body[data-page="search"] .featured-list-card .card-image img {
-        width: 100% !important;
-        height: clamp(210px, 62vw, 300px) !important;
-        object-fit: cover !important;
+        width: 100% !important; height: clamp(210px, 62vw, 300px) !important; object-fit: cover !important;
     }
 
-    body[data-page="home"] .featured-list-card .card-body .p-4 {
-        padding: 1.25rem !important;
-    }
-
-    body[data-page="home"] .owl-nav {
-        display: none;
-    }
-
+    body[data-page="home"] .featured-list-card .card-body .p-4 { padding: 1.25rem !important; }
+    body[data-page="home"] .owl-nav { display: none; }
+    
     body[data-page="search"] .page-breadcrumb,
     body[data-page="detail"] .page-breadcrumb {
-        padding-top: 1.75rem;
-        padding-bottom: 1.75rem;
+        padding-top: 1.75rem; padding-bottom: 1.75rem;
     }
 
-    body[data-page="search"] .filter-options {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        gap: .75rem;
-        align-items: center;
-    }
-
-    body[data-page="search"] .filter-options .showing-number {
-        text-align: right;
-    }
-
+    body[data-page="search"] .filter-options { display: grid; grid-template-columns: auto 1fr; gap: .75rem; align-items: center; }
+    body[data-page="search"] .filter-options .showing-number { text-align: right; }
     body[data-page="search"] .filter-options .nice-select,
-    body[data-page="search"] .filter-options select {
-        grid-column: 1 / -1;
-        width: 100%;
-    }
+    body[data-page="search"] .filter-options select { grid-column: 1 / -1; width: 100%; }
+    body[data-page="search"] .filter-results-area form { gap: .5rem; }
+    body[data-page="search"] .filter-sidebar .slider-box { width: 100%; }
+    /* ============================================================== */
 
-    body[data-page="search"] .filter-results-area form {
-        gap: .5rem;
-    }
-
-    body[data-page="search"] .filter-sidebar .slider-box {
-        width: 100%;
-    }
-
-    /* Ajustes para el Carrusel en Detalle */
-    body[data-page="detail"] .single-gallery {
-        width: 100%;
-        margin-bottom: -6.5rem !important;
-        padding: 0 !important;
-    }
-
-    body[data-page="detail"] .single-gallery-main {
-        --gallery-main-height: 350px; /* Aumentada para dar espacio al folleto */
-        background-color: #f4f5f7; 
-        border-radius: 12px;
-        overflow: hidden;
-    }
-
-    body[data-page="detail"] .single-gallery-main .slick-list,
-    body[data-page="detail"] .single-gallery-main .slick-track {
-        height: 100% !important;
-    }
-
-    body[data-page="detail"] .single-gallery-main a {
-        display: flex !important;
-        width: 100%;
-        height: 100% !important;
-        justify-content: center;
-        align-items: center;
-    }
-
-    body[data-page="detail"] .single-gallery-main .gallery-main-image {
-        max-width: 100%;
-        height: 100% !important;
-        object-fit: contain !important;
-    }
-
-    body[data-page="detail"] .single-gallery-counter {
-        right: .75rem;
-    }
-
-    body[data-page="detail"] .property-info-content h2 {
-        margin: 1rem 0;
-        font-size: clamp(1.75rem, 8vw, 2.25rem);
-        line-height: 1.2;
-    }
-
-    body[data-page="detail"] .property-info-content > div:first-child {
-        flex-wrap: wrap;
-        gap: .5rem;
-    }
-
-    body[data-page="detail"] .meta-category {
-        margin-right: 0;
-    }
-
-    body[data-page="detail"] .property-detail-info-list {
-        display: block;
-    }
-
+    body[data-page="detail"] .single-gallery-counter { right: .75rem; }
+    body[data-page="detail"] .property-info-content h2 { font-size: clamp(1.75rem, 8vw, 2.25rem); line-height: 1.2; margin: 1rem 0; }
+    body[data-page="detail"] .property-info-content > div:first-child { flex-wrap: wrap; gap: .5rem; }
+    body[data-page="detail"] .meta-category { margin-right: 0; }
+    body[data-page="detail"] .property-detail-info-list { display: block; }
     body[data-page="detail"] .property-detail-info-list ul:nth-child(1),
-    body[data-page="detail"] .property-detail-info-list ul:nth-child(2) {
-        padding: 1.25rem;
-        border-right: 0;
-    }
-
-    body[data-page="detail"] .property-detail-info-list ul:nth-child(1) {
-        border-bottom: 1px solid #CBD5E1;
-    }
-
-    body[data-page="detail"] .g-map {
-        height: 260px;
-    }
-
-    body[data-page="detail"] .comment-form .row {
-        row-gap: 1rem !important;
-    }
+    body[data-page="detail"] .property-detail-info-list ul:nth-child(2) { padding: 1.25rem; border-right: 0; }
+    body[data-page="detail"] .property-detail-info-list ul:nth-child(1) { border-bottom: 1px solid #CBD5E1; }
+    body[data-page="detail"] .g-map { height: 260px; }
+    body[data-page="detail"] .comment-form .row { row-gap: 1rem !important; }
 }
 
 @media (min-width: 768px) and (max-width: 991.98px) {
     body[data-page="search"] .filter-sidebar,
-    body[data-page="detail"] .sidebar {
-        padding: 1.5rem;
-    }
-
+    body[data-page="detail"] .sidebar { padding: 1.5rem; }
     body[data-page="detail"] .property-detail-info-list ul:nth-child(1),
-    body[data-page="detail"] .property-detail-info-list ul:nth-child(2) {
-        padding: 1.5rem;
-    }
+    body[data-page="detail"] .property-detail-info-list ul:nth-child(2) { padding: 1.5rem; }
 }
