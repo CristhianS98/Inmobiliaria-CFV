@@ -166,7 +166,7 @@ ul.list {
 /* =========================================================================   Navbar  */
 .navbar {
     padding: 0;
-    height: 100px;
+    min-height: 100px;
     transition: 0.3s linear;
 }
 
@@ -420,9 +420,23 @@ a.play-video-btn.pulse:after {
     box-shadow: var(--box-shadow) !important;
     padding: 2rem;
     margin: 0 auto;
-    margin-top: -40px;
+margin-top: 0;
     z-index: 1;
     position: relative;
+}
+
+/* Improve mobile performance: disable heavy backdrop-filter on small screens */
+@media (max-width: 767px) {
+.estate-search-box,
+.filter-sidebar,
+.sidebar,
+.comment-form,
+.widget {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 1rem;
+    margin-top: 0;
+}
 }
 
 .form-control {
