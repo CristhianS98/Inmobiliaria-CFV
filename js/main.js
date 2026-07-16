@@ -599,25 +599,44 @@ $(function () {
                             asNavFor: '#single-property-thumbnails'
                         });
                         
-                        // Determinar si estamos en móvil para apagar la verticalidad
-                        const esMovil = window.innerWidth <= 767;
-
-                        // Inicializa las miniaturas a la derecha
+                        // Inicializa las miniaturas (usa responsive de Slick para controlar verticalidad)
                         if ($galeriaMiniaturas.length > 0) {
+                            // Evitamos handlers repetidos
+                            $galeriaMiniaturas.off('init.singleGalleryInit');
+                            $galeriaMiniaturas.on('init.singleGalleryInit', function (e, slick) {
+                                // Un único recalculo visual en el primer frame para estabilizar dimensiones
+                                requestAnimationFrame(function () {
+                                    try {
+                                        $galeriaMiniaturas.slick('setPosition');
+                                        if ($galeriaPrincipal && $galeriaPrincipal.length) $galeriaPrincipal.slick('setPosition');
+                                    } catch (err) { /* no-op */ }
+                                });
+                            });
+
                             $galeriaMiniaturas.slick({
-                                slidesToShow: 4, // Mostramos 4 imágenes hacia abajo
+                                slidesToShow: 4,
                                 slidesToScroll: 1,
                                 asNavFor: '#single-property-slider',
                                 dots: false,
                                 arrows: true,
                                 centerMode: false,
                                 focusOnSelect: true,
-                                vertical: !esMovil, // ¡CLAVE! Activa el scroll hacia abajo solo en PC
-                                verticalSwiping: !esMovil,
-                                infinite: fotos.length > 4,
-                                // Flechas adaptadas para apuntar arriba y abajo
-                                prevArrow: `<button type="button" class="single-gallery-nav single-gallery-prev"><i class="bx ${esMovil ? 'bx-chevron-left' : 'bx-chevron-up'}" style="font-size:22px;"></i></button>`,
-                                nextArrow: `<button type="button" class="single-gallery-nav single-gallery-next"><i class="bx ${esMovil ? 'bx-chevron-right' : 'bx-chevron-down'}" style="font-size:22px;"></i></button>`
+                                vertical: true,
+                                verticalSwiping: true,
+                                infinite: true, // requerido: miniaturas infinite
+                                // Flechas simples; su estilo/posición se maneja en CSS según breakpoint
+                                prevArrow: `<button type="button" class="single-gallery-nav single-gallery-prev"><i class="bx bx-chevron-up" style="font-size:22px;"></i></button>`,
+                                nextArrow: `<button type="button" class="single-gallery-nav single-gallery-next"><i class="bx bx-chevron-down" style="font-size:22px;"></i></button>`,
+                                responsive: [
+                                    {
+                                        breakpoint: 768,
+                                        settings: {
+                                            slidesToShow: 3,
+                                            vertical: false,
+                                            verticalSwiping: false
+                                        }
+                                    }
+                                ]
                             });
                         }
 

@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="libs/lightcase/css/lightcase.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        /* Galería exclusiva de la ficha: no afecta los carruseles de index.html. */
+        /* Galería exclusiva de la ficha: versión minimal, segura y compatible con Slick */
         .single-gallery {
             max-width: 1100px;
             margin: 0 auto 3rem;
@@ -45,108 +45,78 @@
             display: flex;
             gap: 10px;
             position: relative;
+            overflow-x: hidden; /* evita desplazamientos horizontales */
+            box-sizing: border-box;
         }
 
-        /* Contenedor de la imagen principal (Izquierda) */
-        .single-gallery-main { 
-            width: 78%; 
-            --gallery-main-height: 500px; /* Un poco más alto para igualar 4 miniaturas verticales */
-            overflow: hidden; 
-            border-radius: 12px; 
-            background: #f8f9fa; 
+        .single-gallery-main {
+            width: 78%;
+            --gallery-main-height: 500px;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #f8f9fa;
         }
-        
+
+        /* Mantener la altura del container principal para evitar saltos visuales */
         .single-gallery-main .slick-list { height: var(--gallery-main-height) !important; }
         .single-gallery-main .slick-slide { height: var(--gallery-main-height); overflow: hidden; }
         .single-gallery-main a { display: flex !important; height: 100%; justify-content: center; align-items: center; }
-        
-        /* Imagen principal ajustada para cubrir el espacio sin deformarse */
-        .single-gallery-main .gallery-main-image { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: contain; 
-            border-radius: 12px;
-        }
+        .single-gallery-main .gallery-main-image { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
 
-        /* Contenedor de las miniaturas (Derecha) */
+        /* Miniaturas: columna a la derecha en desktop */
         .single-property-thumbnails-wrapper {
             width: 22%;
             position: relative;
+            height: 500px; /* fijo en desktop para evitar reflows */
+            overflow-y: auto;
         }
-        
-        /* Las miniaturas ahora se apilan hacia abajo */
+
         #single-property-thumbnails .slick-slide {
-            margin-bottom: 10px; 
+            margin-bottom: 10px;
             border-radius: 8px;
             overflow: hidden;
             border: 2px solid transparent;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            display: block;
         }
-        
-        /* Efecto de miniatura activa */
+
         #single-property-thumbnails .slick-current {
             border-color: var(--main-color, #eb3c3c);
-            opacity: 1 !important;
         }
 
-        #single-property-thumbnails img {
-            width: 100%; 
-            height: 115px; /* Altura calculada para encajar ~4 imágenes al lado de la principal */
-            object-fit: cover; 
-            border-radius: 6px;
-        }
+        #single-property-thumbnails img { width: 100%; height: 115px; object-fit: cover; display:block; }
 
-        /* Botones de navegación reposicionados para layout vertical */
-        .single-gallery-nav { 
-            position: absolute; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            z-index: 3; 
-            width: 30px; 
-            height: 30px; 
-            border: 0; 
-            border-radius: 50%; 
-            background: rgba(18, 22, 20, .82); 
-            color: #fff; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            cursor: pointer;
-        }
-        .single-gallery-nav:hover { background: var(--main-color, #eb3c3c); }
-        .single-gallery-prev { top: -15px; } /* Flecha arriba */
-        .single-gallery-next { bottom: -5px; } /* Flecha abajo */
+        /* Flechas y contador (simples y responsables) */
+        .single-gallery-nav { position: absolute; z-index: 6; width: 34px; height: 34px; border-radius: 50%; background: rgba(18,22,20,.82); color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+        .single-property-thumbnails-wrapper .single-gallery-prev { top: 8px; right: 8px; }
+        .single-property-thumbnails-wrapper .single-gallery-next { bottom: 8px; right: 8px; }
 
-        /* Contador flotante sobre la imagen principal */
-        .single-gallery-counter { 
-            position: absolute; 
-            left: 20px; 
-            bottom: 20px; 
-            z-index: 3; 
-            padding: .35rem .8rem; 
-            border-radius: 999px; 
-            background: rgba(18, 22, 20, .82); 
-            color: #fff; 
-            font-size: .85rem; 
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
+        .single-gallery-counter { position:absolute; left:20px; bottom:20px; z-index:3; padding:.35rem .8rem; border-radius:999px; background:rgba(18,22,20,.82); color:#fff; font-weight:600; }
 
-        /* Responsividad: En móviles vuelve a ponerse una debajo de la otra */
+        /* Móvil: miniaturas en fila debajo del main, sin empujar el layout */
         @media (max-width: 767.98px) {
-            .single-gallery { 
-                flex-direction: column; 
-                margin-bottom: 2rem; 
+            .single-gallery { flex-direction: column; }
+            .single-gallery-main { width:100%; --gallery-main-height: 300px; border-radius:8px; }
+
+            .single-property-thumbnails-wrapper { width:100%; height:auto; overflow: visible; }
+
+            /* Forzar que Slick no deje alturas residuales en móvil */
+            #single-property-thumbnails .slick-list,
+            #single-property-thumbnails .slick-track,
+            #single-property-thumbnails .slick-slide {
+                height: auto !important;
+                max-height: none !important;
+                overflow: visible !important;
             }
-            .single-gallery-main { width: 100%; --gallery-main-height: 300px; border-radius: 8px;}
-            .single-property-thumbnails-wrapper { width: 100%; margin-top: 10px; }
-            #single-property-thumbnails .slick-slide { margin-bottom: 0; margin-right: 10px; }
-            #single-property-thumbnails img { height: 80px; }
-            
-            /* En móvil las flechas vuelven a ser laterales */
-            .single-gallery-nav { top: 50%; transform: translateY(-50%); }
-            .single-gallery-prev { left: 5px; top: 50%; }
-            .single-gallery-next { right: 5px; left: auto; top: 50%; bottom: auto; }
+
+            /* Horizontal row of thumbnails */
+            #single-property-thumbnails .slick-slide { display:inline-block; margin-right:10px; height:auto !important; }
+            #single-property-thumbnails img { height:80px; }
+
+            /* Flechas laterales en móvil */
+            .single-gallery-nav { top:50%; transform:translateY(-50%); }
+            .single-property-thumbnails-wrapper .single-gallery-prev { left:8px; right:auto; }
+            .single-property-thumbnails-wrapper .single-gallery-next { right:8px; left:auto; }
         }
     </style>
 </head>
