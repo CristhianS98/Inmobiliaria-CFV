@@ -736,7 +736,10 @@ $(function () {
             const amenidadesMarcadas = proyecto.amenidades.split(",");
             amenidadesMarcadas.forEach(amenidad => {
                 if (amenidad.trim()) {
-                    amenidadesHTML += `<li class="w-50 float-start mb-2"><i class="bx bx-check-double text-main-color me-2"></i>${escapeHTML(amenidad.trim())}</li>`;
+                    amenidadesHTML += `<li class="w-50 float-start mb-3 pe-2" 
+                    style="min-height: 52px;"><i class="bx bx-check-circle text-main-color 
+                    fs-5 float-start me-2" style="margin-top: 2px;"></i><span class="d-block" 
+                    style="overflow: hidden; line-height: 1.2;"></i>${escapeHTML(amenidad.trim())}</li>`;
                 }
             });
             $("#lista-amenidades").html(amenidadesHTML);
