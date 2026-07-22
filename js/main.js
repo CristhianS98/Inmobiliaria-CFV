@@ -11,11 +11,6 @@ $(function () {
     let filtroPrecioMax = 300000;
     let limitePrecioMax = 300000;
 
-    // [ESTÁNDAR GUARDIAS DE DOM]
-    // Cada bloque de vista verifica su contenedor antes de inicializarse. Esta
-    // documentación no altera la lógica: index.html, search.html y single.html
-    // comparten este archivo y deben permanecer aislados por presencia de DOM.
-
     // --- FUNCIÓN DE SEGURIDAD (ANTI-XSS) ---
     function escapeHTML(str) {
         if (str === null || str === undefined) return "";
@@ -28,7 +23,6 @@ $(function () {
     }
 
     // --- CAROUSELS Y COMPONENTES ESTÁTICOS INICIALES ---
-    // [BLOQUE VISTA: INICIO] -> index.html | Guardia: .featured-carousel
     if ($('.featured-carousel').length > 0) {
         $('.featured-carousel').owlCarousel({
             loop: true, margin: 10, responsiveClass: true, autoplay: true, autoplayTimeout: 5000, autoplaySpeed: 1100, autoplayHoverPause: true, dots: true,
@@ -63,7 +57,6 @@ $(function () {
     }
 
     // [BLOQUE VISTA: BUSCADOR] -> search.html | Guardia: #price-range
-    // Inicialización del Slider de Precios con rangos dinámicos
     if ($("#price-range").length > 0) {
         $("#price-range").slider({
             step: 500, range: true, min: 0, max: 300000, values:[0, 300000],
@@ -71,7 +64,7 @@ $(function () {
                 $("#priceRange").val(ui.values[0] + " - " + ui.values[1]); 
                 filtroPrecioMin = ui.values[0];
                 filtroPrecioMax = ui.values[1];
-                ejecutarFiltradoDinamico(); // Filtrado reactivo al mover el slider
+                ejecutarFiltradoDinamico(); 
             }
         });
         $("#priceRange").val($("#price-range").slider("values", 0) + " - " + $("#price-range").slider("values", 1));
@@ -79,22 +72,21 @@ $(function () {
         filtroPrecioMax = $("#price-range").slider("values", 1);
     }
 
-    // [BLOQUE VISTA: INICIO] -> index.html | Guardia: .popular-slider
+    // [BLOQUE VISTA: INICIO] -> index.html 
     if ($('.popular-slider').length > 0) {
         $('.popular-slider').slick({ centerMode: true, centerPadding: '60px', slidesToShow: 1, dots: true });
     }
 
-    // [BLOQUE VISTA: DETALLE] -> single.html | Colección vacía segura en jQuery.
+    // [BLOQUE VISTA: DETALLE] -> single.html 
     $("a[data-rel]").lightcase();
     $("[data-bs-toggle='tooltip']").tooltip();
 
-    // [BLOQUE VISTA: INICIO] -> index.html | .cursor ausente es una colección vacía segura.
+    // [BLOQUE VISTA: INICIO] -> index.html 
     $(window).on("mousemove", function (e) {
         $(".cursor").css({ left: `${e.clientX}px`, top: `${e.clientY}px` });
     });
 
-    // [BLOQUE VISTA: INICIO / BUSCADOR] -> Guardia: .estate-search-box
-    // Maneja el buscador rápido de la página de inicio (index.html)
+    // [BLOQUE VISTA: INICIO / BUSCADOR] ->  .estate-search-box
     if ($('.estate-search-box').length > 0) {
         $('#btn-buscar').on('click', function (e) {
             e.preventDefault(); 
@@ -147,10 +139,8 @@ $(function () {
                     filtroPrecioMax = limitePrecioMax;
                 }
                 
-                // Una vez cargados los datos globales, calculamos los contadores fijos del sidebar
                 actualizarSidebarContadores();
                 
-                // Renderizado inicial completo
                 inyectarDatosEnPantallas();
 
                 // === AVISO PARA EL TOUR 360 ===
@@ -196,7 +186,6 @@ $(function () {
                 }
                 objeto[encabezado] = valor;
             });
-            // Campos calculados usados por el buscador; no cambian los datos originales.
             objeto.precio_numerico_limpio = obtenerPrecio(objeto);
             objeto.amenidades_array = (objeto.amenidades || "")
                 .split(",")
@@ -227,8 +216,6 @@ $(function () {
     }
 
     // --- LÓGICA DE FILTRADO DINÁMICO ---
-    // [BLOQUE VISTA: BUSCADOR] -> search.html | ejecutarFiltradoDinamico sale
-    // de forma segura si no existe la grilla ni el área de resultados.
     function normalizar(valor) {
         return (valor || "")
             .toString()
@@ -339,7 +326,7 @@ $(function () {
 
     // --- INYECCIÓN Y RENDERIZADO EN PANTALLAS ---
     function inyectarDatosEnPantallas() {
-        // [BLOQUE VISTA: INICIO] -> index.html | Guardia: .featured-carousel
+        // [BLOQUE VISTA: INICIO] -> index.html 
         // 1. Carrusel Estático de Inicio (Index)
         if ($('.featured-carousel').length > 0) {
             const $carrusel = $('.featured-carousel');
@@ -404,20 +391,17 @@ $(function () {
             });
         }
 
-        // [BLOQUE VISTA: BUSCADOR] -> search.html | Guardia: .filter-results-area
-        // 2. Grilla Inicial del Buscador (Muestra todo al cargar por primera vez)
+        // [BLOQUE VISTA: BUSCADOR] -> search.html 
         if ($(".filter-results-area").length > 0) {
             const aplicoFiltrosUrl = procesarFiltrosUrl();
             
-            // <-- CORRECCIÓN: Solo pinta todos los proyectos si la URL vino limpia (sin filtros)
             if (!aplicoFiltrosUrl) {
                 renderizarGrillaBuscador(listaProyectosGlobal);
                 actualizarContadoresFiltros(listaProyectosGlobal);
             }
         }
         
-        // [BLOQUE VISTA: DETALLE] -> single.html | La función contiene su propia guardia.
-        // 3. Ficha Técnica Única
+        // [BLOQUE VISTA: DETALLE] -> single.html 
         inyectarFichaTecnicaYWidgets();
     }
 
@@ -428,7 +412,6 @@ $(function () {
             : $(".filter-results-area .row");
         let grillaHTML = '';
         
-        // Actualizar el contador dinámico de resultados encontrados en tu cabecera
         $("#total-proyectos-conteo").text(proyectos.length);
 
         if (proyectos.length === 0) {
@@ -510,7 +493,6 @@ $(function () {
     }
 
     // --- VISTA DETALLE (SINGLE.HTML) ---
-    // [BLOQUE VISTA: DETALLE] -> single.html | Guardia: .property-info-content
     function inyectarFichaTecnicaYWidgets() {
         if ($(".property-info-content").length > 0) {
             const parametrosUrl = new URLSearchParams(window.location.search);
@@ -544,12 +526,11 @@ $(function () {
                     </ul>`;
                 $(".property-detail-info-list").html(fichaTecnicaHtml);
 
-               // Galería exclusiva de single.html: principal + miniaturas (Layout Vertical Derecho)
+               // Galería exclusiva de single.html: principal + miniaturas 
                 const $galeriaPrincipal = $('#single-property-slider');
                 const $galeriaMiniaturas = $('#single-property-thumbnails');
                 const $contadorGaleria = $('#single-gallery-counter');
                 
-                // Envolvemos las miniaturas en un div relativo para posicionar mejor las flechas verticales
                 if ($galeriaMiniaturas.parent('.single-property-thumbnails-wrapper').length === 0) {
                     $galeriaMiniaturas.wrap('<div class="single-property-thumbnails-wrapper"></div>');
                 }
@@ -586,11 +567,9 @@ $(function () {
                     if ($galeriaMiniaturas.length > 0) $galeriaMiniaturas.html(miniaturasHTML);
                     $contadorGaleria.text(fotos.length ? `1 / ${fotos.length}` : '0 / 0');
                     
-                    // Colocamos el contador dentro del slider principal para que flote sobre la foto
                     $galeriaPrincipal.append($contadorGaleria);
 
                     if (fotos.length > 0) {
-                        // Inicializa el grande
                         $galeriaPrincipal.slick({
                             slidesToShow: 1,
                             slidesToScroll: 1,
@@ -599,12 +578,9 @@ $(function () {
                             asNavFor: '#single-property-thumbnails'
                         });
                         
-                        // Inicializa las miniaturas (usa responsive de Slick para controlar verticalidad)
                         if ($galeriaMiniaturas.length > 0) {
-                            // Evitamos handlers repetidos
                             $galeriaMiniaturas.off('init.singleGalleryInit');
                             $galeriaMiniaturas.on('init.singleGalleryInit', function (e, slick) {
-                                // Un único recalculo visual en el primer frame para estabilizar dimensiones
                                 requestAnimationFrame(function () {
                                     try {
                                         $galeriaMiniaturas.slick('setPosition');
@@ -623,8 +599,7 @@ $(function () {
                                 focusOnSelect: true,
                                 vertical: true,
                                 verticalSwiping: true,
-                                infinite: true, // requerido: miniaturas infinite
-                                // Flechas simples; su estilo/posición se maneja en CSS según breakpoint
+                                infinite: true, 
                                 prevArrow: `<button type="button" class="single-gallery-nav single-gallery-prev"><i class="bx bx-chevron-up" style="font-size:22px;"></i></button>`,
                                 nextArrow: `<button type="button" class="single-gallery-nav single-gallery-next"><i class="bx bx-chevron-down" style="font-size:22px;"></i></button>`,
                                 responsive: [
@@ -653,8 +628,7 @@ $(function () {
         }
     }
 
-    // [BLOQUE VISTA: DETALLE] -> single.html | Guardia: .property-info-content
-    // Widgets exclusivos de single.html: destacados, categorías y referencia de cotización.
+    // [BLOQUE VISTA: DETALLE] -> single.html |
     function renderizarSidebarSingle(proyectoActual) {
         if (!$(".property-info-content").length) return;
 
@@ -700,7 +674,7 @@ $(function () {
         });
     }
 
-    // [BLOQUE VISTA: DETALLE] -> single.html | Se invoca solo desde la ficha guardada.
+    // [BLOQUE VISTA: DETALLE] -> single.html 
     function inyectarMediaAdicionalSingle(proyecto) {
         if (proyecto.mapa_url) {
             $("#mapa-iframe").attr("src", proyecto.mapa_url);
@@ -761,9 +735,7 @@ $(function () {
         $("#total-cat-locales").text(`(${locales.toString().padStart(2, '0')})`);
     }
 
-    // [BLOQUE VISTA: BUSCADOR] -> search.html | Delegación segura: sin controles
-    // coincidentes los eventos no ejecutan cambios en las otras vistas.
-    // Eventos exclusivos del buscador. No modifican la plantilla de las tarjetas.
+    // [BLOQUE VISTA: BUSCADOR] -> search.html
     $(document).on("click", "#btn-aplicar-filtros, #btn-buscar-texto", ejecutarFiltradoDinamico);
     $(document).on("change", "#form-filtros-avanzados input, #sort", ejecutarFiltradoDinamico);
     $(document).on("input", "#search-keyword", ejecutarFiltradoDinamico);
@@ -771,23 +743,19 @@ $(function () {
         evento.preventDefault();
         ejecutarFiltradoDinamico();
     });
-    // Actualizado para escuchar tanto al botón del sidebar como al nuevo botón rápido
     $(document).on("click", "#btn-limpiar-filtros, .btn-limpiar-filtros-rapido", function () {
         const formularioFiltros = $("#form-filtros-avanzados")[0];
         const formularioTexto = $("#form-busqueda-texto")[0];
         
-        // 1. Resetea los formularios si existen
         if (formularioFiltros) formularioFiltros.reset();
         if (formularioTexto) formularioTexto.reset();
         
-        // 2. FORZAR limpieza manual (Seguridad extra por si los inputs no están dentro de un form)
         $('input[type="checkbox"], input[type="radio"]').prop('checked', false);
         $("#search-keyword").val("");
         if ($('#location').length > 0) $('#location').val("").niceSelect('update');
         if ($('#property_estate').length > 0) $('#property_estate').val("").niceSelect('update');
         if ($('#property_type').length > 0) $('#property_type').val("").niceSelect('update');
 
-        // 3. Resetea el ordenamiento y slider de precios
         $("#sort").val("predeterminado");
         if ($("#sort").next(".nice-select").length) $("#sort").niceSelect("update");
         if ($("#price-range").length) {
@@ -797,16 +765,13 @@ $(function () {
         filtroPrecioMin = 0;
         filtroPrecioMax = limitePrecioMax;
         
-        // 4. Limpiar la URL para que no queden parámetros colgados
         const nuevaUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
         window.history.replaceState({path: nuevaUrl}, '', nuevaUrl);
 
-        // 5. Ejecutar la búsqueda limpia (renderizará todos los proyectos nuevamente)
         ejecutarFiltradoDinamico();
     });
 
     // --- FORMULARIO DE COTIZACIÓN VÍA WHATSAPP ---
-    // [BLOQUE VISTA: DETALLE] -> single.html | Delegación segura por #form-cotizacion-whatsapp.
     $(document).on("submit", "#form-cotizacion-whatsapp", function (e) {
         e.preventDefault();
         const nombre = $("#cotizar-nombre").val();
